@@ -857,7 +857,7 @@ wish to left align your text}
 \newcommand{\universityTH}[1]{\renewcommand{\@universityTH}{#1}}
 
 % Defining the crest
-\newcommand{\@crest}{\includegraphics[width=2.3cm]{classes/logo/PSU_logo.png}}
+\newcommand{\@crest}{\includegraphics[width=2.3cm]{classes/logo/psubw.png}}
 \newcommand{\crest}[1]{\renewcommand{\@crest}{#1}}
 
 
