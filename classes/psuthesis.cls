@@ -952,7 +952,7 @@ wish to left align your text}
 \begin{center}
 % Crest
 {\@crest \par\par}
-\vspace*{1ex}
+\vspace*{1em}
 % Title
 {\large \bfseries{\@titleTH} \par}
 \vspace*{1ex}
@@ -978,12 +978,12 @@ wish to left align your text}
 {\large \bfseries{\submissiontextTH} \par}
 {\large \bfseries{\@degreeTH} \par}
 {\large \bfseries{\@universityTH} \par}
-\vspace*{1ex}
+\vspace*{1em}
 
 {\large \bfseries{\submissiontext} \par}
 {\large \bfseries{Degree of \@degree} \par}
 {\large \bfseries{\@university} \par}
-\vspace*{1ex}
+\vspace*{1em}
 {\large \bfseries{\@degreeyear} \par}
 {\large \bfseries{ลิขสิทธิ์ของ\@universityTH} \par}
 \end{center}
@@ -1167,13 +1167,11 @@ wish to left align your text}
 \newsavebox{\PSUTHESIS@Title}
 \begin{lrbox}{\PSUTHESIS@Title}
 \begin{minipage}[c]{0.98\textwidth}
-\centering \Huge \bfseries{\@title}
-%\ifthenelse{\equal{\@subtitle}{}}{
-%% subtitle is not defined
-%}{
-%\vspace*{1em}
-%\centering \Large {\@subtitle}
-%} % subtitle is defined
+\begin{center}
+{\large \bfseries{\@titleTH} \par}
+\vspace*{1em}
+{\large \bfseries{\@title} \par}
+\end{center}
 \end{minipage}
 \end{lrbox}
 
@@ -1181,55 +1179,44 @@ wish to left align your text}
 \newsavebox{\PSUTHESIS@crest}
 \begin{lrbox}{\PSUTHESIS@crest}
 \@crest
+\vspace*{1em}
 \end{lrbox}
 
 % Author Box
 \newsavebox{\PSUTHESIS@author}
 \begin{lrbox}{\PSUTHESIS@author}
 \begin{minipage}[c]{\textwidth}
-\centering \Large \bfseries{\@author}
+\begin{center}
+{\large \bfseries{\@authorTH} \par}
+{\large \bfseries{\@author} \par}
+\end{center}
 \end{minipage}
 \end{lrbox}
-
-% Department Box
-%\newsavebox{\PSUTHESIS@dept}
-%\begin{lrbox}{\PSUTHESIS@dept}
-%\begin{minipage}[c]{\textwidth}
-%\centering {\large \@dept \par}
-%\vspace*{1em}
-%{\large \@university \par}
-%\end{minipage}
-%\end{lrbox}
 
 % Submission Box
 \newsavebox{\PSUTHESIS@submission}
 \begin{lrbox}{\PSUTHESIS@submission}
 \begin{minipage}[c]{\textwidth}
 \begin{center}
-\large \submissiontext \par
-\vspace*{1ex}
-\large \textit {\@degree} \par
+{\large \bfseries{\submissiontextTH} \par}
+{\large \bfseries{\@degreeTH} \par}
+{\large \bfseries{\@universityTH} \par}
+\vspace*{1em}
+
+{\large \bfseries{\submissiontext} \par}
+{\large \bfseries{Degree of \@degree} \par}
+{\large \bfseries{\@university} \par}
+\vspace*{1em}
 \end{center}
 \end{minipage}
 \end{lrbox}
 
 % College and Date Box
-\newsavebox{\PSUTHESIS@collegedate}
-\begin{lrbox}{\PSUTHESIS@collegedate}
+\newsavebox{\PSUTHESIS@year}
+\begin{lrbox}{\PSUTHESIS@year}
 \begin{minipage}[c]{\textwidth}
-\large
-%\ifthenelse{\equal{\@college}{}}{
-%% college is not defined
-%\@degreedate
-%}{
-%% college is defined
-%\begin{minipage}{0.45\textwidth}
-%% \flushleft\@college
-%\end{minipage}
-%\begin{minipage}{0.45\textwidth}
-%% \flushright \@degreedate
-%\end{minipage}
-%} % college is defined
+\large \bfseries{\@degreeyear} \par
+\large \bfseries{ลิขสิทธิ์ของ\@universityTH} \par
 \end{minipage}
 \end{lrbox}
 
@@ -1239,9 +1226,8 @@ wish to left align your text}
 			- \totalheightof{\usebox{\PSUTHESIS@Title}}
 			- \totalheightof{\usebox{\PSUTHESIS@crest}}
 			- \totalheightof{\usebox{\PSUTHESIS@author}}
-%			- \totalheightof{\usebox{\PSUTHESIS@dept}}
 			- \totalheightof{\usebox{\PSUTHESIS@submission}}
-			- \totalheightof{\usebox{\PSUTHESIS@collegedate}}
+			- \totalheightof{\usebox{\PSUTHESIS@year}}
 }
 }
 
