@@ -5,9 +5,7 @@ The latex template for PSU thesis
 
 Team
 ====
-* `Thanathip Limna`_
-* `Teerasak Kroputaponchai`_
+[Thanathip Limna](https://github.com/sdayu)
+[Teerasak Kroputaponchai](http://github.com/ibotdotout)
 
-.. _Thanathip Limna: https://github.com/sdayu
-.. _Teerasak Kroputaponchai: http://github.com/ibotdotout
 
