@@ -952,14 +952,13 @@ wish to left align your text}
 
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
-\computeTitlePageSpacing
 \makePSUthesistitle
 }
 
 \newcommand{\makePSUthesistitle}
 {
 % To compute the free vertical space in Title page
-
+\computeTitlePageSpacing
 
 % Fix for issue #24 https://github.com/kks32/PSUTHESIS-thesis-template/issues/24
 \renewcommand*{\thepage}{i}
@@ -1153,7 +1152,11 @@ wish to left align your text}
 
 
 % Title Box
+\@ifundefined{PSUTHESIS@Title}
+{
 \newsavebox{\PSUTHESIS@Title}
+}{}
+
 \begin{lrbox}{\PSUTHESIS@Title}
 \begin{minipage}[c]{0.98\textwidth}
 \begin{center}
@@ -1165,14 +1168,22 @@ wish to left align your text}
 \end{lrbox}
 
 % University Crest Box
+\@ifundefined{PSUTHESIS@crest}
+{
 \newsavebox{\PSUTHESIS@crest}
+}{}
+
 \begin{lrbox}{\PSUTHESIS@crest}
 \@crest
 \vspace*{1em}
 \end{lrbox}
 
 % Author Box
+\@ifundefined{PSUTHESIS@author}
+{
 \newsavebox{\PSUTHESIS@author}
+}{}
+
 \begin{lrbox}{\PSUTHESIS@author}
 \begin{minipage}[c]{\textwidth}
 \begin{center}
@@ -1183,7 +1194,11 @@ wish to left align your text}
 \end{lrbox}
 
 % Submission Box
+\@ifundefined{PSUTHESIS@submission}
+{
 \newsavebox{\PSUTHESIS@submission}
+}{}
+
 \begin{lrbox}{\PSUTHESIS@submission}
 \begin{minipage}[c]{\textwidth}
 \begin{center}
@@ -1201,7 +1216,11 @@ wish to left align your text}
 \end{lrbox}
 
 % College and Date Box
+\@ifundefined{PSUTHESIS@year}
+{
 \newsavebox{\PSUTHESIS@year}
+}{}
+
 \begin{lrbox}{\PSUTHESIS@year}
 \begin{minipage}[c]{\textwidth}
 \large \bfseries{\@degreeyear} \par
@@ -1210,7 +1229,11 @@ wish to left align your text}
 \end{lrbox}
 
 %  Now to compute the free vertical space
+
+\@ifundefined{PSUTHESIS@titlepagespacing}
+{
 \newlength{\PSUTHESIS@titlepagespacing}
+}{}
 \setlength{\PSUTHESIS@titlepagespacing}{ \textheight %
 			- \totalheightof{\usebox{\PSUTHESIS@Title}}
 			- \totalheightof{\usebox{\PSUTHESIS@crest}}
