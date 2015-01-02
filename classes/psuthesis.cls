@@ -184,32 +184,35 @@
 % Font Size
 \newcommand\PSUTHESIS@ptsize{12pt} %Set Default Size as 16 Thai font
 
-\DeclareOption{12pt}{
-  \ClassWarning{psuthesis}{The Cambridge University PSUTHESIS thesis guidelines
-recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
-footnotes.}
-  \renewcommand\PSUTHESIS@ptsize{12pt}
-}
-\DeclareOption{11pt}{\renewcommand\PSUTHESIS@ptsize{11pt}}%
-\DeclareOption{12pt}{\renewcommand\PSUTHESIS@ptsize{12pt}}%
+%\DeclareOption{12pt}{
+%  \ClassWarning{psuthesis}{The Cambridge University PSUTHESIS thesis guidelines
+%recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
+%footnotes.}
+%  \renewcommand\PSUTHESIS@ptsize{12pt}
+%}
+%\DeclareOption{11pt}{\renewcommand\PSUTHESIS@ptsize{11pt}}%
+%\DeclareOption{12pt}{\renewcommand\PSUTHESIS@ptsize{12pt}}%
 \PassOptionsToClass{\PSUTHESIS@ptsize}{book}%
 \message{psuthesis: Font size is set as \PSUTHESIS@ptsize}
 
 % Page Size
 \newcommand\PSUTHESIS@papersize{a4paper} % Set Default as a4paper
 
-\DeclareOption{a4paper}{\renewcommand\PSUTHESIS@papersize{a4paper}}
-\DeclareOption{a5paper}{\renewcommand\PSUTHESIS@papersize{a5paper}}
-\DeclareOption{letterpaper}{
-  \ClassWarning{psuthesis}{The Prince of Songkla University thesis guidelines recommend only A4paper}
-  \renewcommand\PSUTHESIS@papersize{letterpaper}
-}
+%\DeclareOption{a4paper}{\renewcommand\PSUTHESIS@papersize{a4paper}}
+%\DeclareOption{a5paper}{\renewcommand\PSUTHESIS@papersize{a5paper}}
+%\DeclareOption{letterpaper}{
+%  \ClassWarning{psuthesis}{The Prince of Songkla University thesis guidelines recommend only A4paper}
+%  \renewcommand\PSUTHESIS@papersize{letterpaper}
+%}
 
 \PassOptionsToClass{\PSUTHESIS@papersize}{book}%
 
 % Column layout
-\DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
-\DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
+\PassOptionsToClass{oneside}{book}
+
+%\newif\if@oneside\@onesidefalse
+%\DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}\@onesidetrue}%
+%\DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
 
@@ -559,7 +562,7 @@ supported!}
 
 % set font thai
 \usepackage[utf8x]{inputenc}
-\usepackage[laksaman]{fonts-tlwg}
+\usepackage[sans,sflaksaman,rmkinnari]{fonts-tlwg}
 
 %\input{glyphtounicode}
 %\pdfglyphtounicode{f_f}{FB00}
@@ -615,10 +618,10 @@ supported!}
         \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
 	\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
-          vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+          vmarginratio=1:1,scale=0.75,bindingoffset=5mm,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
         \else
 	\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
-          vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+          vmarginratio=1:1,scale=0.75,bindingoffset=5mm,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
         \fi
     \fi
 
@@ -652,11 +655,11 @@ supported!}
     \else
 	% No Margin staggering on Odd and Even side
         \ifsetDVI
-	\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
-          vmarginratio=1:1,scale=0.75]{geometry}
+			\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
+          		vmarginratio=1:1,scale=0.75,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
         \else
-	\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
-          vmarginratio=1:1,scale=0.75]{geometry}
+			\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
+          		vmarginratio=1:1,scale=0.75,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
         \fi
     \fi
 
@@ -724,13 +727,13 @@ wish to left align your text}
 
 
 % ************************** TOC and Hide Sections *****************************
-\newcommand{\nocontentsline}[3]{}
-\newcommand{\tochide}[2]{
-	\bgroup\let
-	\addcontentsline=\nocontentsline#1{#2}
-	\egroup}
+%\newcommand{\nocontentsline}[3]{}
+%\newcommand{\tochide}[2]{
+%	\bgroup\let
+%	\addcontentsline=\nocontentsline#1{#2}
+%	\egroup}
 % Removes pagenumber appearing from TOC
-\addtocontents{toc}{\protect\thispagestyle{empty}}
+%\addtocontents{toc}{\protect\thispagestyle{empty}}
 
 
 % ***************************** Header Formatting ******************************
@@ -791,10 +794,9 @@ wish to left align your text}
 \AtBeginDocument{
 \@ifpackageloaded{geometry}{}{\ClassWarning{psuthesis}{%
   Custom margin is chosen, but geometry package is not loaded. Please load the
-  `geometry' package in the preamble.}}}
-  \RequirePackage[left=37mm,right=30mm,top=1.5in,bottom=1in]{geometry}
+  `geometry' package in the preamble.}}}  
 \else
-\setFancyHdr % Apply fancy header settings otherwise apply it in preamble
+	\setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
 
 % **************** Clear Header Style on the Last Empty Odd pages **************
@@ -916,34 +918,48 @@ wish to left align your text}
 
 % Fix issue of title page having same number as the next page in oneside option
 % Issue #24 https://github.com/kks32/PSUTHESIS-thesis-template/issues/24
+%\if@oneside
 \renewenvironment{titlepage} % changed from "newenvironment"
 {%
 \begingroup
-\if@twocolumn
-    \@restonecoltrue\onecolumn
-\else
-    \@restonecolfalse\newpage
-\fi
-    \thispagestyle{empty}
-    \setcounter{page}\z@
+\newpage
+\thispagestyle{empty}
+\setcounter{page}\z@ 
 }%
 {
-\if@restonecol
-    \twocolumn
-\else 
-    \newpage 
-\fi 
+\endgroup
+\clearpage
+% create empty page
+\newpage
+\thispagestyle{empty}
+\mbox{}
+%\addtocounter{page}{1}
+}
+%\fi
+
+\newenvironment{innertitlepage} % changed from "newenvironment"
+{%
+\begingroup
+\newpage
+\thispagestyle{empty}
+\setcounter{page}\z@ 
+}%
+{
 \endgroup
 \clearpage
 \addtocounter{page}{1}
 }
 
-
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
-
-% To compute the free vertical space in Title page
 \computeTitlePageSpacing
+\makePSUthesistitle
+}
+
+\newcommand{\makePSUthesistitle}
+{
+% To compute the free vertical space in Title page
+
 
 % Fix for issue #24 https://github.com/kks32/PSUTHESIS-thesis-template/issues/24
 \renewcommand*{\thepage}{i}
@@ -957,22 +973,13 @@ wish to left align your text}
 {\large \bfseries{\@titleTH} \par}
 \vspace*{1ex}
 {\large \bfseries{\@title} \par}
-%{\Huge \bfseries{\@title} \par}
-%\ifthenelse{\equal{\@subtitle}{}}{
-%% subtitle is not defined
-%}{
-%\vspace*{1em}
-%\centering \Large {\@subtitle}
-%} % subtitle is defined
 
-\vspace{.35\PSUTHESIS@titlepagespacing}
+
+\vspace{.5\PSUTHESIS@titlepagespacing}
 % Author
 {\large \bfseries{\@authorTH} \par}
 {\large \bfseries{\@author} \par}
-\vspace{.35\PSUTHESIS@titlepagespacing}
-
-% Department and University
-% {\large \@dept \par}
+\vspace{.5\PSUTHESIS@titlepagespacing}
 
 % Submission Text
 {\large \bfseries{\submissiontextTH} \par}
@@ -983,30 +990,12 @@ wish to left align your text}
 {\large \bfseries{\submissiontext} \par}
 {\large \bfseries{Degree of \@degree} \par}
 {\large \bfseries{\@university} \par}
-\vspace*{1em}
+\vspace*{2em}
 {\large \bfseries{\@degreeyear} \par}
 {\large \bfseries{ลิขสิทธิ์ของ\@universityTH} \par}
 \end{center}
-\vfill
-\large
-\begin{minipage}[c]{\textwidth}
-%\ifthenelse{\equal{\@college}{}}{
-%% college is not defined
-%\centering
-%\@degreedate
-%}{
-%% college is defined
-%\begin{minipage}{0.45\textwidth}
-%\flushleft\@college
-%\end{minipage}
-%\begin{minipage}{0.45\textwidth}
-%\flushright \@degreedate
-%\end{minipage}
-%} % college is defined
-\end{minipage}
 \end{singlespace}
 }
-
 
 % ********************************* Dedication *********************************
 % The dedication environment makes sure the dedication gets its
@@ -1206,7 +1195,7 @@ wish to left align your text}
 {\large \bfseries{\submissiontext} \par}
 {\large \bfseries{Degree of \@degree} \par}
 {\large \bfseries{\@university} \par}
-\vspace*{1em}
+\vspace*{2em}
 \end{center}
 \end{minipage}
 \end{lrbox}
