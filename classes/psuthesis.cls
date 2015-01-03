@@ -138,13 +138,16 @@
 \newif\ifPSUTHESIS@textJustify\PSUTHESIS@textJustifytrue % Set Justification true
 \DeclareOption{flushleft}{\PSUTHESIS@textJustifyfalse}
 
-
 % ************************* Header / Footer Styling ****************************
-\newif\ifPSUTHESIS@pageStyleI\PSUTHESIS@pageStyleIfalse % Set Page StyleI
-\DeclareOption{PageStyleI}{\PSUTHESIS@pageStyleItrue}
+%\newif\ifPSUTHESIS@pageStyleI\PSUTHESIS@pageStyleIfalse % Set Page StyleI
+%\DeclareOption{PageStyleI}{\PSUTHESIS@pageStyleItrue}
 
-\newif\ifPSUTHESIS@pageStyleII\PSUTHESIS@pageStyleIIfalse % Set Page StyleII
-\DeclareOption{PageStyleII}{\PSUTHESIS@pageStyleIItrue}
+%\newif\ifPSUTHESIS@pageStyleII\PSUTHESIS@pageStyleIIfalse % Set Page StyleII
+%\DeclareOption{PageStyleII}{\PSUTHESIS@pageStyleIItrue}
+
+% ************************* Language / Thai and Engilish ***********************
+\newif\ifsetThai\setThaifalse
+\DeclareOption{thai}{\setThaitrue}
 
 % ***************************** Custom Margins  ********************************
 \newif\ifsetCustomMargin\setCustomMarginfalse % Set Custom Margin
@@ -742,16 +745,27 @@ wish to left align your text}
 [display] % shape
 {\bfseries\large\itshape} % format
 {\filcenter\chaptertitlename \ \thechapter} % label
-{0em} % sep
+{-.5em} % sep
 {
     %\rule{\textwidth}{1pt}
     \vspace{1ex}
     \centering
 } % before-code
 [
-%\vspace{-0.5ex}%
+\vspace{1em}%
 ] % after-code
 \titlespacing{\chapter}{0pt}{0pt}{0pt}
+
+\titleformat{\section}
+  {\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\bfseries}{\thesubsubsection}{1em}{}
+ 
+\setlength{\parindent}{1in}
+\usepackage{indentfirst}
+\setcounter{secnumdepth}{3}
 
 % ***************************** Header Formatting ******************************
 % Custom Header with Chapter Number, Page Number and Section Numbering
@@ -787,12 +801,12 @@ wish to left align your text}
 %\else
 % Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name
 % on LO/RE and an empty footer
-\renewcommand{\chaptermark}[1]{\markboth {##1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
+%\renewcommand{\chaptermark}[1]{\markboth {##1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}
-\fancyhead[LO]{\nouppercase \rightmark}
+%\fancyhead[LO]{\nouppercase \rightmark}
 \fancyhead[LE,RO]{\bfseries\thepage}
-\fancyhead[RE]{\nouppercase \leftmark}
+%\fancyhead[RE]{\nouppercase \leftmark}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 %\fi
@@ -840,6 +854,8 @@ wish to left align your text}
   \setcounter{page}{1}
   \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
+% new define
+\renewcommand{\thepage}{(\arabic{page})}
 
 % ******************************* Appendices **********************************
 % Appending the appendix name to the letter in TOC
