@@ -440,7 +440,7 @@ supported!}
              {\renewcommand\draftnodeanchor{\paperheight-\voffset}} %Bottom
              {\ifthenelse{\equal{\draftposition}{top}}
                {\renewcommand\draftnodeanchor{1in+\voffset-\topmargin}} %Top
-               {\ClassWarning{PDThesisPSnPDF}{Unrecognised draft position
+               {\ClassWarning{psuthesis}{Unrecognised draft position
                    using default value of top}
                  \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}} %Top
 
@@ -732,9 +732,26 @@ wish to left align your text}
 %	\bgroup\let
 %	\addcontentsline=\nocontentsline#1{#2}
 %	\egroup}
-% Removes pagenumber appearing from TOC
+%% Removes pagenumber appearing from TOC
 %\addtocontents{toc}{\protect\thispagestyle{empty}}
 
+% chapter format
+\usepackage{titlesec}
+\titleformat
+{\chapter} % command
+[display] % shape
+{\bfseries\large\itshape} % format
+{\filcenter\chaptertitlename \ \thechapter} % label
+{0em} % sep
+{
+    %\rule{\textwidth}{1pt}
+    \vspace{1ex}
+    \centering
+} % before-code
+[
+%\vspace{-0.5ex}%
+] % after-code
+\titlespacing{\chapter}{0pt}{0pt}{0pt}
 
 % ***************************** Header Formatting ******************************
 % Custom Header with Chapter Number, Page Number and Section Numbering
@@ -745,29 +762,29 @@ wish to left align your text}
 \newcommand{\setFancyHdr}{
 
 \pagestyle{fancy}
-\ifPSUTHESIS@pageStyleI
+%\ifPSUTHESIS@pageStyleI
 % Style 1: Sets Page Number at the Top and Chapter/Section Name on LE/RO
-\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
-\fancyhf{}
-\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | 
-  \hspace{0.25em} \bfseries{\thepage}}
-\fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | 
-  \hspace{0.25em} \nouppercase \leftmark}
+%\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
+%\fancyhf{}
+%\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | 
+%  \hspace{0.25em} \bfseries{\thepage}}
+%\fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | 
+%  \hspace{0.25em} \nouppercase \leftmark}
+%\message{"xxx: pageStyleI"}
 
-
-\else
-\ifPSUTHESIS@pageStyleII
+%\else
+%\ifPSUTHESIS@pageStyleII
 % Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
-\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
-\fancyhf{}
-\fancyhead[RO]{\bfseries\nouppercase \rightmark}
-\fancyhead[LE]{\bfseries \nouppercase \leftmark}
-\fancyfoot[C]{\thepage}
+%\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
+%\fancyhf{}
+%\fancyhead[RO]{\bfseries\nouppercase \rightmark}
+%\fancyhead[LE]{\bfseries \nouppercase \leftmark}
+%\fancyfoot[C]{\thepage}
+%\message{"xxx: pageStyleII"}
 
-
-\else
+%\else
 % Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name
 % on LO/RE and an empty footer
 \renewcommand{\chaptermark}[1]{\markboth {##1}{}}
@@ -776,17 +793,24 @@ wish to left align your text}
 \fancyhead[LO]{\nouppercase \rightmark}
 \fancyhead[LE,RO]{\bfseries\thepage}
 \fancyhead[RE]{\nouppercase \leftmark}
-\fi
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%\fi
 
-\fi
+%\fi
 }
 
 \setlength{\headheight}{14.5pt}
+\setlength{\topmargin}{-.2in}
+\setlength{\headsep}{.5in}
 %\renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{
-  \fancyhead{}
+\fancyhead{}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage}
   \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
 }
 
 % If Margin has been set (default margin print/online version)
@@ -893,6 +917,30 @@ wish to left align your text}
 \newcommand{\@subject}{}
 \newcommand{\subject}[1]{\renewcommand{\@subject}{#1}}
 
+% Approval Page
+%\newcommand{\@majoradvisor}{}
+%\newcommand{\majoradvisor}[1]{\renewcommand{\@majoradvisor}{#1}}
+%
+%\newcommand{\@coadvisor}{}
+%\newcommand{\coadvisor}[1]{\renewcommand{\@coadvisor}{#1}}
+%
+%\newcommand{\@committee1}{}
+%\newcommand{\committee1}[1]{\renewcommand{\@committee1}{#1}}
+%
+%\newcommand{\@committee2}{}
+%\newcommand{\committee2}[1]{\renewcommand{\@committee2}{#1}}
+%
+%\newcommand{\@committee3}{}
+%\newcommand{\committee3}[1]{\renewcommand{\@committee3}{#1}}
+%
+%\newcommand{\@committee4}{}
+%\newcommand{\committee4}[1]{\renewcommand{\@committee4}{#1}}
+%
+%\newcommand{\@committee5}{}
+%\newcommand{\committee5}[1]{\renewcommand{\@committee5}{#1}}
+%
+%\newcommand{\@deanofgraduateschool}{}
+%\newcommand{\deanofgraduateschool}[1]{\renewcommand{\@deanofgraduateschool}{#1}}
 
 % These macros define an environment for front matter that is always
 % single column even in a double-column document.
@@ -924,7 +972,7 @@ wish to left align your text}
 \begingroup
 \newpage
 \thispagestyle{empty}
-\setcounter{page}\z@ 
+%\setcounter{page}\z@ 
 }%
 {
 \endgroup
@@ -933,6 +981,7 @@ wish to left align your text}
 \newpage
 \thispagestyle{empty}
 \mbox{}
+\clearpage
 %\addtocounter{page}{1}
 }
 %\fi
@@ -941,13 +990,15 @@ wish to left align your text}
 {%
 \begingroup
 \newpage
-\thispagestyle{empty}
 \setcounter{page}\z@ 
+\addtocounter{page}{1}
+%\thispagestyle{empty}
+%\setcounter{page}\z@ 
 }%
 {
 \endgroup
 \clearpage
-\addtocounter{page}{1}
+%\addtocounter{page}{1}
 }
 
 % ******************************** Title Page **********************************
@@ -960,8 +1011,7 @@ wish to left align your text}
 % To compute the free vertical space in Title page
 \computeTitlePageSpacing
 
-% Fix for issue #24 https://github.com/kks32/PSUTHESIS-thesis-template/issues/24
-\renewcommand*{\thepage}{i}
+%\renewcommand*{\thepage}{i}
 
 \begin{singlespace}
 \begin{center}
@@ -1018,7 +1068,7 @@ wish to left align your text}
 \newenvironment{declaration}{
 \cleardoublepage
 \setsinglecolumn
-\chapter*{\centering \Large Declaration}
+\chapter*{\centering Declaration}
 \thispagestyle{empty}
 }{
 \flushright
@@ -1036,7 +1086,7 @@ wish to left align your text}
 \newenvironment{acknowledgements}{
 \cleardoublepage
 \setsinglecolumn
-\chapter*{\centering \Large Acknowledgements}
+\chapter*{\centering Acknowledgements}
 \thispagestyle{empty}
 }
 
@@ -1138,7 +1188,7 @@ wish to left align your text}
 % Normal abstract in the thesis
 	\cleardoublepage
 	\setsinglecolumn
-	\chapter*{\centering \Large Abstract}
+	\chapter*{\centering Abstract}
 	\thispagestyle{empty}
 \fi
 }
