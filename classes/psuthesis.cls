@@ -1233,7 +1233,7 @@ wish to left align your text}
 \begin{singlespace}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
-ข้าพเจ้ารับรองว่า ผลงานวิจัยนี้เป้นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่อขออนุมัติปริญญาในขณะนี้
+ข้าพเจ้ารับรองว่า ผลงานวิจัยนี้เป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่อขออนุมัติปริญญาในขณะนี้
 \vspace{3em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
@@ -1290,7 +1290,8 @@ wish to left align your text}
 \cleardoublepage
 \setsinglecolumn
 \chapter*{\centering Acknowledgements}
-\thispagestyle{empty}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+%\thispagestyle{empty}
 }
 
 
@@ -1392,7 +1393,8 @@ wish to left align your text}
 	\cleardoublepage
 	\setsinglecolumn
 	\chapter*{\centering Abstract}
-	\thispagestyle{empty}
+	\addcontentsline{toc}{chapter}{Abstract}
+	%\thispagestyle{empty}
 \fi
 }
 
