@@ -1,22 +1,45 @@
-\documentclass[]{classes/psuthesis}
-
+\documentclass[thai]{classes/psuthesis}
+% thai for the thesis writing in Thai
+% english for the thesis wrinting in english
 % addition for thai with babel
-\usepackage[english,thai]{babel}
+\ifpdf
+	\usepackage[english,thai]{babel}
+\else
+\fi
 
 %\usepackage{showframe}
 \begin{document}
 
-\title{Writing Your Thesis for Graduate Student in Latex \\ Prince of Songkla University}
+\title{Writing Your Thesis for Graduate Student in Latex \newline Prince of Songkla University}
 \author{Thanathip Limna}
-\titleTH{การเขียนวิทยานิพนธ์สำหรับนักศึกษาบัณฑิตศึกษาด้วย Latex \\ มหาวิทยาลัยสงขลานครินทร์}
+\titleTH{การเขียนวิทยานิพนธ์สำหรับนักศึกษาบัณฑิตศึกษาด้วย Latex \newline มหาวิทยาลัยสงขลานครินทร์}
+\authorTitle{Mr.}
 \author{Thanathip Limna}
+\authorTitleTH{นาย}
 \authorTH{ธนาธิป ลิ่มนา}
-\degree{Master of Engineering in Computer Engineering}
-\degreeTH{วิศวกรรมศาสตรมหาบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์}
+\degree{Master of Engineering}
+\majorProgram{Computer Engineering}
+\degreeTH{วิศวกรรมศาสตรมหาบัณฑิต}
+\majorProgramTH{วิศวกรรมคอมพิวเตอร์}
 \degreeyear{2557}
 \studyplan{M2}
+% PhD1
+% PhD2
+% M1 => master degree plan ก 1
+% M2 => master degree plan ก 2
 
+% advisor and committee
+\majoradvisor{ผู้ช่วยศาสตราจารย์}
+\coadvisor{ผู้ช่วยศาสตราจารย์}
 
+\committeeOne{รองศาสตราจารย์}
+\committeeTwo{รองศาสตราจารย์}
+\committeeThree{รองศาสตราจารย์}
+%\committeeFour{Asst. Prof. Dr. Pichaya Tandayya}
+%\committeeFive{Asst. Prof. Dr. Pichaya Tandayya}
+
+% current dean of graduate school
+\deanOfGraduateSchool{รองศาสตราจารย์ ดร.ธีระพล ศรีชนะ} 
 
 \begin{titlepage}
   \maketitle
@@ -24,8 +47,20 @@
 \begin{innertitlepage}
   \makePSUthesistitle
 \end{innertitlepage}
+\begin{othertitlepage}
+\makeApprovalPage
+\end{othertitlepage}
+\begin{othertitlepage}
+\makeSubmittedCertification
+\end{othertitlepage}
+
+
+\include{abstract}
+\include{acknowledgement}
 
 % *********************** Adding TOC and List of Figures ***********************
+% add ToC name to ToC
+\addcontentsline{toc}{chapter}{\contentsname}
 
 \tableofcontents
 
@@ -40,6 +75,7 @@
 
 % ******************************** Main Matter *********************************
 \mainmatter
+\setlength{\parskip}{1em}
 
 \include{chapter1/chapter1}
 \include{chapter2/chapter2}

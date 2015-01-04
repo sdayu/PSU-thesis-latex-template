@@ -283,7 +283,11 @@ supported!}
 % ******************************** Packages ************************************
 % ******************************************************************************
 % ************************** Layout and Formatting *****************************
+\usepackage{ifxetex,ifpdf}
+\ifpdf
 \renewcommand\pdfshellescape{1}
+\else
+\fi
 \RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in paragraph
 \RequirePackage{calc}     % To calculate vertical spacing
@@ -564,8 +568,24 @@ supported!}
 %\fi
 
 % set font thai
-\usepackage[utf8x]{inputenc}
-\usepackage[sans,sflaksaman,rmkinnari]{fonts-tlwg}
+\ifpdf
+	\usepackage[utf8x]{inputenc}
+	\usepackage[laksaman,rmkinnari]{fonts-tlwg}
+\else
+	\ifxetex
+		%\usepackage{fontspec}
+		%\usepackage{xunicode}
+		\usepackage{xltxtra}
+		\usepackage{polyglossia}
+		\XeTeXlinebreaklocale "th"
+		\XeTeXlinebreakskip = 0pt plus 1pt
+		\setmainfont{Laksaman}
+		
+		\setdefaultlanguage{thai}
+		\newfontfamily{\thaifont}[Script=thai]{Laksaman}
+	\else
+	\fi
+\fi
 
 %\input{glyphtounicode}
 %\pdfglyphtounicode{f_f}{FB00}
@@ -588,17 +608,24 @@ supported!}
 % Moved below other usepackage definitions to fix PDFLaTeX footnote warning
 % Based on the suggestion by John Plaice
 
+
 \ifsetDVI
 \special{papersize=\the\paperwidth,\the\paperheight}
+\ifxetex
+\RequirePackage[unicode=true]{hyperref}
+\else
 \RequirePackage[dvips,unicode=true]{hyperref}
+\fi
 \else
 \RequirePackage[unicode=true]{hyperref}
 \pdfpagewidth=\the\paperwidth
 \pdfpageheight=\the\paperheight
 \fi
 
+
 \if@print
     % For Print version
+
     \hypersetup{
       final=true,
       plainpages=false,
@@ -615,6 +642,7 @@ supported!}
       citecolor=black,
       anchorcolor=black
     }
+
     \ifsetCustomMargin
     % Margin to be define in preamble using geometry package
     \else
@@ -628,14 +656,18 @@ supported!}
         \fi
     \fi
 
+	\ifpdf
     \if@twoside
         \hypersetup{pdfpagelayout=TwoPageRight}
     \else
     	\hypersetup{pdfpagelayout=OneColumn}
     \fi
+    \else
+    \fi
 
 \else
     % For PDF Online version
+
     \hypersetup{
       final=true,
       plainpages=false,
@@ -665,8 +697,10 @@ supported!}
           		vmarginratio=1:1,scale=0.75,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
         \fi
     \fi
-
+	\ifpdf
     \hypersetup{pdfpagelayout=OneColumn}
+    \else
+    \fi
 \fi
 
 % Backward compatibility - setMargin is now replaced with customMargin
@@ -687,10 +721,12 @@ supported!}
 % option to split urls over multiple lines for latex >> DVIPS >> PDF option
 % PDFLaTeX does it automatically.
 
+\ifpdf
 \ifsetDVI
 \RequirePackage{breakurl} % to split the url over multiple lines
 \fi
-
+\else
+\fi
 
 % ******************************************************************************
 % **************************** Pre-defined Settings ****************************
@@ -738,12 +774,13 @@ wish to left align your text}
 %% Removes pagenumber appearing from TOC
 %\addtocontents{toc}{\protect\thispagestyle{empty}}
 
+
 % chapter format
 \usepackage{titlesec}
 \titleformat
 {\chapter} % command
 [display] % shape
-{\bfseries\large\itshape} % format
+{\bfseries\large} % format
 {\filcenter\chaptertitlename \ \thechapter} % label
 {-.5em} % sep
 {
@@ -764,6 +801,7 @@ wish to left align your text}
   {\normalfont\bfseries}{\thesubsubsection}{1em}{}
  
 \setlength{\parindent}{1in}
+%\setlength{\parskip}{1em}
 \usepackage{indentfirst}
 \setcounter{secnumdepth}{3}
 
@@ -879,6 +917,10 @@ wish to left align your text}
 \newcommand{\titleTH}[1]{\renewcommand{\@titleTH}{#1}}
 \newcommand{\@authorTH}{}
 \newcommand{\authorTH}[1]{\renewcommand{\@authorTH}{#1}}
+\newcommand{\@authorTitle}{}
+\newcommand{\authorTitle}[1]{\renewcommand{\@authorTitle}{#1}}
+\newcommand{\@authorTitleTH}{}
+\newcommand{\authorTitleTH}[1]{\renewcommand{\@authorTitleTH}{#1}}
 
 % The year and term the degree will be officially conferred
 \newcommand{\@degreeyear}{\the\year}
@@ -890,6 +932,12 @@ wish to left align your text}
 
 \newcommand{\@degreeTH}{}
 \newcommand{\degreeTH}[1]{\renewcommand{\@degreeTH}{#1}}
+
+\newcommand{\@majorProgram}{}
+\newcommand{\majorProgram}[1]{\renewcommand{\@majorProgram}{#1}}
+
+\newcommand{\@majorProgramTH}{}
+\newcommand{\majorProgramTH}[1]{\renewcommand{\@majorProgramTH}{#1}}
 
 
 % The name of your University
@@ -934,29 +982,29 @@ wish to left align your text}
 \newcommand{\subject}[1]{\renewcommand{\@subject}{#1}}
 
 % Approval Page
-%\newcommand{\@majoradvisor}{}
-%\newcommand{\majoradvisor}[1]{\renewcommand{\@majoradvisor}{#1}}
-%
-%\newcommand{\@coadvisor}{}
-%\newcommand{\coadvisor}[1]{\renewcommand{\@coadvisor}{#1}}
-%
-%\newcommand{\@committee1}{}
-%\newcommand{\committee1}[1]{\renewcommand{\@committee1}{#1}}
-%
-%\newcommand{\@committee2}{}
-%\newcommand{\committee2}[1]{\renewcommand{\@committee2}{#1}}
-%
-%\newcommand{\@committee3}{}
-%\newcommand{\committee3}[1]{\renewcommand{\@committee3}{#1}}
-%
-%\newcommand{\@committee4}{}
-%\newcommand{\committee4}[1]{\renewcommand{\@committee4}{#1}}
-%
-%\newcommand{\@committee5}{}
-%\newcommand{\committee5}[1]{\renewcommand{\@committee5}{#1}}
-%
-%\newcommand{\@deanofgraduateschool}{}
-%\newcommand{\deanofgraduateschool}[1]{\renewcommand{\@deanofgraduateschool}{#1}}
+\newcommand{\@majoradvisor}{}
+\newcommand{\majoradvisor}[1]{\renewcommand{\@majoradvisor}{#1}}
+
+\newcommand{\@coadvisor}{}
+\newcommand{\coadvisor}[1]{\renewcommand{\@coadvisor}{#1}}
+
+\newcommand{\@committeeOne}{}
+\newcommand{\committeeOne}[1]{\renewcommand{\@committeeOne}{#1}}
+
+\newcommand{\@committeeTwo}{}
+\newcommand{\committeeTwo}[1]{\renewcommand{\@committeeTwo}{#1}}
+
+\newcommand{\@committeeThree}{}
+\newcommand{\committeeThree}[1]{\renewcommand{\@committeeThree}{#1}}
+
+\newcommand{\@committeeFour}{}
+\newcommand{\committeeFour}[1]{\renewcommand{\@committeeFour}{#1}}
+
+\newcommand{\@committeeFive}{}
+\newcommand{\committeeFive}[1]{\renewcommand{\@committeeFive}{#1}}
+
+\newcommand{\@deanOfGraduateSchool}{}
+\newcommand{\deanOfGraduateSchool}[1]{\renewcommand{\@deanOfGraduateSchool}{#1}}
 
 % These macros define an environment for front matter that is always
 % single column even in a double-column document.
@@ -1017,6 +1065,19 @@ wish to left align your text}
 %\addtocounter{page}{1}
 }
 
+\newenvironment{othertitlepage} % changed from "newenvironment"
+{%
+\begingroup
+\newpage
+%\thispagestyle{empty}
+%\setcounter{page}\z@ 
+}%
+{
+\endgroup
+\clearpage
+%\addtocounter{page}{1}
+}
+
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 \makePSUthesistitle
@@ -1032,7 +1093,7 @@ wish to left align your text}
 \begin{singlespace}
 \begin{center}
 % Crest
-{\@crest \par\par}
+{\@crest \par}
 \vspace*{1em}
 % Title
 {\large \bfseries{\@titleTH} \par}
@@ -1048,17 +1109,143 @@ wish to left align your text}
 
 % Submission Text
 {\large \bfseries{\submissiontextTH} \par}
-{\large \bfseries{\@degreeTH} \par}
+{\large \bfseries{\@degreeTH} สาขาวิชา{\@majorProgramTH} \par}
 {\large \bfseries{\@universityTH} \par}
 \vspace*{1em}
 
 {\large \bfseries{\submissiontext} \par}
-{\large \bfseries{Degree of \@degree} \par}
+{\large \bfseries{Degree of \@degree} in {\@majorProgram} \par}
 {\large \bfseries{\@university} \par}
 \vspace*{2em}
 {\large \bfseries{\@degreeyear} \par}
 {\large \bfseries{ลิขสิทธิ์ของ\@universityTH} \par}
 \end{center}
+\end{singlespace}
+}
+
+% ******************************** Approval Page **********************************
+\newcommand{\makeApprovalPage}
+{
+% To compute the free vertical space in Title page
+\begin{singlespace}
+\begin{flushleft}
+
+		\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} p{.8\textwidth}@{}}
+		\textbf{ชื่อวิทยานิพนธ์} & \@titleTH \\
+		\textbf{ผู้เขียน}& \@authorTitleTH\@authorTH \\
+		\textbf{สาขาวิชา}& \@majorProgramTH
+		\end{tabular*}
+
+\vspace{1em}
+\hrule height 2pt
+\vspace{1em}
+		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
+		อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก  & คณะกรรมการสอบ \\ \\
+		............................................................... & 
+		.......................................ประธานกรรมการ \\
+		(\@majoradvisor) & (\@committeeOne) \\ \\
+		& 
+		...................................................กรรมการ \\
+		\ifthenelse{\equal{\@coadvisor}{}}{
+		}{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}
+		& (\@committeeTwo) \\ \\
+		\ifthenelse{\equal{\@coadvisor}{}}{
+		}{
+		...............................................................  
+		}
+		&
+		...................................................กรรมการ \\
+		\ifthenelse{\equal{\@coadvisor}{}}{
+		}{ (\@coadvisor) }
+		& (\@committeeThree) \\ \\
+		
+		
+		\ifthenelse{\equal{\@committeeFour}{}}
+		{
+		\\ \\ \\
+		
+		}{
+		& 
+		...................................................กรรมการ \\
+		& (\@committeeFour) \\ \\
+		}
+		\ifthenelse{\equal{\@committeeFive}{}}
+		{
+		\\ \\ \\
+		
+		}{
+		& 
+		...................................................กรรมการ \\
+		& (\@committeeFive) \\ \\
+		}
+		\end{tabular*}
+\vspace{5em}\\
+\setlength{\parindent}{.8in}
+{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้} \\
+\setlength{\parindent}{0in}
+\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
+{สำหรับการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
+}{
+{เป็นส่วนหนึ่งของการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
+}
+\vspace{3em}\\
+
+		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
+		&
+		\begin{center}
+		..................................................................\par 
+		(\@deanOfGraduateSchool)\par 
+		คณบดีบัณฑิตวิทยาลัย\par
+		\end{center}
+		\\
+		\end{tabular*}
+\end{flushleft}
+\end{singlespace}
+}
+
+% ******************************** Approval Page **********************************
+\newcommand{\makeSubmittedCertification}
+{
+% To compute the free vertical space in Title page
+\begin{singlespace}
+%\begin{flushleft}
+\setlength{\parindent}{0in}
+ขอรับรองว่า ผลงานวิจัยนี้เป็นผลจากการศึกษาวิจัยของนักศึกษาเอง และขอแสดงความขอบคุณบุคคลที่มีส่วนเกี่ยวข้อง
+\vspace{3em}\\
+
+		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
+		&
+		\begin{center}
+		..................................................................\par 
+		(\@majoradvisor)\par 
+		อาจารย์ที่ปรึกษาวิทยานิพนธ์\par
+		\vspace{3em}\par
+		..................................................................\par 
+		(\@authorTitleTH\@authorTH)\par 
+		นักศึกษา\par
+		\end{center}
+		\\
+		\end{tabular*}
+%\end{flushleft}
+\end{singlespace}
+
+\newpage
+\begin{singlespace}
+%\begin{flushleft}
+\setlength{\parindent}{0in}
+ข้าพเจ้ารับรองว่า ผลงานวิจัยนี้เป้นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่อขออนุมัติปริญญาในขณะนี้
+\vspace{3em}\\
+
+		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
+		&
+		\begin{center}
+		..................................................................\par 
+		(\@authorTitleTH\@authorTH)\par 
+		นักศึกษา\par
+		\end{center}
+		\\
+		\end{tabular*}
+%\end{flushleft}
 \end{singlespace}
 }
 
