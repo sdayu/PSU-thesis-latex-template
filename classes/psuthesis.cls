@@ -8,8 +8,8 @@
 %% Authors: Thanathip Limna                                                   %%
 %% Date: 2013/11/16 (inception)                                               %%
 %% License: MIT License (c) 2013 Krishna Kumar                                %%
-%% Based on: hhttps://github.com/kks32/phd-thesis-template                    %%
-%% Git repo: hhttps://github.com/kks32/phd-thesis-template                    %%
+%% Based on: https://github.com/kks32/phd-thesis-template                     %%
+%% Git repo: https://github.com/sdayu/PSU-thesis-latex-template               %%
 %% Acording to PSU thesis manual http://www.grad.psu.ac.th/thesis_manual.php  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -185,7 +185,8 @@
 % *************************** Pre-defined Options ******************************
 
 % Font Size
-\newcommand\PSUTHESIS@ptsize{12pt} %Set Default Size as 16 Thai font
+% \newcommand\PSUTHESIS@ptsize{12pt} %Set Default Size as 16 Thai font
+\newcommand\PSUTHESIS@ptsize{11pt} %Set Default Size as 16 Thai font
 
 %\DeclareOption{12pt}{
 %  \ClassWarning{psuthesis}{The Cambridge University PSUTHESIS thesis guidelines
@@ -569,20 +570,30 @@ supported!}
 
 % set font thai
 \ifpdf
+	%\usepackage[T1]{fontenc}
 	\usepackage[utf8x]{inputenc}
-	\usepackage[laksaman,rmkinnari]{fonts-tlwg}
+	\usepackage[laksaman]{fonts-tlwg}
 \else
 	\ifxetex
-		%\usepackage{fontspec}
+		\usepackage{fontspec}
 		%\usepackage{xunicode}
 		\usepackage{xltxtra}
 		\usepackage{polyglossia}
-		\XeTeXlinebreaklocale "th"
-		\XeTeXlinebreakskip = 0pt plus 1pt
-		\setmainfont{Laksaman}
 		
+		%\defaultfontfeatures{Scale=1.23}
+		
+		\XeTeXlinebreaklocale "th_TH"
+		\XeTeXlinebreakskip = 0pt plus 1pt
 		\setdefaultlanguage{thai}
-		\newfontfamily{\thaifont}[Script=thai]{Laksaman}
+		
+		% for laksaman font
+%		\setmainfont{Laksaman}
+%		\defaultfontfeatures{Scale=MatchLowercase}
+%		\newfontfamily{\thaifont}[Script=thai]{Laksaman}	
+			
+		\setmainfont{TH Sarabun New}
+		\defaultfontfeatures{Scale=1.5}
+		\newfontfamily{\thaifont}[Script=thai]{TH Sarabun New}
 	\else
 	\fi
 \fi
@@ -843,7 +854,7 @@ wish to left align your text}
 %\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}
 %\fancyhead[LO]{\nouppercase \rightmark}
-\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LE,RO]{\thepage}
 %\fancyhead[RE]{\nouppercase \leftmark}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -860,7 +871,7 @@ wish to left align your text}
 \fancypagestyle{plain}{
 \fancyhead{}
 \fancyhf{}
-\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LE,RO]{\thepage}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
 }
@@ -899,11 +910,11 @@ wish to left align your text}
 % Appending the appendix name to the letter in TOC
 % Especially when backmatter is enabled
 
-%\renewcommand\backmatter{
-%    \def\chaptermark##1{\markboth{%
-%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
-%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
-%    \def\sectionmark##1{\relax}}
+\renewcommand\backmatter{
+    \def\chaptermark##1{\markboth{%
+        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
+        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
+    \def\sectionmark##1{\relax}}
 
 
 % ******************************************************************************
@@ -1096,29 +1107,29 @@ wish to left align your text}
 {\@crest \par}
 \vspace*{1em}
 % Title
-{\large \bfseries{\@titleTH} \par}
+{\large\bfseries{\@titleTH}\par}
 \vspace*{1ex}
-{\large \bfseries{\@title} \par}
+{\large\bfseries{\@title}\par}
 
 
 \vspace{.5\PSUTHESIS@titlepagespacing}
 % Author
-{\large \bfseries{\@authorTH} \par}
-{\large \bfseries{\@author} \par}
+{\large\bfseries{\@authorTH}\par}
+{\large\bfseries{\@author}\par}
 \vspace{.5\PSUTHESIS@titlepagespacing}
 
 % Submission Text
-{\large \bfseries{\submissiontextTH} \par}
-{\large \bfseries{\@degreeTH} สาขาวิชา{\@majorProgramTH} \par}
-{\large \bfseries{\@universityTH} \par}
+{\large\bfseries{\submissiontextTH}\par}
+{\large\bfseries{\@degreeTH} สาขาวิชา{\@majorProgramTH}\par}
+{\large\bfseries{\@universityTH}\par}
 \vspace*{1em}
 
-{\large \bfseries{\submissiontext} \par}
-{\large \bfseries{Degree of \@degree} in {\@majorProgram} \par}
-{\large \bfseries{\@university} \par}
+{\large\bfseries{\submissiontext}\par}
+{\large\bfseries{Degree of \@degree} in {\@majorProgram}\par}
+{\large\bfseries{\@university}\par}
 \vspace*{2em}
-{\large \bfseries{\@degreeyear} \par}
-{\large \bfseries{ลิขสิทธิ์ของ\@universityTH} \par}
+{\large\bfseries{\@degreeyear}\par}
+{\large\bfseries{ลิขสิทธิ์ของ\@universityTH}\par}
 \end{center}
 \end{singlespace}
 }
@@ -1137,18 +1148,19 @@ wish to left align your text}
 		\end{tabular*}
 
 \vspace{1em}
-\hrule height 2pt
+\hrule height 1.5pt
 \vspace{1em}
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
-		อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก  & คณะกรรมการสอบ \\ \\
+		\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}  & \textbf{คณะกรรมการสอบ} \\  \vspace*{1em} \\ 
 		............................................................... & 
-		.......................................ประธานกรรมการ \\
-		(\@majoradvisor) & (\@committeeOne) \\ \\
-		& 
+		.......................................ประธานกรรมการ \\ 
+		(\@majoradvisor)\vspace*{1em}  & (\@committeeOne) \\  \vspace*{1em} \\ 
+		
+		&
 		...................................................กรรมการ \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
-		}{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}
-		& (\@committeeTwo) \\ \\
+		}{\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}}
+		& (\@committeeTwo) \\ \vspace*{1em} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{
 		...............................................................  
@@ -1157,30 +1169,30 @@ wish to left align your text}
 		...................................................กรรมการ \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{ (\@coadvisor) }
-		& (\@committeeThree) \\ \\
+		& (\@committeeThree) \\ \vspace*{1em} \\
 		
 		
 		\ifthenelse{\equal{\@committeeFour}{}}
 		{
-		\\ \\ \\
+		\\ \\ \vspace*{1em} \\
 		
 		}{
 		& 
 		...................................................กรรมการ \\
-		& (\@committeeFour) \\ \\
+		& (\@committeeFour) \\ \vspace*{1em} \\
 		}
 		\ifthenelse{\equal{\@committeeFive}{}}
 		{
-		\\ \\ \\
+		\\ \\ \vspace*{1em} \\
 		
 		}{
 		& 
 		...................................................กรรมการ \\
-		& (\@committeeFive) \\ \\
+		& (\@committeeFive) \\ 
 		}
 		\end{tabular*}
-\vspace{5em}\\
-\setlength{\parindent}{.8in}
+\vspace{3em}\\
+\setlength{\parindent}{.9in}
 {บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้} \\
 \setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
