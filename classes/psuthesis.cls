@@ -21,6 +21,9 @@
  by Thanathip Limna (v\fileversion)]
 \typeout{https://github.com/sdayu/PSU-thesis-latex-template/}
 
+% ************************* Conditional Statements *****************************
+\RequirePackage{ifthen}  % conditional statements
+\RequirePackage{ifpdf, ifxetex}    % Check for pdfLaTeX and xelatex
 
 % ******************************************************************************
 % **************************** Class Definition ********************************
@@ -284,7 +287,7 @@ supported!}
 % ******************************** Packages ************************************
 % ******************************************************************************
 % ************************** Layout and Formatting *****************************
-\usepackage{ifxetex,ifpdf}
+
 \ifpdf
 \renewcommand\pdfshellescape{1}
 \else
@@ -293,9 +296,7 @@ supported!}
 \RequirePackage{setspace} % Define line spacing in paragraph
 \RequirePackage{calc}     % To calculate vertical spacing
 
-% ************************* Conditional Statements *****************************
-\RequirePackage{ifthen}  % conditional statements
-\RequirePackage{ifpdf}    % Check for pdfLaTeX
+
 
 
 % *********************** Table of Contents & Appendices ***********************
@@ -969,15 +970,10 @@ wish to left align your text}
 \newcommand{\@studyplan}{PhD1}
 \newcommand{\studyplan}[1]{%
   \renewcommand{\@studyplan}{#1}
-  \ifthenelse{\equal{#1}{PhD2}}
+  \ifthenelse{\equal{#1}{PhD2} \OR \equal{#1}{M2}}
   {%
 	\renewcommand{\submissiontext}{A Thesis Submitted in Partial Fullfillment of the Requirement for the}
 	\renewcommand{\submissiontextTH}{วิทยานิพนธ์นี้เป็นส่วนหนึ่งของการศึกษาตามหลักสูตรปริญญา}
-  }{}
-  \ifthenelse{\equal{#1}{M2}}
-  {%
-	\renewcommand{\submissiontext}{A Thesis Submitted in Partial Fullfillment of the Requirement for the}
-	\renewcommand{\submissiontextTH}{วิทยานิพนธ์นี้เป็นส่วนหนึ่งของการศึกษาตามหลักสูตรปริญญา}  
   }{}
 }
 
@@ -1146,27 +1142,27 @@ wish to left align your text}
 		\textbf{ผู้เขียน}& \@authorTitleTH\@authorTH \\
 		\textbf{สาขาวิชา}& \@majorProgramTH
 		\end{tabular*}
-
+		
 \vspace{1em}
 \hrule height 1.5pt
 \vspace{1em}
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
 		\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}  & \textbf{คณะกรรมการสอบ} \\  \vspace*{1em} \\ 
-		............................................................... & 
-		.......................................ประธานกรรมการ \\ 
+		{...............................................................} & 
+		{............................................ประธานกรรมการ} \\ 
 		(\@majoradvisor)\vspace*{1em}  & (\@committeeOne) \\  \vspace*{1em} \\ 
 		
 		&
-		...................................................กรรมการ \\
+		{........................................................กรรมการ} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}}
 		& (\@committeeTwo) \\ \vspace*{1em} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{
-		...............................................................  
+		{...............................................................}  
 		}
 		&
-		...................................................กรรมการ \\
+		{...................................................กรรมการ} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{ (\@coadvisor) }
 		& (\@committeeThree) \\ \vspace*{1em} \\
@@ -1178,7 +1174,7 @@ wish to left align your text}
 		
 		}{
 		& 
-		...................................................กรรมการ \\
+		{...................................................กรรมการ} \\
 		& (\@committeeFour) \\ \vspace*{1em} \\
 		}
 		\ifthenelse{\equal{\@committeeFive}{}}
@@ -1187,31 +1183,35 @@ wish to left align your text}
 		
 		}{
 		& 
-		...................................................กรรมการ \\
+		{...................................................กรรมการ} \\
 		& (\@committeeFive) \\ 
 		}
 		\end{tabular*}
-\vspace{3em}\\
-\setlength{\parindent}{.9in}
-{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้} \\
-\setlength{\parindent}{0in}
+
+\end{flushleft}
+
+\vspace{1em}
+\setlength{\parindent}{1.1in}
+{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้} %\break
+%\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
 {สำหรับการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
 }{
 {เป็นส่วนหนึ่งของการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
 }
+\setlength{\parindent}{0in}
 \vspace{3em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
 		&
 		\begin{center}
-		..................................................................\par 
+		{..................................................................}\par 
 		(\@deanOfGraduateSchool)\par 
-		คณบดีบัณฑิตวิทยาลัย\par
+		{คณบดีบัณฑิตวิทยาลัย}\par
 		\end{center}
 		\\
 		\end{tabular*}
-\end{flushleft}
+
 \end{singlespace}
 }
 
@@ -1222,7 +1222,7 @@ wish to left align your text}
 \begin{singlespace}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
-ขอรับรองว่า ผลงานวิจัยนี้เป็นผลจากการศึกษาวิจัยของนักศึกษาเอง และขอแสดงความขอบคุณบุคคลที่มีส่วนเกี่ยวข้อง
+{ขอรับรองว่า ผลงานวิจัยนี้เป็นผลจากการศึกษาวิจัยของนักศึกษาเอง และขอแสดงความขอบคุณบุคคลที่มีส่วนเกี่ยวข้อง}
 \vspace{3em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
@@ -1230,11 +1230,11 @@ wish to left align your text}
 		\begin{center}
 		..................................................................\par 
 		(\@majoradvisor)\par 
-		อาจารย์ที่ปรึกษาวิทยานิพนธ์\par
+		{อาจารย์ที่ปรึกษาวิทยานิพนธ์}\par
 		\vspace{3em}\par
 		..................................................................\par 
 		(\@authorTitleTH\@authorTH)\par 
-		นักศึกษา\par
+		{นักศึกษา}\par
 		\end{center}
 		\\
 		\end{tabular*}
@@ -1245,7 +1245,7 @@ wish to left align your text}
 \begin{singlespace}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
-ข้าพเจ้ารับรองว่า ผลงานวิจัยนี้เป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่อขออนุมัติปริญญาในขณะนี้
+{ข้าพเจ้ารับรองว่า ผลงานวิจัยนี้เป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่อขออนุมัติปริญญาในขณะนี้}
 \vspace{3em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
@@ -1253,7 +1253,7 @@ wish to left align your text}
 		\begin{center}
 		..................................................................\par 
 		(\@authorTitleTH\@authorTH)\par 
-		นักศึกษา\par
+		{นักศึกษา}\par
 		\end{center}
 		\\
 		\end{tabular*}
