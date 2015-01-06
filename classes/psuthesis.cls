@@ -248,12 +248,15 @@ supported!}
 \renewcommand{\listtablename}{List of tables}
 
 % Hides Contents appearing from TOC, but adds it to bookmarks
+\ifpdf % avoid bable-thai hyperref appendix
+\else
 \let\temptableofcontents\tableofcontents
 \renewcommand{\tableofcontents}{
   \cleardoublepage
   \pdfbookmark[0]{\contentsname}{Contents}
   \temptableofcontents
 }
+\fi
 
 % *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color}
@@ -524,22 +527,26 @@ supported!}
 % Moved below other usepackage definitions to fix PDFLaTeX footnote warning
 % Based on the suggestion by John Plaice
 
-%\ifsetDVI
-%	\special{papersize=\the\paperwidth,\the\paperheight}
-%	\ifxetex
-%		\RequirePackage[unicode=true]{hyperref}
-%	\else
-%		\RequirePackage[dvips,unicode=true]{hyperref}
-%	\fi
-%\else
-%	\RequirePackage[unicode=true]{hyperref}
-%	\pdfpagewidth=\the\paperwidth
-%	\pdfpageheight=\the\paperheight
-%\fi
-\RequirePackage[unicode=true]{hyperref}
+\ifsetDVI
+	\special{papersize=\the\paperwidth,\the\paperheight}
+	\ifxetex
+		\RequirePackage[unicode=true]{hyperref}
+	\else
+		\RequirePackage[dvips,unicode=true]{hyperref}
+	\fi
+\else
+	\ifpdf % avoid error bable-thai hyperref appendix
+	\else
+	\RequirePackage[unicode=true]{hyperref}
+	\fi
+	\pdfpagewidth=\the\paperwidth
+	\pdfpageheight=\the\paperheight
+\fi
+
 \if@print
     % For Print version
-
+	\ifpdf % bable-thai hyperref appendix
+	\else
     \hypersetup{
       final=true,
       plainpages=false,
@@ -556,6 +563,7 @@ supported!}
       citecolor=black,
       anchorcolor=black
     }
+    \fi
 
     \ifsetCustomMargin
     % Margin to be define in preamble using geometry package
@@ -581,7 +589,8 @@ supported!}
 
 \else
     % For PDF Online version
-
+	\ifpdf % avoid bable-thai hyperref appendix
+	\else
     \hypersetup{
       final=true,
       plainpages=false,
@@ -598,6 +607,7 @@ supported!}
       citecolor=blue,
       anchorcolor=green
     }
+    \fi
 
     \ifsetCustomMargin
     % Margin to be define in preamble using geometry package
@@ -611,9 +621,10 @@ supported!}
           		vmarginratio=1:1,scale=0.75,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
         \fi
     \fi
-	\ifpdf
-    \hypersetup{pdfpagelayout=OneColumn}
+	
+	\ifpdf % avoid bable-thai hyperref appendix
     \else
+    \hypersetup{pdfpagelayout=OneColumn}
     \fi
 \fi
 
@@ -647,16 +658,16 @@ supported!}
 % ******************************************************************************
 
 % *************************** Setting PDF Meta-Data ****************************
-\ifpdf
-\AtBeginDocument{
-  \hypersetup{
-    pdftitle = {\@title},
-    pdfauthor = {\@author},
-    pdfsubject={\@subject},
-    pdfkeywords={\@keywords}
-  }
-}
-\fi
+%\ifpdf
+%\AtBeginDocument{
+%  \hypersetup{
+%    pdftitle = {\@title},
+%    pdfauthor = {\@author},
+%    pdfsubject={\@subject},
+%    pdfkeywords={\@keywords}
+%  }
+%}
+%\fi
 
 % ******************************** Line Spacing ********************************
 % Set spacing as 1.5 line spacing for the PSUTHESIS Thesis
