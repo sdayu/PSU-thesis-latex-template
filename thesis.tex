@@ -1,14 +1,16 @@
-\documentclass[thai]{classes/psuthesis}
+\documentclass[numbered]{classes/psuthesis}
+%\documentclass{book}
 % thai for the thesis writing in Thai
 % english for the thesis wrinting in english
 % addition for thai with babel
 \ifpdf
 	% for Thai is a main language else disable or \usepackage[thai,english]{babel} for english is a main language
 	\usepackage[english,thai]{babel}
+	\usepackage[laksaman]{fonts-tlwg}
 \else
 \fi
 
-%\usepackage{showframe}
+\usepackage{showframe}
 \begin{document}
 
 \title{Writing Your Thesis for Graduate Student in Latex \newline Prince of Songkla University}
@@ -36,10 +38,10 @@
 \committeeOne{ผู้ช่วยศาสตราจารย์}
 \committeeTwo{รองศาสตราจารย์}
 \committeeThree{รองศาสตราจารย์}
-%\committeeFour{รองศาสตราจารย์}
-%\committeeFive{รองศาสตราจารย์}
-
-% current dean of graduate school
+%%\committeeFour{รองศาสตราจารย์}
+%%\committeeFive{รองศาสตราจารย์}
+%
+%% current dean of graduate school
 \deanOfGraduateSchool{รองศาสตราจารย์ ดร.ธีระพล ศรีชนะ}
 
 \begin{titlepage}
@@ -52,7 +54,7 @@
 	\makeApprovalPage
 \end{othertitlepage}
 \begin{othertitlepage}
-	\makeSubmittedCertification
+	\makeDeclaration
 \end{othertitlepage}
 
 
@@ -72,7 +74,7 @@
 % \printnomencl[space] space can be set as 2em between symbol and description
 %\printnomencl[3em]
 
-%\printnomencl
+\printnomencl
 
 % ******************************** Main Matter *********************************
 \mainmatter
@@ -84,14 +86,11 @@
 \include{chapter4/chapter4}
 \include{chapter5/chapter5}
 
-
 % ********************************** Appendices ********************************
 
 \begin{appendices} % Using appendices environment for more functunality
-
 \include{appendix1/appendix1}
 \include{appendix2/appendix2}
-
 \end{appendices}
 
 \end{document}

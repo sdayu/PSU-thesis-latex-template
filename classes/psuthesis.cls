@@ -141,85 +141,25 @@
 \newif\ifPSUTHESIS@textJustify\PSUTHESIS@textJustifytrue % Set Justification true
 \DeclareOption{flushleft}{\PSUTHESIS@textJustifyfalse}
 
-% ************************* Header / Footer Styling ****************************
-%\newif\ifPSUTHESIS@pageStyleI\PSUTHESIS@pageStyleIfalse % Set Page StyleI
-%\DeclareOption{PageStyleI}{\PSUTHESIS@pageStyleItrue}
-
-%\newif\ifPSUTHESIS@pageStyleII\PSUTHESIS@pageStyleIIfalse % Set Page StyleII
-%\DeclareOption{PageStyleII}{\PSUTHESIS@pageStyleIItrue}
-
-% ************************* Language / Thai and Engilish ***********************
-\newif\ifsetThai\setThaifalse
-\DeclareOption{thai}{\setThaitrue}
-
 % ***************************** Custom Margins  ********************************
 \newif\ifsetCustomMargin\setCustomMarginfalse % Set Custom Margin
 \newif\ifsetMargin\setMarginfalse % Set Custom Margin
 \DeclareOption{custommargin}{\setCustomMargintrue}
 
-% **************************** Separate Abstract  ******************************
-\newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
-
-\newif\ifPSUTHESIS@abstract\PSUTHESIS@abstractfalse % Enable Separate Abstract
-\DeclareOption{abstract}{
-  \PSUTHESIS@abstracttrue
-  \ClassWarning{PSUTHESIS}{You have chosen an option that generates only
-    the Title page and an abstract with PSUTHESIS title and author name, if this was
-    intentional, ignore this warning. Congratulations on submitting your thesis!
-    If not, please remove the option `abstract' from the document class and
-    recompile. Good luck with your writing!}
-  \PassOptionsToClass{oneside}{book}
-}
-
-% ****************** Chapter Mode - To print only selected chapters ************
-\newif \ifdefineChapter\defineChapterfalse %To enable Separate abstract
-
-\newif\ifPSUTHESIS@chapter\PSUTHESIS@chapterfalse % Enable Separate Abstract
-\DeclareOption{chapter}{
-  \PSUTHESIS@chaptertrue
-  \ClassWarning{PSUTHESIS}{You have chosen an option that generates only 
-    selected chapters with references, if this was intentional, ignore this
-    warning. If not, please remove the option `chapter' from the document class
-    and recompile. Good luck with your writing!}
-}
-
-\ProcessOptions\relax%
 
 % *************************** Pre-defined Options ******************************
-
 % Font Size
-% \newcommand\PSUTHESIS@ptsize{12pt} %Set Default Size as 16 Thai font
-\newcommand\PSUTHESIS@ptsize{11pt} %Set Default Size as 16 Thai font
 
-%\DeclareOption{12pt}{
-%  \ClassWarning{psuthesis}{The Cambridge University PSUTHESIS thesis guidelines
-%recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
-%footnotes.}
-%  \renewcommand\PSUTHESIS@ptsize{12pt}
-%}
-%\DeclareOption{11pt}{\renewcommand\PSUTHESIS@ptsize{11pt}}%
-%\DeclareOption{12pt}{\renewcommand\PSUTHESIS@ptsize{12pt}}%
+\newcommand\PSUTHESIS@ptsize{11pt} %Set Default Size as 16 Thai font
 \PassOptionsToClass{\PSUTHESIS@ptsize}{book}%
 \message{psuthesis: Font size is set as \PSUTHESIS@ptsize}
 
 % Page Size
 \newcommand\PSUTHESIS@papersize{a4paper} % Set Default as a4paper
-
-%\DeclareOption{a4paper}{\renewcommand\PSUTHESIS@papersize{a4paper}}
-%\DeclareOption{a5paper}{\renewcommand\PSUTHESIS@papersize{a5paper}}
-%\DeclareOption{letterpaper}{
-%  \ClassWarning{psuthesis}{The Prince of Songkla University thesis guidelines recommend only A4paper}
-%  \renewcommand\PSUTHESIS@papersize{letterpaper}
-%}
-
 \PassOptionsToClass{\PSUTHESIS@papersize}{book}%
 
 % Column layout
 \PassOptionsToClass{oneside}{book}
-
-%\newif\if@oneside\@onesidefalse
-%\DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}\@onesidetrue}%
-%\DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
 
@@ -280,8 +220,6 @@ supported!}
     \LoadClass[fleqn,openright]{book}%
   \fi
 \fi
-
-
 
 % ******************************************************************************
 % ******************************** Packages ************************************
@@ -536,44 +474,10 @@ supported!}
 \fi
 
 % *********************** To copy ligatures and Fonts **************************
-%\RequirePackage{textcomp}
-%% Font Selection
-%\ifPSUTHESIS@times
-%  \RequirePackage{mathptmx}  % times roman, including math (where possible)
-%  \setFonttrue
-%  \message{psuthesis: Using Times Roman font}
-%\else
-%  \ifPSUTHESIS@fourier
-%    \RequirePackage{fourier} % Fourier
-%    \setFonttrue
-%    \message{psuthesis: Using Fourier font}
-%  \else
-%    \ifsetCustomFont
-%      \setFonttrue
-%      \message{psuthesis: Using custom font}
-%    \else
-%      \setFontfalse
-%      \message{psuthesis: No font is set}
-%    \fi % custom font
-%  \fi % Fourier font
-%\fi % Times font
-%
-%% If Font is not set throw a warning.
-%\ifsetFont
-%\else
-%  \ClassWarning{psuthesis}{Using default font Latin Modern. If you
-%    would like to use other pre-defined fonts use `times' (The Cambridge 
-%    University PSUTHESIS thesis guidelines recommend using Times font)  or `fourier'
-%    or load a custom font in the preamble.tex file by specifying `customfont' 
-%    in the class options}
-%  \RequirePackage{lmodern}
-%\fi
-
-% set font thai
 \ifpdf
-	%\usepackage[T1]{fontenc}
+	\usepackage[T1]{fontenc}
 	\usepackage[utf8x]{inputenc}
-	\usepackage[laksaman]{fonts-tlwg}
+	%\usepackage[laksaman]{fonts-tlwg}
 \else
 	\ifxetex
 		\usepackage{fontspec}
@@ -620,21 +524,19 @@ supported!}
 % Moved below other usepackage definitions to fix PDFLaTeX footnote warning
 % Based on the suggestion by John Plaice
 
-
-\ifsetDVI
-\special{papersize=\the\paperwidth,\the\paperheight}
-\ifxetex
+%\ifsetDVI
+%	\special{papersize=\the\paperwidth,\the\paperheight}
+%	\ifxetex
+%		\RequirePackage[unicode=true]{hyperref}
+%	\else
+%		\RequirePackage[dvips,unicode=true]{hyperref}
+%	\fi
+%\else
+%	\RequirePackage[unicode=true]{hyperref}
+%	\pdfpagewidth=\the\paperwidth
+%	\pdfpageheight=\the\paperheight
+%\fi
 \RequirePackage[unicode=true]{hyperref}
-\else
-\RequirePackage[dvips,unicode=true]{hyperref}
-\fi
-\else
-\RequirePackage[unicode=true]{hyperref}
-\pdfpagewidth=\the\paperwidth
-\pdfpageheight=\the\paperheight
-\fi
-
-
 \if@print
     % For Print version
 
@@ -764,6 +666,7 @@ supported!}
 
 \renewcommand\baselinestretch{1.2}
 
+
 % ******************************** Justification *******************************
 % Left aligned as per University identity guidelines
 \ifPSUTHESIS@textJustify
@@ -824,44 +727,12 @@ wish to left align your text}
 
 % Set Fancy Header Command is defined to Load FancyHdr after Geometry is defined
 \newcommand{\setFancyHdr}{
-
 \pagestyle{fancy}
-%\ifPSUTHESIS@pageStyleI
-% Style 1: Sets Page Number at the Top and Chapter/Section Name on LE/RO
-%\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
-%\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
-%\fancyhf{}
-%\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | 
-%  \hspace{0.25em} \bfseries{\thepage}}
-%\fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | 
-%  \hspace{0.25em} \nouppercase \leftmark}
-%\message{"xxx: pageStyleI"}
-
-%\else
-%\ifPSUTHESIS@pageStyleII
-% Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
-%\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
-%\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
-%\fancyhf{}
-%\fancyhead[RO]{\bfseries\nouppercase \rightmark}
-%\fancyhead[LE]{\bfseries \nouppercase \leftmark}
-%\fancyfoot[C]{\thepage}
-%\message{"xxx: pageStyleII"}
-
-%\else
-% Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name
-% on LO/RE and an empty footer
-%\renewcommand{\chaptermark}[1]{\markboth {##1}{}}
-%\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
+%
 \fancyhf{}
-%\fancyhead[LO]{\nouppercase \rightmark}
 \fancyhead[LE,RO]{\thepage}
-%\fancyhead[RE]{\nouppercase \leftmark}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-%\fi
-
-%\fi
 }
 
 \setlength{\headheight}{14.5pt}
@@ -872,6 +743,7 @@ wish to left align your text}
 \fancypagestyle{plain}{
 \fancyhead{}
 \fancyhf{}
+
 \fancyhead[LE,RO]{\thepage}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
@@ -911,11 +783,11 @@ wish to left align your text}
 % Appending the appendix name to the letter in TOC
 % Especially when backmatter is enabled
 
-\renewcommand\backmatter{
-    \def\chaptermark##1{\markboth{%
-        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
-        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
-    \def\sectionmark##1{\relax}}
+%\renewcommand\backmatter{
+%    \def\chaptermark##1{\markboth{%
+%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
+%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
+%    \def\sectionmark##1{\relax}}
 
 
 % ******************************************************************************
@@ -1085,6 +957,7 @@ wish to left align your text}
 %\addtocounter{page}{1}
 }
 
+
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 \makePSUthesistitle
@@ -1130,6 +1003,8 @@ wish to left align your text}
 \end{singlespace}
 }
 
+
+
 % ******************************** Approval Page **********************************
 \newcommand{\makeApprovalPage}
 {
@@ -1162,7 +1037,7 @@ wish to left align your text}
 		{...............................................................}  
 		}
 		&
-		{...................................................กรรมการ} \\
+		{........................................................กรรมการ} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{ (\@coadvisor) }
 		& (\@committeeThree) \\ \vspace*{1em} \\
@@ -1174,7 +1049,7 @@ wish to left align your text}
 		
 		}{
 		& 
-		{...................................................กรรมการ} \\
+		{........................................................กรรมการ} \\
 		& (\@committeeFour) \\ \vspace*{1em} \\
 		}
 		\ifthenelse{\equal{\@committeeFive}{}}
@@ -1183,7 +1058,7 @@ wish to left align your text}
 		
 		}{
 		& 
-		{...................................................กรรมการ} \\
+		{........................................................กรรมการ} \\
 		& (\@committeeFive) \\ 
 		}
 		\end{tabular*}
@@ -1215,8 +1090,10 @@ wish to left align your text}
 \end{singlespace}
 }
 
-% ******************************** Approval Page **********************************
-\newcommand{\makeSubmittedCertification}
+
+
+% ******************************** Declaration Page **********************************
+\newcommand{\makeDeclaration}
 {
 % To compute the free vertical space in Title page
 \begin{singlespace}
@@ -1261,39 +1138,6 @@ wish to left align your text}
 \end{singlespace}
 }
 
-% ********************************* Dedication *********************************
-% The dedication environment makes sure the dedication gets its
-% own page, centered
-
-\newenvironment{dedication}
-{
-\cleardoublepage
-\setsinglecolumn
-\vspace*{0.2\textheight}
-\thispagestyle{empty}
-\centering
-}
-
-
-
-% ******************************* Declaration **********************************
-% The declaration environment puts a large, bold, centered
-% "Declaration" label at the top of the page.
-
-\newenvironment{declaration}{
-\cleardoublepage
-\setsinglecolumn
-\chapter*{\centering Declaration}
-\thispagestyle{empty}
-}{
-\flushright
-\@author{}\\
-\@degreedate{}
-\vfill
-}
-
-
-
 % ****************************** Acknowledgements ********************************
 % The acknowledgements environment puts a large, bold, centered
 % "Acknowledgements" label at the top of the page.
@@ -1306,7 +1150,15 @@ wish to left align your text}
 %\thispagestyle{empty}
 }
 
-
+% ****************************** Abstract ********************************
+\newenvironment{abstract} {
+% Normal abstract in the thesis
+\cleardoublepage
+\setsinglecolumn
+\chapter*{\centering Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+%\thispagestyle{empty}
+}
 
 % ******************************* Nomenclature *********************************
 \RequirePackage{nomencl}
@@ -1350,65 +1202,7 @@ wish to left align your text}
     \newcommand{\printthesisindex}{}
 \fi
 
-% ***************************** Chapter Mode ***********************************
-% The chapter mode allows user to only print particular chapters with references
-% All other options are disabled by default
-% To include only specific chapters without TOC, LOF, Title and Front Matter
-% To send it to supervisior for changes
 
-\ifPSUTHESIS@chapter
-    \defineChaptertrue
-    % Disable the table of contents, figures, tables, index and nomenclature
-    \renewcommand{\maketitle}{}
-    \renewcommand{\tableofcontents}{}
-    \renewcommand{\listoffigures}{}
-    \renewcommand{\listoftables}{}
-    \renewcommand{\printnomencl}{}
-    \renewcommand{\printthesisindex}{}
-\else
-    \defineChapterfalse
-\fi
-
-% ******************************** Abstract ************************************
-% The abstract environment puts a large, bold, centered "Abstract" label at
-% the top of the page. Defines both abstract and separate abstract environment
-
-% To include only the Title and the abstract pages for submission to BoGS
-\ifPSUTHESIS@abstract
-    \defineAbstracttrue
-    % Disable the table of contents, figures, tables, index and nomenclature
-    \renewcommand{\tableofcontents}{}
-    \renewcommand{\listoffigures}{}
-    \renewcommand{\listoftables}{}
-    \renewcommand{\printnomencl}{}
-    \renewcommand{\printnomencl}[1][2]{}
-    \renewcommand{\printthesisindex}{}
-    \renewcommand{\bibname}{}
-    \renewcommand{\bibliography}[1]{\thispagestyle{empty}}
-\else
-    \defineAbstractfalse
-\fi
-
-
-\newenvironment{abstract} {
-\ifPSUTHESIS@abstract
-% Separate abstract as per Student Registry guidelines
-	\thispagestyle{empty}
-	\setsinglecolumn
-	\begin{center}
-		{ \Large {\bfseries {\@title}} \par}
-		{{\large \vspace*{1em} \@author} \par}
-	\end{center}
-
-\else
-% Normal abstract in the thesis
-	\cleardoublepage
-	\setsinglecolumn
-	\chapter*{\centering Abstract}
-	\addcontentsline{toc}{chapter}{Abstract}
-	%\thispagestyle{empty}
-\fi
-}
 
 
 % ******************** To compute empty space in title page ********************
