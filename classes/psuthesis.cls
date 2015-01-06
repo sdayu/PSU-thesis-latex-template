@@ -41,6 +41,10 @@
 \newif\ifPSUTHESIS@index\PSUTHESIS@indexfalse
 \DeclareOption{index}{\PSUTHESIS@indextrue}
 
+% ***************************** Custom Margins  ********************************
+\newif\ifsetTH\setTHfalse % Set Custom Margin
+\DeclareOption{th}{\setTHtrue}
+
 % ******************************* Font Option **********************************
 %\newif\ifsetFont\setFontfalse                 				% Font is not set
 %
@@ -539,8 +543,8 @@ supported!}
 	\else
 	\RequirePackage[unicode=true]{hyperref}
 	\fi
-	\pdfpagewidth=\the\paperwidth
-	\pdfpageheight=\the\paperheight
+	%\pdfpagewidth=\the\paperwidth
+	%\pdfpageheight=\the\paperheight
 \fi
 
 \if@print
@@ -570,11 +574,11 @@ supported!}
     \else
         \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
-          vmarginratio=1:1,scale=0.75,bindingoffset=5mm,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
+	\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
+          	vmarginratio=1:1,scale=0.75,left=1.36in,right=.85in,top=1.4in,bottom=1in]{geometry}
         \else
-	\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
-          vmarginratio=1:1,scale=0.75,bindingoffset=5mm,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
+	\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
+          	vmarginratio=1:1,scale=0.75,left=1.36in,right=.85in,top=1.4in,bottom=1in]{geometry}
         \fi
     \fi
 
@@ -614,11 +618,12 @@ supported!}
     \else
 	% No Margin staggering on Odd and Even side
         \ifsetDVI
-			\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
-          		vmarginratio=1:1,scale=0.75,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
+			\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
+          		vmarginratio=1:1,scale=0.75,left=1.36in,right=.85in,top=1.4in,bottom=1in]{geometry}
+          		 % left=1.5in,right=1in,top=1.5in,bottom=1in
         \else
-			\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,
-          		vmarginratio=1:1,scale=0.75,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
+			\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
+          		vmarginratio=1:1,scale=0.75,left=1.36in,right=.85in,top=1.4in,bottom=1in]{geometry}
         \fi
     \fi
 	
@@ -708,7 +713,7 @@ wish to left align your text}
 [display] % shape
 {\bfseries\large} % format
 {\filcenter\chaptertitlename \ \thechapter} % label
-{-.5em} % sep
+{-1em} % sep
 {
     %\rule{\textwidth}{1pt}
     \vspace{1ex}
@@ -717,7 +722,7 @@ wish to left align your text}
 [
 \vspace{1em}%
 ] % after-code
-\titlespacing{\chapter}{0pt}{0pt}{0pt}
+\titlespacing{\chapter}{0pt}{-20pt}{0pt}
 
 \titleformat{\section}
   {\large\bfseries}{\thesection}{1em}{}
@@ -1110,7 +1115,7 @@ wish to left align your text}
 \begin{singlespace}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
-{ขอรับรองว่า ผลงานวิจัยนี้เป็นผลจากการศึกษาวิจัยของนักศึกษาเอง และขอแสดงความขอบคุณบุคคลที่มีส่วนเกี่ยวข้อง}
+{ขอรับรองว่า ผลงานวิจัยนี้มาจากการศึกษาวิจัยของนักศึกษาเอง และได้แสดงความขอบคุณบุคคลที่มีส่วนเกี่ยวข้องช่วยเหลือแล้ว}
 \vspace{3em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
@@ -1133,7 +1138,7 @@ wish to left align your text}
 \begin{singlespace}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
-{ข้าพเจ้ารับรองว่า ผลงานวิจัยนี้เป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่อขออนุมัติปริญญาในขณะนี้}
+{ข้าพเจ้าขอรับรองว่า ผลงานวิจัยนี้ไม่เคยเป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่นขออนุมัติปริญญาในขณะนี้}
 \vspace{3em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
@@ -1156,8 +1161,14 @@ wish to left align your text}
 \newenvironment{acknowledgements}{
 \cleardoublepage
 \setsinglecolumn
+\ifsetTH
+\chapter*{\centering กิติกรรมประกาศ}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\else
 \chapter*{\centering Acknowledgements}
 \addcontentsline{toc}{chapter}{Acknowledgements}
+\fi
+
 %\thispagestyle{empty}
 }
 
