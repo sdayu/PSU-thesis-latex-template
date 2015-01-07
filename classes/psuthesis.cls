@@ -238,7 +238,9 @@ supported!}
 \RequirePackage{setspace} % Define line spacing in paragraph
 \RequirePackage{calc}     % To calculate vertical spacing
 
-
+% multicolumn in vitae
+\RequirePackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 
 % *********************** Table of Contents & Appendices ***********************
@@ -247,9 +249,14 @@ supported!}
 % Add appendices
 \RequirePackage[title,titletoc]{appendix}
 
+\ifsetTH
+\renewcommand{\listfigurename}{รายการภาพประกอบ}
+\renewcommand{\listtablename}{รายการตาราง}
+\else
 \renewcommand{\contentsname}{Table of contents}
 \renewcommand{\listfigurename}{List of figures}
 \renewcommand{\listtablename}{List of tables}
+\fi
 
 % Hides Contents appearing from TOC, but adds it to bookmarks
 \ifpdf % avoid bable-thai hyperref appendix
@@ -494,9 +501,17 @@ supported!}
 		
 		%\defaultfontfeatures{Scale=1.23}
 		
+		\ifsetTH
 		\XeTeXlinebreaklocale "th_TH"
-		\XeTeXlinebreakskip = 0pt plus 1pt
 		\setdefaultlanguage{thai}
+		\defaultfontfeatures{Scale=1.5}
+		\else
+		\setdefaultlanguage{english}
+		\defaultfontfeatures{Scale=1.5}
+		\fi
+		
+		\XeTeXlinebreakskip = 0pt plus 1pt
+		
 		
 		% for laksaman font
 %		\setmainfont{Laksaman}
@@ -504,7 +519,6 @@ supported!}
 %		\newfontfamily{\thaifont}[Script=thai]{Laksaman}	
 			
 		\setmainfont{TH Sarabun New}
-		\defaultfontfeatures{Scale=1.5}
 		\newfontfamily{\thaifont}[Script=thai]{TH Sarabun New}
 	\else
 	\fi
@@ -575,10 +589,10 @@ supported!}
         \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
 	\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
-          	vmarginratio=1:1,scale=0.75,left=1.36in,right=.85in,top=1.4in,bottom=1in]{geometry}
+          	vmarginratio=1:1,scale=0.75,left=1.37in,right=.9in,top=1.4in,bottom=1in]{geometry}
         \else
 	\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
-          	vmarginratio=1:1,scale=0.75,left=1.36in,right=.85in,top=1.4in,bottom=1in]{geometry}
+          	vmarginratio=1:1,scale=0.75,left=1.37in,right=.9in,top=1.4in,bottom=1in]{geometry}
         \fi
     \fi
 
@@ -619,11 +633,11 @@ supported!}
 	% No Margin staggering on Odd and Even side
         \ifsetDVI
 			\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
-          		vmarginratio=1:1,scale=0.75,left=1.36in,right=.85in,top=1.4in,bottom=1in]{geometry}
+          		vmarginratio=1:1,scale=0.75,left=1.37in,right=.9in,top=1.4in,bottom=1in]{geometry}
           		 % left=1.5in,right=1in,top=1.5in,bottom=1in
         \else
 			\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
-          		vmarginratio=1:1,scale=0.75,left=1.36in,right=.85in,top=1.4in,bottom=1in]{geometry}
+          		vmarginratio=1:1,scale=0.75,left=1.37in,right=.9in,top=1.4in,bottom=1in]{geometry}
         \fi
     \fi
 	
@@ -826,6 +840,14 @@ wish to left align your text}
 \newcommand{\@degreeyear}{\the\year}
 \newcommand{\degreeyear}[1]{\renewcommand{\@degreeyear}{#1}}
 
+% Academic year
+\newcommand{\@academicyear}{\the\year}
+\newcommand{\academicyear}[1]{\renewcommand{\@academicyear}{#1}}
+
+% Academic year Thai bs
+\newcommand{\@academicyearTH}{\the\year}
+\newcommand{\academicyearTH}[1]{\renewcommand{\@academicyearTH}{#1}}
+
 % The full (unabbreviated) name of the degree
 \newcommand{\@degree}{}
 \newcommand{\degree}[1]{\renewcommand{\@degree}{#1}}
@@ -996,25 +1018,40 @@ wish to left align your text}
 \vspace*{1ex}
 {\large\bfseries{\@title}\par}
 
-
+\ifsetTH
 \vspace{.5\PSUTHESIS@titlepagespacing}
+\else
+\vspace{.4\PSUTHESIS@titlepagespacing}
+\fi
 % Author
 {\large\bfseries{\@authorTH}\par}
 {\large\bfseries{\@author}\par}
+\ifsetTH
 \vspace{.5\PSUTHESIS@titlepagespacing}
+\else
+\vspace{.4\PSUTHESIS@titlepagespacing}
+\fi
 
 % Submission Text
+\ifsetTH
 {\large\bfseries{\submissiontextTH}\par}
 {\large\bfseries{\@degreeTH} สาขาวิชา{\@majorProgramTH}\par}
 {\large\bfseries{\@universityTH}\par}
 \vspace*{1em}
+\else
+\fi
+
 
 {\large\bfseries{\submissiontext}\par}
 {\large\bfseries{Degree of \@degree} in {\@majorProgram}\par}
 {\large\bfseries{\@university}\par}
 \vspace*{2em}
 {\large\bfseries{\@degreeyear}\par}
+\ifsetTH
 {\large\bfseries{ลิขสิทธิ์ของ\@universityTH}\par}
+\else
+{\large\bfseries{Copyright of \@university}\par}
+\fi
 \end{center}
 \end{singlespace}
 }
@@ -1028,23 +1065,31 @@ wish to left align your text}
 \begin{singlespace}
 \begin{flushleft}
 
-		\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} p{.8\textwidth}@{}}
+		\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.8\textwidth}@{}}
+		\ifsetTH
 		\textbf{ชื่อวิทยานิพนธ์} & \@titleTH \\
 		\textbf{ผู้เขียน}& \@authorTitleTH\@authorTH \\
-		\textbf{สาขาวิชา}& \@majorProgramTH
+		\textbf{สาขาวิชา}& \@majorProgramTH \\
+		\else
+		\textbf{Thesis Title} & \@title \\
+		\textbf{Author}& \@authorTitle\@author \\
+		\textbf{Major Program}& \@majorProgram \\
+		\fi
 		\end{tabular*}
 		
+\vspace{1ex}
+\hrule height .7pt
 \vspace{1em}
-\hrule height 1.5pt
-\vspace{1em}
+		\ifsetTH
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
+		
 		\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}  & \textbf{คณะกรรมการสอบ} \\  \vspace*{1em} \\ 
 		{...............................................................} & 
-		{............................................ประธานกรรมการ} \\ 
+		{...............................................ประธานกรรมการ} \\ 
 		(\@majoradvisor)\vspace*{1em}  & (\@committeeOne) \\  \vspace*{1em} \\ 
 		
 		&
-		{........................................................กรรมการ} \\
+		{...........................................................กรรมการ} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}}
 		& (\@committeeTwo) \\ \vspace*{1em} \\
@@ -1053,7 +1098,7 @@ wish to left align your text}
 		{...............................................................}  
 		}
 		&
-		{........................................................กรรมการ} \\
+		{...........................................................กรรมการ} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{ (\@coadvisor) }
 		& (\@committeeThree) \\ \vspace*{1em} \\
@@ -1065,7 +1110,7 @@ wish to left align your text}
 		
 		}{
 		& 
-		{........................................................กรรมการ} \\
+		{...........................................................กรรมการ} \\
 		& (\@committeeFour) \\ \vspace*{1em} \\
 		}
 		\ifthenelse{\equal{\@committeeFive}{}}
@@ -1074,31 +1119,92 @@ wish to left align your text}
 		
 		}{
 		& 
-		{........................................................กรรมการ} \\
+		{...........................................................กรรมการ} \\
 		& (\@committeeFive) \\ 
 		}
 		\end{tabular*}
+		
+		\else
+		
+		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
+		
+		\textbf{Major Advisor:}  & \textbf{Examining Committee:} \\  \vspace*{1em} \\ 
+		{...............................................................} & 
+		{...............................................Chairperson} \\ 
+		(\@majoradvisor)\vspace*{1em}  & (\@committeeOne) \\  \vspace*{1em} \\ 
+		
+		&
+		{...............................................................} \\
+		\ifthenelse{\equal{\@coadvisor}{}}{
+		}{\textbf{Co-advisor:}}
+		& (\@committeeTwo) \\ \vspace*{1em} \\
+		\ifthenelse{\equal{\@coadvisor}{}}{
+		}{
+		{...............................................................}  
+		}
+		&
+		{...............................................................} \\
+		\ifthenelse{\equal{\@coadvisor}{}}{
+		}{ (\@coadvisor) }
+		& (\@committeeThree) \\ \vspace*{1em} \\
+		
+		
+		\ifthenelse{\equal{\@committeeFour}{}}
+		{
+		\\ \\ \vspace*{1em} \\
+		
+		}{
+		& 
+		{..............................................................} \\
+		& (\@committeeFour) \\ \vspace*{1em} \\
+		}
+		\ifthenelse{\equal{\@committeeFive}{}}
+		{
+		\\ \\ \vspace*{1em} \\
+		
+		}{
+		& 
+		{...............................................................} \\
+		& (\@committeeFive) \\ 
+		}
+		\end{tabular*}
+		\fi 
 
 \end{flushleft}
 
-\vspace{1em}
-\setlength{\parindent}{1.1in}
-{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้} %\break
+\vspace{5em}
+\setlength{\parindent}{1.2in}
+\ifsetTH
+{บัณฑิตวิทยาลัย~~มหาวิทยาลัยสงขลานครินทร์~~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้} %\break
 %\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
 {สำหรับการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
 }{
 {เป็นส่วนหนึ่งของการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
 }
+\else
+{The Graduate School, Prince of Songkla University, have approved this thesis as} %\break
+%\setlength{\parindent}{0in}
+\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
+{fulfillment of the requirements for the \@degree Degree in \@majorProgram}
+}{
+{partial fulfillment of the requirements for the \@degreeTH Degree in \@majorProgramTH}
+}
+\fi
 \setlength{\parindent}{0in}
-\vspace{3em}\\
+\vspace{2em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
 		&
 		\begin{center}
 		{..................................................................}\par 
 		(\@deanOfGraduateSchool)\par 
-		{คณบดีบัณฑิตวิทยาลัย}\par
+		\ifsetTH
+		{คณบดีบัณฑิตวิทยาลัย}
+		\else
+		{Dean of Graduate School}
+		\fi
+		\par
 		\end{center}
 		\\
 		\end{tabular*}
@@ -1115,7 +1221,11 @@ wish to left align your text}
 \begin{singlespace}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
+\ifsetTH
 {ขอรับรองว่า ผลงานวิจัยนี้มาจากการศึกษาวิจัยของนักศึกษาเอง และได้แสดงความขอบคุณบุคคลที่มีส่วนเกี่ยวข้องช่วยเหลือแล้ว}
+\else
+{This is to certify that the work here submitted is the result of the candidate's own investigations. Due acknowledgement has been made of any assistance received}
+\fi
 \vspace{3em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
@@ -1123,11 +1233,20 @@ wish to left align your text}
 		\begin{center}
 		..................................................................\par 
 		(\@majoradvisor)\par 
+		\ifsetTH
 		{อาจารย์ที่ปรึกษาวิทยานิพนธ์}\par
+		\else
+		{Major Advisor}
+		\fi
 		\vspace{3em}\par
 		..................................................................\par 
-		(\@authorTitleTH\@authorTH)\par 
+		\ifsetTH 
+		(\@authorTitleTH\@authorTH)\par
 		{นักศึกษา}\par
+		\else
+		(\@authorTitle\@author)\par
+		{Candidate}
+		\fi
 		\end{center}
 		\\
 		\end{tabular*}
@@ -1138,20 +1257,47 @@ wish to left align your text}
 \begin{singlespace}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
+\ifsetTH
 {ข้าพเจ้าขอรับรองว่า ผลงานวิจัยนี้ไม่เคยเป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่นขออนุมัติปริญญาในขณะนี้}
+\else
+{I hereby cetify that this work has not been accepted in substance for any degree, and is not being currently submitted in candidature for any degree}
+\fi
 \vspace{3em}\\
 
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
 		&
 		\begin{center}
 		..................................................................\par 
+		\ifsetTH
 		(\@authorTitleTH\@authorTH)\par 
 		{นักศึกษา}\par
+		\else
+		(\@authorTitle\@author)\par 
+		{Candidate}\par
+		\fi
 		\end{center}
 		\\
 		\end{tabular*}
 %\end{flushleft}
 \end{singlespace}
+}
+
+% ****************************** VITAE ********************************
+% The acknowledgements environment puts a large, bold, centered
+% "Acknowledgements" label at the top of the page.
+
+\newenvironment{vitae}{
+\cleardoublepage
+\setsinglecolumn
+\ifsetTH
+\chapter*{\centering ประวัติผู้เขียน}
+\addcontentsline{toc}{chapter}{ประวัติผู้เขียน}
+\else
+\chapter*{\centering VITAE}
+\addcontentsline{toc}{chapter}{VITAE}
+\fi
+
+%\thispagestyle{empty}
 }
 
 % ****************************** Acknowledgements ********************************
@@ -1162,8 +1308,8 @@ wish to left align your text}
 \cleardoublepage
 \setsinglecolumn
 \ifsetTH
-\chapter*{\centering กิติกรรมประกาศ}
-\addcontentsline{toc}{chapter}{Acknowledgements}
+\chapter*{\centering กิตติกรรมประกาศ}
+\addcontentsline{toc}{chapter}{กิตติกรรมประกาศ}
 \else
 \chapter*{\centering Acknowledgements}
 \addcontentsline{toc}{chapter}{Acknowledgements}
@@ -1171,14 +1317,61 @@ wish to left align your text}
 
 %\thispagestyle{empty}
 }
+{
+\vspace{1em}
+\flushright
+\ifsetTH
+\@authorTH{} \hspace{1in}~ \\
+\else
+\@author{} \hspace{1in}~ \\
+\fi
+\vfill
+}
 
 % ****************************** Abstract ********************************
 \newenvironment{abstract} {
-% Normal abstract in the thesis
+% english abstract in the thesis
 \cleardoublepage
 \setsinglecolumn
-\chapter*{\centering Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
+
+\begin{flushleft}
+	\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.8\textwidth}@{}}
+		\textbf{Thesis Title} & {\@title} \\
+		\textbf{Author} & \@authorTitle\@author \\
+		\textbf{Major Program} & \@majorProgram \\
+		\textbf{Academic Year} & \@academicyear \\
+	\end{tabular*}
+\end{flushleft}
+
+\vspace{2em}
+\begingroup
+\let\clearpage\relax
+\chapter*{\centering ABSTRACT}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+%\thispagestyle{empty}
+\endgroup
+}
+
+\newenvironment{abstractTH} {
+% thai abstract in the thesis
+\cleardoublepage
+\setsinglecolumn
+\begin{flushleft}
+	\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.8\textwidth}@{}}
+		\textbf{ชื่อวิทยานิพนธ์} & \@titleTH \\
+		\textbf{ผู้เขียน}& \@authorTitleTH\@authorTH \\
+		\textbf{สาขาวิชา}& \@majorProgramTH \\
+		\textbf{ปีการศึกษา}& \@academicyearTH \\
+	\end{tabular*}
+\end{flushleft}
+
+\vspace{2em}
+\begingroup
+\let\clearpage\relax
+\chapter*{บทคัดย่อ}
+\addcontentsline{toc}{chapter}{บทคัดย่อ}
+\endgroup
+
 %\thispagestyle{empty}
 }
 
@@ -1285,10 +1478,13 @@ wish to left align your text}
 \begin{lrbox}{\PSUTHESIS@submission}
 \begin{minipage}[c]{\textwidth}
 \begin{center}
+\ifsetTH
 {\large \bfseries{\submissiontextTH} \par}
 {\large \bfseries{\@degreeTH} \par}
 {\large \bfseries{\@universityTH} \par}
 \vspace*{1em}
+\else
+\fi
 
 {\large \bfseries{\submissiontext} \par}
 {\large \bfseries{Degree of \@degree} \par}
