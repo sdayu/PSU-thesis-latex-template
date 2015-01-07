@@ -4,7 +4,7 @@
 %%                                                                            %%
 %% A PSU thesis LaTeX template for Prince of Songkla University               %%
 %%                                                                            %%
-%% Version: v0.0.1                                                            %%
+%% Version: v1.0.0                                                            %%
 %% Authors: Thanathip Limna                                                   %%
 %% Date: 2013/11/16 (inception)                                               %%
 %% License: MIT License (c) 2013 Krishna Kumar                                %%
@@ -14,8 +14,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
-\newcommand\fileversion{0.0.1}
-\newcommand\filedate{2014/10/31}
+\newcommand\fileversion{1.0.0}
+\newcommand\filedate{2015/01/07}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{psuthesis}[\filedate\space A PSU thesis class file
  by Thanathip Limna (v\fileversion)]
