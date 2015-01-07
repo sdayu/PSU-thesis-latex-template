@@ -804,7 +804,7 @@ wish to left align your text}
 
 \newenvironment{romanpages}{
   \setcounter{page}{1}
-  \renewcommand{\thepage}{\roman{page}}}
+  \renewcommand{\thepage}{\Roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
 % new define
 \renewcommand{\thepage}{(\arabic{page})}
