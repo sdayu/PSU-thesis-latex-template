@@ -8,12 +8,12 @@ How to use
 Full report  
 
 ```sh
-$ pdflatex thesis.tex
+$ xelatex thesis.tex
 ```
 
 Each chapter  
 ```
-$ pdflatex <file>.tex
+$ xelatex <file>.tex
 ```
 
 File Structures
