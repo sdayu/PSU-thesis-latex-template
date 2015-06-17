@@ -11,7 +11,7 @@ Full report
 $ pdflatex thesis.tex
 ```
 
-Each Chapter  
+Each chapter  
 ```
 $ pdflatex <file>.tex
 ```
