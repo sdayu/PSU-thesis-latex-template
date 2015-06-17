@@ -504,10 +504,10 @@ supported!}
 		\ifsetTH
 		\XeTeXlinebreaklocale "th_TH"
 		\setdefaultlanguage{thai}
-		\defaultfontfeatures{Scale=1.5}
+		\defaultfontfeatures{Scale=1.5,Mapping=tex-text}
 		\else
 		\setdefaultlanguage{english}
-		\defaultfontfeatures{Scale=1.5}
+		\defaultfontfeatures{Scale=1.5,Mapping=tex-text}
 		\fi
 		
 		\XeTeXlinebreakskip = 0pt plus 1pt
@@ -518,7 +518,7 @@ supported!}
 %		\defaultfontfeatures{Scale=MatchLowercase}
 %		\newfontfamily{\thaifont}[Script=thai]{Laksaman}	
 			
-		\setmainfont{TH Sarabun New}
+		\setmainfont[Mapping=tex-text]{TH Sarabun New}
 		\newfontfamily{\thaifont}[Script=thai]{TH Sarabun New}
 	\else
 	\fi
