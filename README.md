@@ -16,15 +16,15 @@ Each Chapter
 $pdflatex <file>.tex
 ```
 
-File Structure
+File Structures
 ==============
 
 |File|Description|
 |---|---|
-|appendix|ภาคผนวก|
-|chapter|บทที่่|
 |abstract.tex|บทคัดย่อ|
 |acknowledgement.tex|กิตติกรรมประกาศ|
+|appendix|ภาคผนวก|
+|chapter|บทที่|
 |thesis.tex|วิทยานิพนธ์ฉบับเต็ม|
 |vitae.tex|ประวัติผู้เขียน|
 
