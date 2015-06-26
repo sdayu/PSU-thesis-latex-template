@@ -1337,7 +1337,7 @@ wish to left align your text}
 \begin{flushleft}
 	\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.8\textwidth}@{}}
 		\textbf{Thesis Title} & {\@title} \\
-		\textbf{Author} & \@authorTitle\@author \\
+		\textbf{Author} & \@authorTitle~\@author \\
 		\textbf{Major Program} & \@majorProgram \\
 		\textbf{Academic Year} & \@academicyear \\
 	\end{tabular*}
