@@ -836,6 +836,9 @@ wish to left align your text}
 \newcommand{\@authorTitleTH}{}
 \newcommand{\authorTitleTH}[1]{\renewcommand{\@authorTitleTH}{#1}}
 
+\newcommand{\@studentID}{}
+\newcommand{\studentID}[1]{\renewcommand{\@studentID}{#1}}
+
 % The year and term the degree will be officially conferred
 \newcommand{\@degreeyear}{\the\year}
 \newcommand{\degreeyear}[1]{\renewcommand{\@degreeyear}{#1}}
@@ -1298,6 +1301,12 @@ wish to left align your text}
 \fi
 
 %\thispagestyle{empty}
+\begin{flushleft}
+	\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} p{.8\textwidth}@{}}
+		\textbf{ชื่อ สกุล} & \@authorTitleTH\@authorTH  \\
+		\textbf{รหัสนักศึกษา} & \@studentID \\
+	\end{tabular*}
+\end{flushleft}
 }
 
 % ****************************** Acknowledgements ********************************
@@ -1374,6 +1383,7 @@ wish to left align your text}
 
 %\thispagestyle{empty}
 }
+
 
 % ******************************* Nomenclature *********************************
 \RequirePackage{nomencl}
