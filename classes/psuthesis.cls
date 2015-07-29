@@ -1227,7 +1227,7 @@ wish to left align your text}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
 \ifsetTH
-{ขอรับรองว่า ผลงานวิจัยนี้มาจากการศึกษาวิจัยของนักศึกษาเอง และได้แสดงความขอบคุณบุคคลที่มีส่วนเกี่ยวข้องช่วยเหลือแล้ว}
+{ขอรับรองว่า ผลงานวิจัยนี้มาจากการศึกษาวิจัยของนักศึกษาเอง และได้แสดงความขอบคุณบุคคลที่มีส่วนช่วยเหลือแล้ว}
 \else
 {This is to certify that the work here submitted is the result of the candidate's own investigations. Due acknowledgement has been made of any assistance received}
 \fi
