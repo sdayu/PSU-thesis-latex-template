@@ -18,7 +18,7 @@
 \newcommand\filedate{2015/01/07}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{psuthesis}[\filedate\space A PSU thesis class file
- by Thanathip Limna (v\fileversion)]
+ by Thanathip Limna and Teerasak Kroputaponchai (v\fileversion)]
 \typeout{https://github.com/sdayu/PSU-thesis-latex-template/}
 
 % ************************* Conditional Statements *****************************
@@ -1176,8 +1176,9 @@ wish to left align your text}
 \end{flushleft}
 
 \vspace{5em}
-\setlength{\parindent}{1.2in}
+
 \ifsetTH
+\setlength{\parindent}{1.15in}
 {บัณฑิตวิทยาลัย~~มหาวิทยาลัยสงขลานครินทร์~~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้} %\break
 %\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
@@ -1186,6 +1187,7 @@ wish to left align your text}
 {เป็นส่วนหนึ่งของการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
 }
 \else
+\setlength{\parindent}{1.2in}
 {The Graduate School, Prince of Songkla University, have approved this thesis as} %\break
 %\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
