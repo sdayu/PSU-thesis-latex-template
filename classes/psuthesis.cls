@@ -588,11 +588,15 @@ supported!}
     \else
         \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
-          	vmarginratio=1:1,scale=0.75,left=1.37in,right=.9in,top=1.4in,bottom=1in]{geometry}
+        \RequirePackage[top=1.5in, bottom=1in, left=1.5in, right=1in]{geometry}
+		%\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
+     		%vmarginratio=1:1,scale=1,left=1.5in,right=1in,top=1.4in,bottom=1in]{geometry}
+          	%vmarginratio=1:1,scale=1,left=1.37in,right=1in,top=1.4in,bottom=1in]{geometry}
         \else
-	\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
-          	vmarginratio=1:1,scale=0.75,left=1.37in,right=.9in,top=1.4in,bottom=1in]{geometry}
+		%\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
+			%vmarginratio=1:1,scale=1,left=1.37in,right=1in,top=1.4in,bottom=1in]{geometry}
+			\RequirePackage[top=1.5in, bottom=1in, left=1.5in, right=1in]{geometry}
+          	
         \fi
     \fi
 
@@ -1092,7 +1096,7 @@ wish to left align your text}
 		(\@majoradvisor)\vspace*{1em}  & (\@committeeOne) \\  \vspace*{1em} \\ 
 		
 		&
-		{...........................................................กรรมการ} \\
+		{.............................................................กรรมการ} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}}
 		& (\@committeeTwo) \\ \vspace*{1em} \\
@@ -1101,7 +1105,7 @@ wish to left align your text}
 		{...............................................................}  
 		}
 		&
-		{...........................................................กรรมการ} \\
+		{.............................................................กรรมการ} \\
 		\ifthenelse{\equal{\@coadvisor}{}}{
 		}{ (\@coadvisor) }
 		& (\@committeeThree) \\ \vspace*{1em} \\
@@ -1113,7 +1117,7 @@ wish to left align your text}
 		
 		}{
 		& 
-		{...........................................................กรรมการ} \\
+		{.............................................................กรรมการ} \\
 		& (\@committeeFour) \\ \vspace*{1em} \\
 		}
 		\ifthenelse{\equal{\@committeeFive}{}}
@@ -1122,7 +1126,7 @@ wish to left align your text}
 		
 		}{
 		& 
-		{...........................................................กรรมการ} \\
+		{.............................................................กรรมการ} \\
 		& (\@committeeFive) \\ 
 		}
 		\end{tabular*}
