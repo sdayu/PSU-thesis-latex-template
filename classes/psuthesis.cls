@@ -504,10 +504,10 @@ supported!}
 		\ifsetTH
 		\XeTeXlinebreaklocale "th_TH"
 		\setdefaultlanguage{thai}
-		\defaultfontfeatures{Scale=1.5,Mapping=tex-text}
+		\defaultfontfeatures{Scale=1.54,Mapping=tex-text}
 		\else
 		\setdefaultlanguage{english}
-		\defaultfontfeatures{Scale=1.5,Mapping=tex-text}
+		\defaultfontfeatures{Scale=1.54,Mapping=tex-text}
 		\fi
 		
 		\XeTeXlinebreakskip = 0pt plus 1pt
@@ -1178,16 +1178,16 @@ wish to left align your text}
 \vspace{5em}
 
 \ifsetTH
-\setlength{\parindent}{1.15in}
-{บัณฑิตวิทยาลัย~~มหาวิทยาลัยสงขลานครินทร์~~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้} %\break
+\setlength{\parindent}{1in}
+
 %\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-{สำหรับการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
+บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้สำหรับ\\การศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH
 }{
-{เป็นส่วนหนึ่งของการศึกษา~~ตามหลักสูตรปริญญา\@degreeTH ~~สาขาวิชา\@majorProgramTH}
+บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้เป็นส่วน\\หนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH
 }
 \else
-\setlength{\parindent}{1.2in}
+\setlength{\parindent}{1in}
 {The Graduate School, Prince of Songkla University, have approved this thesis as} %\break
 %\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
