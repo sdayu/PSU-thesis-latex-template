@@ -518,7 +518,7 @@ supported!}
 %		\defaultfontfeatures{Scale=MatchLowercase}
 %		\newfontfamily{\thaifont}[Script=thai]{Laksaman}	
 			
-		\setmainfont[Mapping=tex-text]{TH Sarabun New}
+		\setmainfont[Mapping=tex-text,Script=thai]{TH Sarabun New}
 		\newfontfamily{\thaifont}[Script=thai]{TH Sarabun New}
 	\else
 	\fi
@@ -1182,13 +1182,15 @@ wish to left align your text}
 \vspace{5em}
 
 \ifsetTH
-\setlength{\parindent}{1in}
+%\setlength{\parindent}{1in}
 
-%\setlength{\parindent}{0in}
+\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้สำหรับ\\การศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH
+\raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้สำหรับ}\\
+การศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH
 }{
-บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้เป็นส่วน\\หนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH
+\raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้เป็นส่วน}\\
+หนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH
 }
 \else
 \setlength{\parindent}{1in}
