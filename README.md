@@ -9,11 +9,24 @@ Full report
 
 ```sh
 $ xelatex thesis.tex
+$ xelatex thesis.tex
+
+or
+
+$ xelatex thesis.tex && xelatex thesis.tex
 ```
 
-Each chapter  
-```
-$ xelatex <file>.tex
+Compile with Bibtex
+
+```sh
+$ xelatex thesis.tex 
+$ bibtex thesis
+$ xelatex thesis.tex
+$ xelatex thesis.tex
+
+or
+
+$ xelatex thesis.tex && bibtex thesis && xelatex thesis.tex && xelatex thesis.tex
 ```
 
 File Structures
@@ -27,6 +40,7 @@ File Structures
 |chapter|บทที่|
 |thesis.tex|วิทยานิพนธ์ฉบับเต็ม|
 |vitae.tex|ประวัติผู้เขียน|
+|references.bib| เอกสารอ้างอิง (bibtex)|
 
 
 
