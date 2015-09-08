@@ -17,7 +17,8 @@ $ xelatex thesis.tex && xelatex thesis.tex
 ```
 
 Compile with Bibtex
-```
+
+```sh
 $ xelatex thesis.tex 
 $ bibtex thesis
 $ xelatex thesis.tex
@@ -39,6 +40,7 @@ File Structures
 |chapter|บทที่|
 |thesis.tex|วิทยานิพนธ์ฉบับเต็ม|
 |vitae.tex|ประวัติผู้เขียน|
+|references.bib| เอกสารอ้างอิง (bibtex)|
 
 
 
