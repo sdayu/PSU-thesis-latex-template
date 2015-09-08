@@ -9,11 +9,23 @@ Full report
 
 ```sh
 $ xelatex thesis.tex
+$ xelatex thesis.tex
+
+or
+
+$ xelatex thesis.tex && xelatex thesis.tex
 ```
 
-Each chapter  
+Compile with Bibtex
 ```
-$ xelatex <file>.tex
+$ xelatex thesis.tex 
+$ bibtex thesis
+$ xelatex thesis.tex
+$ xelatex thesis.tex
+
+or
+
+$ xelatex thesis.tex && bibtex thesis && xelatex thesis.tex && xelatex thesis.tex
 ```
 
 File Structures
