@@ -731,7 +731,7 @@ wish to left align your text}
 [display] % shape
 {\bfseries\large} % format
 {\filcenter\chaptertitlename \ \thechapter} % label
-{-1em} % sep
+{-0.7ex} % sep
 {
     %\rule{\textwidth}{1pt}
     \vspace{1ex}
@@ -743,11 +743,14 @@ wish to left align your text}
 \titlespacing{\chapter}{0pt}{-20pt}{0pt}
 
 \titleformat{\section}
-  {\large\bfseries}{\thesection}{1em}{}
+  {\large\bfseries}{\thesection}{1ex}{}
 \titleformat{\subsection}
-  {\normalfont\bfseries}{\thesubsection}{1em}{}
+  {\normalfont\bfseries}{\thesubsection}{1ex}{}
 \titleformat{\subsubsection}
-  {\normalfont\bfseries}{\thesubsubsection}{1em}{}
+  {\normalfont\bfseries}{\thesubsubsection}{1ex}{}
+ 
+\setlength{\parskip}{1ex}
+\setlength{\baselineskip}{1.25em}
  
 \setlength{\parindent}{1in}
 %\setlength{\parskip}{1em}
@@ -1026,17 +1029,17 @@ wish to left align your text}
 {\large\bfseries{\@title}\par}
 
 \ifsetTH
-\vspace{.5\PSUTHESIS@titlepagespacing}
-\else
 \vspace{.4\PSUTHESIS@titlepagespacing}
+\else
+\vspace{.3\PSUTHESIS@titlepagespacing}
 \fi
 % Author
 {\large\bfseries{\@authorTH}\par}
 {\large\bfseries{\@author}\par}
 \ifsetTH
-\vspace{.5\PSUTHESIS@titlepagespacing}
-\else
 \vspace{.4\PSUTHESIS@titlepagespacing}
+\else
+\vspace{.3\PSUTHESIS@titlepagespacing}
 \fi
 
 % Submission Text
