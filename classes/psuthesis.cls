@@ -749,8 +749,6 @@ wish to left align your text}
 \titleformat{\subsubsection}
   {\normalfont\bfseries}{\thesubsubsection}{1ex}{}
  
-\setlength{\parskip}{1ex}
-\setlength{\baselineskip}{1.25em}
  
 \setlength{\parindent}{1in}
 %\setlength{\parskip}{1em}
