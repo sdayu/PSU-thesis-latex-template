@@ -5,7 +5,7 @@ The latex template for PSU thesis
 
 How to use
 ==========
-Full report  
+- Full report  
 
 ```sh
 $ xelatex thesis.tex
@@ -27,6 +27,12 @@ $ xelatex thesis.tex
 or
 
 $ xelatex thesis.tex && bibtex thesis && xelatex thesis.tex && xelatex thesis.tex
+```
+
+- Each Chapeter
+
+```sh
+$ xelatex chapter1/chapter1.tex
 ```
 
 File Structures
