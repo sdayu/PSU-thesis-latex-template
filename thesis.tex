@@ -9,6 +9,7 @@
 \else
 \fi
 
+\usepackage{subfiles}
 %\usepackage{showframe}
 
 \begin{document}
@@ -67,8 +68,8 @@
 \end{othertitlepage}
 
 
-\include{abstract}
-\include{acknowledgement}
+\subfile{abstract}
+\subfile{acknowledgement}
 
 % *********************** Adding TOC and List of Figures ***********************
 % change name of lot and lof
@@ -91,11 +92,11 @@
 % ******************************** Main Matter *********************************
 \mainmatter
 
-\include{chapter1/chapter1}
-\include{chapter2/chapter2}
-\include{chapter3/chapter3}
-\include{chapter4/chapter4}
-\include{chapter5/chapter5}
+\subfile{chapter1/chapter1}
+\subfile{chapter2/chapter2}
+\subfile{chapter3/chapter3}
+\subfile{chapter4/chapter4}
+\subfile{chapter5/chapter5}
 
 \bibliographystyle{apalike}
 \bibliography{references}
@@ -103,11 +104,11 @@
 % ********************************** Appendices ********************************
 
 \begin{appendices} % Using appendices environment for more functunality
-\include{appendix1/appendix1}
-\include{appendix2/appendix2}
+\subfile{appendix1/appendix1}
+\subfile{appendix2/appendix2}
 \end{appendices}
 
-\include{vitae}
+\subfile{vitae}
 \newpage\null
 
 \end{document}
