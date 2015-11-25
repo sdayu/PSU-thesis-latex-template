@@ -754,6 +754,7 @@ wish to left align your text}
 %\setlength{\parskip}{1em}
 \usepackage{indentfirst}
 \setcounter{secnumdepth}{3}
+\usepackage{ragged2e}
 
 % ***************************** Header Formatting ******************************
 % Custom Header with Chapter Number, Page Number and Section Numbering
@@ -1016,11 +1017,11 @@ wish to left align your text}
 
 %\renewcommand*{\thepage}{i}
 
-\begin{singlespace}
+\begin{doublespacing}
 \begin{center}
 % Crest
 {\@crest \par}
-\vspace*{1em}
+\vspace*{.5ex}
 % Title
 {\large\bfseries{\@titleTH}\par}
 \vspace*{1ex}
@@ -1045,7 +1046,7 @@ wish to left align your text}
 {\large\bfseries{\submissiontextTH}\par}
 {\large\bfseries{\@degreeTH} สาขาวิชา{\@majorProgramTH}\par}
 {\large\bfseries{\@universityTH}\par}
-\vspace*{1em}
+\vspace*{1ex}
 \else
 \fi
 
@@ -1053,7 +1054,7 @@ wish to left align your text}
 {\large\bfseries{\submissiontext}\par}
 {\large\bfseries{Degree of \@degree} in {\@majorProgram}\par}
 {\large\bfseries{\@university}\par}
-\vspace*{2em}
+\vspace*{2ex}
 {\large\bfseries{\@degreeyear}\par}
 \ifsetTH
 {\large\bfseries{ลิขสิทธิ์ของ\@universityTH}\par}
@@ -1061,7 +1062,7 @@ wish to left align your text}
 {\large\bfseries{Copyright of \@university}\par}
 \fi
 \end{center}
-\end{singlespace}
+\end{doublespacing}
 }
 
 
@@ -1070,7 +1071,7 @@ wish to left align your text}
 \newcommand{\makeApprovalPage}
 {
 % To compute the free vertical space in Title page
-\begin{singlespace}
+\begin{onehalfspacing}
 \begin{flushleft}
 
 		\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.8\textwidth}@{}}
@@ -1180,18 +1181,19 @@ wish to left align your text}
 
 \end{flushleft}
 
-\vspace{5em}
+\vspace{3em}
 
 \ifsetTH
 %\setlength{\parindent}{1in}
-
-\setlength{\parindent}{0in}
+\noindent
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-\raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้สำหรับ}\\
-การศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH
+\raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}\\
+\noindent
+\justifying{สำหรับการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }{
-\raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้เป็นส่วน}\\
-หนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH
+\raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}\\
+\noindent
+\justifying{เป็นส่วนหนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }
 \else
 \setlength{\parindent}{1in}
@@ -1200,12 +1202,11 @@ wish to left align your text}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
 {fulfillment of the requirements for the \@degree Degree in \@majorProgram}
 }{
-{partial fulfillment of the requirements for the \@degreeTH Degree in \@majorProgramTH}
+{partial fulfillment of the requirements for the \@degree Degree in \@majorProgram}
 }
 \fi
-\setlength{\parindent}{0in}
-\vspace{2em}\\
-
+\noindent
+\vspace{2ex}\\
 		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
 		&
 		\begin{center}
@@ -1221,7 +1222,7 @@ wish to left align your text}
 		\\
 		\end{tabular*}
 
-\end{singlespace}
+\end{onehalfspacing}
 }
 
 
@@ -1230,7 +1231,7 @@ wish to left align your text}
 \newcommand{\makeDeclaration}
 {
 % To compute the free vertical space in Title page
-\begin{singlespace}
+\begin{onehalfspacing}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
 \ifsetTH
@@ -1263,10 +1264,10 @@ wish to left align your text}
 		\\
 		\end{tabular*}
 %\end{flushleft}
-\end{singlespace}
+\end{onehalfspacing}
 
 \newpage
-\begin{singlespace}
+\begin{onehalfspacing}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
 \ifsetTH
@@ -1291,7 +1292,7 @@ wish to left align your text}
 		\\
 		\end{tabular*}
 %\end{flushleft}
-\end{singlespace}
+\end{onehalfspacing}
 }
 
 % ****************************** VITAE ********************************
