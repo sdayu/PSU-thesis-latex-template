@@ -1072,124 +1072,116 @@ wish to left align your text}
 {
 % To compute the free vertical space in Title page
 \begin{onehalfspacing}
-\begin{flushleft}
+	\begin{flushleft}
+		\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} P{.8\textwidth}@{}}
+			\ifsetTH
+				\textbf{ชื่อวิทยานิพนธ์} & \@titleTH \\
+				\textbf{ผู้เขียน}& \@authorTitleTH\@authorTH \\
+				\textbf{สาขาวิชา}& \@majorProgramTH \\
+			\else
+				\textbf{Thesis Title} & \@title \\
+				\textbf{Author}& \@authorTitle\@author \\
+				\textbf{Major Program}& \@majorProgram \\
+			\fi
+		\end{tabular*}
+		
+		\vspace{1ex}
+		\hrule height .7pt
+		\vspace{1em}
+		
+%% initial approval page %%
+		\newlength{\majoradvisorwidth}
+		\setlength{\majoradvisorwidth}{\widthof{(\@majoradvisor)}}
+		\newlength{\coadvisorwidth}
+		\setlength{\coadvisorwidth}{\widthof{(\@coadvisor)}}
+		
+		\ifthenelse{\majoradvisorwidth > \coadvisorwidth}
+			{\def\advisorwidth{\majoradvisorwidth}}
+			{\def\advisorwidth{\coadvisorwidth}}
+		
+		\def\majorAdvisorLabel{
+			\ifsetTH
+				\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก} 
+			\else
+				\textbf{Major Advisor:}
+			\fi
+		}
+		
+		\def\coAdvisorLabel{
+			\ifsetTH
+				\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม} 
+			\else
+				\textbf{Co-advisor:}
+			\fi
+		}
+		
+		\def\examiningCommitteeLabel{
+			\ifsetTH 
+				\textbf{คณะกรรมการสอบ} 
+			\else
+				\textbf{Examining Committee:}
+			\fi
+		}
+		
+		\def\chairpersonLabel{
+			\ifsetTH
+				ประธานกรรมการ
+			\else
+				Chairperson
+			\fi
+		}
+		
+		\def\committeeLabel{
+			\ifsetTH
+				กรรมการ
+			\else
+				
+			\fi
+		}
+%% end initial approval page %%
 
-		\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.8\textwidth}@{}}
-		\ifsetTH
-		\textbf{ชื่อวิทยานิพนธ์} & \@titleTH \\
-		\textbf{ผู้เขียน}& \@authorTitleTH\@authorTH \\
-		\textbf{สาขาวิชา}& \@majorProgramTH \\
-		\else
-		\textbf{Thesis Title} & \@title \\
-		\textbf{Author}& \@authorTitle\@author \\
-		\textbf{Major Program}& \@majorProgram \\
-		\fi
+		\begin{tabular*}{\textwidth}{@{}p{.48\textwidth} p{.49\textwidth}@{}}
+			\majorAdvisorLabel & \examiningCommitteeLabel \\  
+			\vspace*{1em} \\ 
+			{\makebox[\advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}} & {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\chairpersonLabel} \\ 
+			(\@majoradvisor) & (\@committeeOne) \\  
+			\vspace*{1em} \\ 
+			&{{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
+			\ifthenelse{\equal{\@coadvisor}{}}
+				{}{\textbf{\coAdvisorLabel}}
+			& (\@committeeTwo) \\ 
+			\vspace*{1em} \\
+			\ifthenelse{\equal{\@coadvisor}{}}
+				{}{\makebox[\advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}
+			& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
+			\ifthenelse{\equal{\@coadvisor}{}}{}
+				{(\@coadvisor)} & (\@committeeThree) \\ 
+			\vspace*{1em} \\
+			\ifthenelse{\equal{\@committeeFour}{}}
+				{\\ \\ \vspace*{1em} \\}
+				{ 
+					& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
+					& (\@committeeFour) \\
+					\vspace*{1em} \\
+				}
+			\ifthenelse{\equal{\@committeeFive}{}}
+				{\\ \\ \vspace*{1em} \\}
+				{
+					& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
+					& (\@committeeFive) \\ 
+				}
 		\end{tabular*}
-		
-\vspace{1ex}
-\hrule height .7pt
-\vspace{1em}
-		\ifsetTH
-		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
-		
-		\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}  & \textbf{คณะกรรมการสอบ} \\  \vspace*{1em} \\ 
-		{...............................................................} & 
-		{...............................................ประธานกรรมการ} \\ 
-		(\@majoradvisor)\vspace*{1em}  & (\@committeeOne) \\  \vspace*{1em} \\ 
-		
-		&
-		{.............................................................กรรมการ} \\
-		\ifthenelse{\equal{\@coadvisor}{}}{
-		}{\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}}
-		& (\@committeeTwo) \\ \vspace*{1em} \\
-		\ifthenelse{\equal{\@coadvisor}{}}{
-		}{
-		{...............................................................}  
-		}
-		&
-		{.............................................................กรรมการ} \\
-		\ifthenelse{\equal{\@coadvisor}{}}{
-		}{ (\@coadvisor) }
-		& (\@committeeThree) \\ \vspace*{1em} \\
-		
-		
-		\ifthenelse{\equal{\@committeeFour}{}}
-		{
-		\\ \\ \vspace*{1em} \\
-		
-		}{
-		& 
-		{.............................................................กรรมการ} \\
-		& (\@committeeFour) \\ \vspace*{1em} \\
-		}
-		\ifthenelse{\equal{\@committeeFive}{}}
-		{
-		\\ \\ \vspace*{1em} \\
-		
-		}{
-		& 
-		{.............................................................กรรมการ} \\
-		& (\@committeeFive) \\ 
-		}
-		\end{tabular*}
-		
-		\else
-		
-		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
-		
-		\textbf{Major Advisor:}  & \textbf{Examining Committee:} \\  \vspace*{1em} \\ 
-		{...............................................................} & 
-		{...............................................Chairperson} \\ 
-		(\@majoradvisor)\vspace*{1em}  & (\@committeeOne) \\  \vspace*{1em} \\ 
-		
-		&
-		{...............................................................} \\
-		\ifthenelse{\equal{\@coadvisor}{}}{
-		}{\textbf{Co-advisor:}}
-		& (\@committeeTwo) \\ \vspace*{1em} \\
-		\ifthenelse{\equal{\@coadvisor}{}}{
-		}{
-		{...............................................................}  
-		}
-		&
-		{...............................................................} \\
-		\ifthenelse{\equal{\@coadvisor}{}}{
-		}{ (\@coadvisor) }
-		& (\@committeeThree) \\ \vspace*{1em} \\
-		
-		
-		\ifthenelse{\equal{\@committeeFour}{}}
-		{
-		\\ \\ \vspace*{1em} \\
-		
-		}{
-		& 
-		{..............................................................} \\
-		& (\@committeeFour) \\ \vspace*{1em} \\
-		}
-		\ifthenelse{\equal{\@committeeFive}{}}
-		{
-		\\ \\ \vspace*{1em} \\
-		
-		}{
-		& 
-		{...............................................................} \\
-		& (\@committeeFive) \\ 
-		}
-		\end{tabular*}
-		\fi 
-
+	
 \end{flushleft}
 
 \vspace{3em}
 
 \ifsetTH
 %\setlength{\parindent}{1in}
-\noindent
+%\noindent
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-\raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}\\
-\noindent
-\justifying{สำหรับการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
+{บัณฑิตวิทยาลัย~~~~~มหาวิทยาลัยสงขลานครินทร์~~~~~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}\\
+{สำหรับการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }{
 \raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}\\
 \noindent
@@ -1207,20 +1199,17 @@ wish to left align your text}
 \fi
 \noindent
 \vspace{2ex}\\
-		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
-		&
-		\begin{center}
-		{..................................................................}\par 
-		(\@deanOfGraduateSchool)\par 
+	\begin{flushright}
+		\begin{tabular}{c}
+		{\makebox[\widthof{(\@deanOfGraduateSchool)}]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+		(\@deanOfGraduateSchool)\\
 		\ifsetTH
 		{คณบดีบัณฑิตวิทยาลัย}
 		\else
 		{Dean of Graduate School}
 		\fi
-		\par
-		\end{center}
-		\\
-		\end{tabular*}
+		\end{tabular}
+	\end{flushright}
 
 \end{onehalfspacing}
 }
@@ -1241,28 +1230,41 @@ wish to left align your text}
 \fi
 \vspace{3em}\\
 
-		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
-		&
-		\begin{center}
-		..................................................................\par 
-		(\@majoradvisor)\par 
-		\ifsetTH
-		{อาจารย์ที่ปรึกษาวิทยานิพนธ์}\par
-		\else
-		{Major Advisor}
-		\fi
-		\vspace{3em}\par
-		..................................................................\par 
-		\ifsetTH 
-		(\@authorTitleTH\@authorTH)\par
-		{นักศึกษา}\par
-		\else
-		(\@authorTitle\@author)\par
-		{Candidate}
-		\fi
-		\end{center}
-		\\
-		\end{tabular*}
+	\ifdefined\majoradvisorwidth
+		\setlength{\majoradvisorwidth}{\widthof{(\@majoradvisor)}}
+	\else
+		\newlength{\majoradvisorwidth}
+		\setlength{\majoradvisorwidth}{\widthof{(\@majoradvisor)}}
+	\fi
+	
+	\newlength{\cadidatewidth}
+	\setlength{\cadidatewidth}{\widthof{(\@authorTitleTH\@authorTH)}}
+		
+	\ifthenelse{\majoradvisorwidth > \cadidatewidth}
+		{\def\declarationwidth{\majoradvisorwidth}}
+		{\def\declarationwidth{\cadidatewidth}}
+
+	\begin{flushright}
+		\begin{tabular}{l}
+			{\makebox[\declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+			(\@majoradvisor)\\ 
+			\ifsetTH
+				{อาจารย์ที่ปรึกษาวิทยานิพนธ์}\\
+			\else
+				{Major Advisor}\\
+			\fi
+		
+			\vspace{3em}\\
+  			{\makebox[\declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+			\ifsetTH 
+				(\@authorTitleTH\@authorTH)\\
+				{นักศึกษา}\\
+			\else
+				(\@authorTitle\@author)\\
+				{Candidate}\\
+			\fi
+		\end{tabular}
+	\end{flushright}
 %\end{flushleft}
 \end{onehalfspacing}
 
@@ -1276,21 +1278,19 @@ wish to left align your text}
 {I hereby cetify that this work has not been accepted in substance for any degree, and is not being currently submitted in candidature for any degree}
 \fi
 \vspace{3em}\\
+	\begin{flushright}
+		\begin{tabular}{l}
+				{\makebox[\widthof{(\@authorTitleTH\@authorTH)}]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+			\ifsetTH 
+				(\@authorTitleTH\@authorTH)\\
+				{นักศึกษา}\\
+			\else
+				(\@authorTitle\@author)\\
+				{Candidate}\\
+			\fi
+		\end{tabular}
+	\end{flushright}
 
-		\begin{tabular*}{\textwidth}{@{}p{.5\textwidth} p{.5\textwidth}@{}}
-		&
-		\begin{center}
-		..................................................................\par 
-		\ifsetTH
-		(\@authorTitleTH\@authorTH)\par 
-		{นักศึกษา}\par
-		\else
-		(\@authorTitle\@author)\par 
-		{Candidate}\par
-		\fi
-		\end{center}
-		\\
-		\end{tabular*}
 %\end{flushleft}
 \end{onehalfspacing}
 }
@@ -1312,7 +1312,7 @@ wish to left align your text}
 
 %\thispagestyle{empty}
 \begin{flushleft}
-	\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} p{.8\textwidth}@{}}
+	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} P{.8\textwidth}@{}}
 		\textbf{ชื่อ สกุล} & \@authorTitleTH\@authorTH  \\
 		\textbf{รหัสนักศึกษา} & \@studentID \\
 	\end{tabular*}
@@ -1340,9 +1340,9 @@ wish to left align your text}
 \vspace{1em}
 \flushright
 \ifsetTH
-\@authorTH{} \hspace{1in}~ \\
+\@authorTH{}\\
 \else
-\@author{} \hspace{1in}~ \\
+\@author{}\\
 \fi
 \vfill
 }
@@ -1354,7 +1354,7 @@ wish to left align your text}
 \setsinglecolumn
 
 \begin{flushleft}
-	\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.8\textwidth}@{}}
+	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} P{.8\textwidth}@{}}
 		\textbf{Thesis Title} & {\@title} \\
 		\textbf{Author} & \@authorTitle~\@author \\
 		\textbf{Major Program} & \@majorProgram \\
@@ -1376,7 +1376,7 @@ wish to left align your text}
 \cleardoublepage
 \setsinglecolumn
 \begin{flushleft}
-	\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.8\textwidth}@{}}
+	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} P{.8\textwidth}@{}}
 		\textbf{ชื่อวิทยานิพนธ์} & \@titleTH \\
 		\textbf{ผู้เขียน}& \@authorTitleTH\@authorTH \\
 		\textbf{สาขาวิชา}& \@majorProgramTH \\
