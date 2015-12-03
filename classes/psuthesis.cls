@@ -258,6 +258,16 @@ supported!}
 \renewcommand{\listtablename}{List of tables}
 \fi
 
+\usepackage{titletoc}
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {}% <above-code>
+  {\bfseries\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
+  {\bfseries\thecontentslabel}% <numberless-entry-format>
+  {\bfseries\hfill\contentspage}% <filler-page-format>
+  []
+  
+
 % Hides Contents appearing from TOC, but adds it to bookmarks
 \ifpdf % avoid bable-thai hyperref appendix
 \else
@@ -819,12 +829,19 @@ wish to left align your text}
 % Appending the appendix name to the letter in TOC
 % Especially when backmatter is enabled
 
-%\renewcommand\backmatter{
-%    \def\chaptermark##1{\markboth{%
-%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
-%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
-%    \def\sectionmark##1{\relax}}
+\renewcommand\backmatter{
+    \def\chaptermark##1{\markboth{%
+        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
+        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
+    \def\sectionmark##1{\relax}}
 
+\ifsetTH
+\renewenvironment{appendices} {
+\setcounter{chapter}{0}
+\renewcommand{\thechapter}{\thaiAlph{chapter}} 
+\renewcommand{\chaptername}{ภาคผนวก} 
+}
+\fi
 
 % ******************************************************************************
 % **************************** Macro Definitions *******************************
@@ -1312,7 +1329,7 @@ wish to left align your text}
 
 %\thispagestyle{empty}
 \begin{flushleft}
-	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} P{.8\textwidth}@{}}
+	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} p{.8\textwidth}@{}}
 		\textbf{ชื่อ สกุล} & \@authorTitleTH\@authorTH  \\
 		\textbf{รหัสนักศึกษา} & \@studentID \\
 	\end{tabular*}
@@ -1354,7 +1371,7 @@ wish to left align your text}
 \setsinglecolumn
 
 \begin{flushleft}
-	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} P{.8\textwidth}@{}}
+	\begin{tabular*}{\textwidth}{@{}p{.19\textwidth} P{.8\textwidth}@{}}
 		\textbf{Thesis Title} & {\@title} \\
 		\textbf{Author} & \@authorTitle~\@author \\
 		\textbf{Major Program} & \@majorProgram \\
