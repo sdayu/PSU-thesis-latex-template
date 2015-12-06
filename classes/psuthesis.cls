@@ -900,7 +900,7 @@ wish to left align your text}
 
 
 % Submission Text
-\newcommand{\submissiontext}{A Thesis Submitted in Fullfillment of the Requirement for the}
+\newcommand{\submissiontext}{A Thesis Submitted in Fullfillment of the Requirement for the Degree of}
 \newcommand{\submissiontextTH}{วิทยานิพนธ์นี้สำหรับการศึกษาตามหลักสูตรปริญญา}
 
 \newcommand{\@studyplan}{PhD1}
@@ -908,7 +908,7 @@ wish to left align your text}
   \renewcommand{\@studyplan}{#1}
   \ifthenelse{\equal{#1}{PhD2} \OR \equal{#1}{M2}}
   {%
-	\renewcommand{\submissiontext}{A Thesis Submitted in Partial Fullfillment of the Requirement for the}
+	\renewcommand{\submissiontext}{A Thesis Submitted in Partial Fullfillment of the Requirement for the Degree of}
 	\renewcommand{\submissiontextTH}{วิทยานิพนธ์นี้เป็นส่วนหนึ่งของการศึกษาตามหลักสูตรปริญญา}
   }{}
 }
@@ -1036,9 +1036,11 @@ wish to left align your text}
 
 \begin{doublespacing}
 \begin{center}
+
 % Crest
 {\@crest \par}
 \vspace*{.5ex}
+
 % Title
 {\large\bfseries{\@titleTH}\par}
 \vspace*{1ex}
@@ -1047,15 +1049,17 @@ wish to left align your text}
 \ifsetTH
 \vspace{.4\PSUTHESIS@titlepagespacing}
 \else
-\vspace{.3\PSUTHESIS@titlepagespacing}
+\vspace{.4\PSUTHESIS@titlepagespacing}
 \fi
+
 % Author
 {\large\bfseries{\@authorTH}\par}
 {\large\bfseries{\@author}\par}
+
 \ifsetTH
 \vspace{.4\PSUTHESIS@titlepagespacing}
 \else
-\vspace{.3\PSUTHESIS@titlepagespacing}
+\vspace{.4\PSUTHESIS@titlepagespacing}
 \fi
 
 % Submission Text
@@ -1067,11 +1071,16 @@ wish to left align your text}
 \else
 \fi
 
-
+\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
 {\large\bfseries{\submissiontext}\par}
-{\large\bfseries{Degree of \@degree} in {\@majorProgram}\par}
+}{
+\resizebox{\linewidth}{!}{\large\bfseries{\spaceskip=.5\fontdimen2\font\xspaceskip=0pt\relax\submissiontext}\par}
+}
+{\large\bfseries{\@degree} in {\@majorProgram}\par}
 {\large\bfseries{\@university}\par}
 \vspace*{2ex}
+
+% Year and Copy right
 {\large\bfseries{\@degreeyear}\par}
 \ifsetTH
 {\large\bfseries{ลิขสิทธิ์ของ\@universityTH}\par}
@@ -1085,6 +1094,48 @@ wish to left align your text}
 
 
 % ******************************** Approval Page **********************************
+
+% length
+\newcommand{\computeSignBoxWidth}{
+\@ifundefined{PSUTHESIS@advisorwidth}
+{
+\newlength{\PSUTHESIS@advisorwidth}
+}{}
+\@ifundefined{PSUTHESIS@majoradvisorwidth}
+{
+\newlength{\PSUTHESIS@majoradvisorwidth}
+}{}
+\@ifundefined{PSUTHESIS@coadvisorwidth}
+{
+\newlength{\PSUTHESIS@coadvisorwidth}
+}{}
+\@ifundefined{PSUTHESIS@cadidatewidth}
+{
+\newlength{\PSUTHESIS@cadidatewidth}
+}{}
+\@ifundefined{PSUTHESIS@declarationwidth}
+{
+\newlength{\PSUTHESIS@declarationwidth}
+}{}
+
+\setlength{\PSUTHESIS@majoradvisorwidth}{\widthof{(\@majoradvisor)}}
+\setlength{\PSUTHESIS@coadvisorwidth}{\widthof{(\@coadvisor)}}
+\ifsetTH
+\setlength{\PSUTHESIS@cadidatewidth}{\widthof{(\@authorTitleTH\@authorTH)}}
+\else
+\setlength{\PSUTHESIS@cadidatewidth}{\widthof{(\@authorTitle\@author)}}
+\fi
+		
+\ifthenelse{\PSUTHESIS@majoradvisorwidth > \PSUTHESIS@coadvisorwidth}
+		{\setlength{\PSUTHESIS@advisorwidth}{\PSUTHESIS@majoradvisorwidth}}
+		{\setlength{\PSUTHESIS@advisorwidth}{\PSUTHESIS@coadvisorwidth}}
+
+
+\ifthenelse{\PSUTHESIS@advisorwidth > \PSUTHESIS@cadidatewidth}
+		{\setlength{\PSUTHESIS@declarationwidth}{\PSUTHESIS@advisorwidth}}
+		{\setlength{\PSUTHESIS@declarationwidth}{\PSUTHESIS@cadidatewidth}}
+}
+
 \newcommand{\makeApprovalPage}
 {
 % To compute the free vertical space in Title page
@@ -1107,15 +1158,6 @@ wish to left align your text}
 		\vspace{1em}
 		
 %% initial approval page %%
-		\newlength{\majoradvisorwidth}
-		\setlength{\majoradvisorwidth}{\widthof{(\@majoradvisor)}}
-		\newlength{\coadvisorwidth}
-		\setlength{\coadvisorwidth}{\widthof{(\@coadvisor)}}
-		
-		\ifthenelse{\majoradvisorwidth > \coadvisorwidth}
-			{\def\advisorwidth{\majoradvisorwidth}}
-			{\def\advisorwidth{\coadvisorwidth}}
-		
 		\def\majorAdvisorLabel{
 			\ifsetTH
 				\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก} 
@@ -1155,12 +1197,14 @@ wish to left align your text}
 				
 			\fi
 		}
+		
+		\computeSignBoxWidth
 %% end initial approval page %%
 
 		\begin{tabular*}{\textwidth}{@{}p{.48\textwidth} p{.49\textwidth}@{}}
 			\majorAdvisorLabel & \examiningCommitteeLabel \\  
 			\vspace*{1em} \\ 
-			{\makebox[\advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}} & {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\chairpersonLabel} \\ 
+			{\makebox[\PSUTHESIS@advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}} & {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\chairpersonLabel} \\ 
 			(\@majoradvisor) & (\@committeeOne) \\  
 			\vspace*{1em} \\ 
 			&{{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
@@ -1169,7 +1213,7 @@ wish to left align your text}
 			& (\@committeeTwo) \\ 
 			\vspace*{1em} \\
 			\ifthenelse{\equal{\@coadvisor}{}}
-				{}{\makebox[\advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}
+				{}{\makebox[\PSUTHESIS@advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}
 			& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
 			\ifthenelse{\equal{\@coadvisor}{}}{}
 				{(\@coadvisor)} & (\@committeeThree) \\ 
@@ -1197,12 +1241,11 @@ wish to left align your text}
 %\setlength{\parindent}{1in}
 %\noindent
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-{บัณฑิตวิทยาลัย~~~~~มหาวิทยาลัยสงขลานครินทร์~~~~~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}\\
+{บัณฑิตวิทยาลัย~~~มหาวิทยาลัยสงขลานครินทร์~~~~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}
 {สำหรับการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }{
-\raggedleft{บัณฑิตวิทยาลัย~มหาวิทยาลัยสงขลานครินทร์~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}\\
-\noindent
-\justifying{เป็นส่วนหนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
+{บัณฑิตวิทยาลัย~~~มหาวิทยาลัยสงขลานครินทร์~~~อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}
+{เป็นส่วนหนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }
 \else
 \setlength{\parindent}{1in}
@@ -1246,33 +1289,32 @@ wish to left align your text}
 {This is to certify that the work here submitted is the result of the candidate's own investigations. Due acknowledgement has been made of any assistance received}
 \fi
 \vspace{3em}\\
-
-	\ifdefined\majoradvisorwidth
-		\setlength{\majoradvisorwidth}{\widthof{(\@majoradvisor)}}
-	\else
-		\newlength{\majoradvisorwidth}
-		\setlength{\majoradvisorwidth}{\widthof{(\@majoradvisor)}}
-	\fi
 	
-	\newlength{\cadidatewidth}
-	\setlength{\cadidatewidth}{\widthof{(\@authorTitleTH\@authorTH)}}
-		
-	\ifthenelse{\majoradvisorwidth > \cadidatewidth}
-		{\def\declarationwidth{\majoradvisorwidth}}
-		{\def\declarationwidth{\cadidatewidth}}
-
+	\computeSignBoxWidth
 	\begin{flushright}
 		\begin{tabular}{l}
-			{\makebox[\declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+			{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
 			(\@majoradvisor)\\ 
 			\ifsetTH
-				{อาจารย์ที่ปรึกษาวิทยานิพนธ์}\\
+				{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}\\
 			\else
 				{Major Advisor}\\
 			\fi
-		
-			\vspace{3em}\\
-  			{\makebox[\declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+			\vspace{2em}\\
+			
+			\ifthenelse{\equal{\@coadvisor}{}}
+			{}{
+			{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+			(\@coadvisor)\\ 
+			\ifsetTH
+				{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}\\
+			\else
+				{Co-Advisor}\\
+			\fi
+			\vspace{2em}\\
+			}
+			
+  			{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
 			\ifsetTH 
 				(\@authorTitleTH\@authorTH)\\
 				{นักศึกษา}\\
@@ -1463,6 +1505,19 @@ wish to left align your text}
 
 \newcommand{\computeTitlePageSpacing}{
 
+% University Crest Box
+\@ifundefined{PSUTHESIS@crest}
+{
+\newsavebox{\PSUTHESIS@crest}
+}{}
+
+\begin{lrbox}{\PSUTHESIS@crest}
+\begin{doublespacing}
+{\@crest \par}
+\vspace*{.5ex}
+\end{doublespacing}
+\end{lrbox}
+
 
 % Title Box
 \@ifundefined{PSUTHESIS@Title}
@@ -1472,23 +1527,14 @@ wish to left align your text}
 
 \begin{lrbox}{\PSUTHESIS@Title}
 \begin{minipage}[c]{0.98\textwidth}
+\begin{doublespacing}
 \begin{center}
-{\large \bfseries{\@titleTH} \par}
-\vspace*{1em}
-{\large \bfseries{\@title} \par}
+{\large\bfseries{\@titleTH}\par}
+\vspace*{1ex}
+{\large\bfseries{\@title}\par}
 \end{center}
+\end{doublespacing}
 \end{minipage}
-\end{lrbox}
-
-% University Crest Box
-\@ifundefined{PSUTHESIS@crest}
-{
-\newsavebox{\PSUTHESIS@crest}
-}{}
-
-\begin{lrbox}{\PSUTHESIS@crest}
-\@crest
-\vspace*{1em}
 \end{lrbox}
 
 % Author Box
@@ -1498,11 +1544,13 @@ wish to left align your text}
 }{}
 
 \begin{lrbox}{\PSUTHESIS@author}
-\begin{minipage}[c]{\textwidth}
+\begin{minipage}[c]{0.98\textwidth}
+\begin{doublespacing}
 \begin{center}
-{\large \bfseries{\@authorTH} \par}
-{\large \bfseries{\@author} \par}
+{\large\bfseries{\@authorTH} \par}
+{\large\bfseries{\@author} \par}
 \end{center}
+\end{doublespacing}
 \end{minipage}
 \end{lrbox}
 
@@ -1513,21 +1561,28 @@ wish to left align your text}
 }{}
 
 \begin{lrbox}{\PSUTHESIS@submission}
-\begin{minipage}[c]{\textwidth}
+\begin{minipage}[c]{0.98\textwidth}
+\begin{doublespacing}
 \begin{center}
+% Submission Text
 \ifsetTH
-{\large \bfseries{\submissiontextTH} \par}
-{\large \bfseries{\@degreeTH} \par}
-{\large \bfseries{\@universityTH} \par}
-\vspace*{1em}
+{\large\bfseries{\submissiontextTH}\par}
+{\large\bfseries{\@degreeTH} สาขาวิชา{\@majorProgramTH}\par}
+{\large\bfseries{\@universityTH}\par}
+\vspace*{1ex}
 \else
 \fi
 
-{\large \bfseries{\submissiontext} \par}
-{\large \bfseries{Degree of \@degree} \par}
-{\large \bfseries{\@university} \par}
-\vspace*{2em}
+\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
+{\large\bfseries{\submissiontext}\par}
+}{
+\resizebox{\linewidth}{!}{\large\bfseries{\spaceskip=.5\fontdimen2\font\xspaceskip=0pt\relax\submissiontext}\par}
+}
+{\large\bfseries{\@degree} in {\@majorProgram}\par}
+{\large\bfseries{\@university}\par}
+\vspace*{2ex}
 \end{center}
+\end{doublespacing}
 \end{minipage}
 \end{lrbox}
 
@@ -1538,9 +1593,17 @@ wish to left align your text}
 }{}
 
 \begin{lrbox}{\PSUTHESIS@year}
-\begin{minipage}[c]{\textwidth}
-\large \bfseries{\@degreeyear} \par
-\large \bfseries{ลิขสิทธิ์ของ\@universityTH} \par
+\begin{minipage}[c]{0.98\textwidth}
+\begin{doublespacing}
+\begin{center}
+{\large\bfseries{\@degreeyear}\par}
+\ifsetTH
+{\large\bfseries{ลิขสิทธิ์ของ\@universityTH}\par}
+\else
+{\large\bfseries{Copyright of \@university}\par}
+\fi
+\end{center}
+\end{doublespacing}
 \end{minipage}
 \end{lrbox}
 
@@ -1556,6 +1619,6 @@ wish to left align your text}
 			- \totalheightof{\usebox{\PSUTHESIS@author}}
 			- \totalheightof{\usebox{\PSUTHESIS@submission}}
 			- \totalheightof{\usebox{\PSUTHESIS@year}}
-}
+	}
 }
 
