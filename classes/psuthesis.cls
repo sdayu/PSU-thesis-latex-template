@@ -1447,6 +1447,29 @@ wish to left align your text}
 \newpage
 }
 
+% ****************************** Abbreviations and Symbols ********************************
+% The acknowledgements environment puts a large, bold, centered
+% "Abbreviations and Symbols" label at the top of the page.
+
+\newenvironment{abbreviations}{
+\cleardoublepage
+\setsinglecolumn
+\ifsetTH
+\chapter*{\centering สัญลักษณ์คำย่อและตัวย่อ}
+\addcontentsline{toc}{chapter}{สัญลักษณ์คำย่อและตัวย่อ}
+\else
+\chapter*{\centering List of Abbreviations and Symbols}
+\addcontentsline{toc}{chapter}{List of Abbreviations and Symbols}
+\fi
+
+\begingroup
+}
+{
+\vfill
+\endgroup
+\newpage
+}
+
 % ****************************** Abstract ********************************
 \newenvironment{abstract} {
 % english abstract in the thesis
