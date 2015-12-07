@@ -73,11 +73,10 @@
 
 % *********************** Adding TOC and List of Figures ***********************
 % change name of lot and lof
-\renewcommand{\listfigurename}{รายการภาพประกอบ}
-\renewcommand{\listtablename}{รายการตาราง}
+%\renewcommand{\listfigurename}{รายการภาพประกอบ}
+%\renewcommand{\listtablename}{รายการตาราง}
 
 % add name of ToC to ToC
-\addcontentsline{toc}{chapter}{\contentsname}
 \tableofcontents
 
 \listoftables
@@ -98,10 +97,12 @@
 \subfile{chapter4/chapter4}
 \subfile{chapter5/chapter5}
 
+\backmatter
 \bibliographystyle{apalike}
 \bibliography{references}
 
 % ********************************** Appendices ********************************
+
 
 \begin{appendices} % Using appendices environment for more functunality
 \subfile{appendix1/appendix1}

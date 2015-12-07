@@ -249,14 +249,29 @@ supported!}
 % Add appendices
 \RequirePackage[title,titletoc]{appendix}
 
-\ifsetTH
-\renewcommand{\listfigurename}{รายการภาพประกอบ}
-\renewcommand{\listtablename}{รายการตาราง}
+% Hides Contents appearing from TOC, but adds it to bookmarks
+\ifpdf % avoid bable-thai hyperref appendix
+	\addcontentsline{toc}{chapter}{\contentsname}
 \else
-\renewcommand{\contentsname}{Table of contents}
-\renewcommand{\listfigurename}{List of figures}
-\renewcommand{\listtablename}{List of tables}
+	\let\temptableofcontents\tableofcontents
+	\renewcommand{\tableofcontents}{
+  		\cleardoublepage
+  		\addcontentsline{toc}{chapter}{\contentsname}
+  		\pdfbookmark[0]{\contentsname}{Contents}
+  		\temptableofcontents
+  		
+  		\ifsetTH
+			\renewcommand{\listfigurename}{รายการภาพประกอบ}
+			\renewcommand{\listtablename}{รายการตาราง}
+  		\else
+			\renewcommand{\contentsname}{Table of contents}
+			\renewcommand{\listfigurename}{List of figures}
+			\renewcommand{\listtablename}{List of tables}
+ 		\fi
+	}
 \fi
+
+
 
 \usepackage{titletoc}
 \titlecontents{chapter}% <section-type>
@@ -264,20 +279,58 @@ supported!}
   {}% <above-code>
   {\bfseries\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
   {\bfseries\thecontentslabel}% <numberless-entry-format>
-  {\bfseries\hfill\contentspage}% <filler-page-format>
+  {\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+  []
+\titlecontents{section}% <section-type>
+  [25pt]% <left>
+  {}% <above-code>
+  {\thecontentslabel\quad}% <numbered-entry-format>
+  {\thecontentslabel}% <numberless-entry-format>
+  {\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+  []
+\titlecontents{subsection}% <section-type>
+  [50pt]% <left>
+  {}% <above-code>
+  {\thecontentslabel\quad}% <numbered-entry-format>
+  {\thecontentslabel}% <numberless-entry-format>
+  {\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+  []
+\titlecontents{subsubsection}% <section-type>
+  [75pt]% <left>
+  {}% <above-code>
+  {\thecontentslabel\quad}% <numbered-entry-format>
+  {\thecontentslabel}% <numberless-entry-format>
+  {\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
   []
   
+% ******************************* Appendices **********************************
+% Appending the appendix name to the letter in TOC
+% Especially when backmatter is enabled
 
-% Hides Contents appearing from TOC, but adds it to bookmarks
-\ifpdf % avoid bable-thai hyperref appendix
-\else
-\let\temptableofcontents\tableofcontents
-\renewcommand{\tableofcontents}{
-  \cleardoublepage
-  \pdfbookmark[0]{\contentsname}{Contents}
-  \temptableofcontents
+\renewcommand\backmatter{
+    \def\chaptermark##1{\markboth{%
+        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
+        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
+    \def\sectionmark##1{\relax}
+    
 }
-\fi
+
+
+\renewenvironment{appendices} {
+	\ifsetTH
+		\renewcommand{\chaptername}{ภาคผนวก} 
+		\titlecontents{chapter}% <section-type>
+  			[0pt]% <left>
+  			{}% <above-code>
+  			{\bfseries ภาคผนวก\ \thecontentslabel\quad}% <numbered-entry-format>
+  			{\bfseries\thecontentslabel}% <numberless-entry-format>
+  			{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+  			[]
+		\setcounter{chapter}{0}
+		\renewcommand{\thechapter}{\thaiAlph{chapter}} 
+	\fi
+}
+
 
 % *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color}
@@ -825,23 +878,8 @@ wish to left align your text}
 % new define
 \renewcommand{\thepage}{(\arabic{page})}
 
-% ******************************* Appendices **********************************
-% Appending the appendix name to the letter in TOC
-% Especially when backmatter is enabled
 
-\renewcommand\backmatter{
-    \def\chaptermark##1{\markboth{%
-        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
-        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
-    \def\sectionmark##1{\relax}}
 
-\ifsetTH
-\renewenvironment{appendices} {
-\setcounter{chapter}{0}
-\renewcommand{\thechapter}{\thaiAlph{chapter}} 
-\renewcommand{\chaptername}{ภาคผนวก} 
-}
-\fi
 
 % ******************************************************************************
 % **************************** Macro Definitions *******************************
@@ -1355,8 +1393,8 @@ wish to left align your text}
 }
 
 % ****************************** VITAE ********************************
-% The acknowledgements environment puts a large, bold, centered
-% "Acknowledgements" label at the top of the page.
+% The VITAE environment puts a large, bold, centered
+% "VITAE" label at the top of the page.
 
 \newenvironment{vitae}{
 \cleardoublepage
@@ -1394,6 +1432,7 @@ wish to left align your text}
 \fi
 
 %\thispagestyle{empty}
+\begingroup
 }
 {
 \vspace{1em}
@@ -1404,6 +1443,8 @@ wish to left align your text}
 \@author{}\\
 \fi
 \vfill
+\endgroup
+\newpage
 }
 
 % ****************************** Abstract ********************************
