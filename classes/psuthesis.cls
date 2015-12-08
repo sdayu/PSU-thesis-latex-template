@@ -227,6 +227,7 @@ supported!}
 
 % ******************************************************************************
 % ******************************** Packages ************************************
+
 % ******************************************************************************
 % ************************** Layout and Formatting *****************************
 
@@ -242,66 +243,241 @@ supported!}
 \RequirePackage{array}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 
+% *********************** To copy ligatures and Fonts **************************
+\ifpdf
+	\usepackage[T1]{fontenc}
+	\usepackage[utf8x]{inputenc}
+	%\usepackage[laksaman]{fonts-tlwg}
+\else
+	\ifxetex
+		\usepackage{fontspec}
+		%\usepackage{xunicode}
+		\usepackage{xltxtra}
+		\usepackage{polyglossia}
+
+		%\defaultfontfeatures{Scale=1.23}
+
+		\ifsetTH
+		\XeTeXlinebreaklocale "th_TH"
+		\setdefaultlanguage{thai}
+		\defaultfontfeatures{Scale=1.54,Mapping=tex-text}
+		\else
+		\setdefaultlanguage{english}
+		\defaultfontfeatures{Scale=1.54,Mapping=tex-text}
+		\fi
+
+		\XeTeXlinebreakskip = 0pt plus 1pt
+
+
+		% for laksaman font
+%		\setmainfont{Laksaman}
+%		\defaultfontfeatures{Scale=MatchLowercase}
+%		\newfontfamily{\thaifont}[Script=thai]{Laksaman}
+
+		\setmainfont[Mapping=tex-text,Script=thai]{TH Sarabun New}
+		\newfontfamily{\thaifont}[Script=thai]{TH Sarabun New}
+	\else
+	\fi
+\fi
+
+%\input{glyphtounicode}
+%\pdfglyphtounicode{f_f}{FB00}
+%\pdfglyphtounicode{f_i}{FB01}
+%\pdfglyphtounicode{f_l}{FB02}
+%\pdfglyphtounicode{f_f_i}{FB03}
+%\pdfglyphtounicode{f_f_l}{FB04}
+%\pdfgentounicode=1
+
+% Don't break enumeration (etc.) across pages in an ugly manner
+\clubpenalty=10000
+\widowpenalty=10000
+
+% If building with PDFLaTeX, use microtype spacing adjustments
+\RequirePackage[final]{microtype}
+
 
 % *********************** Table of Contents & Appendices ***********************
 % add Bibliography, List of figures and tables to contents
 \RequirePackage[nottoc]{tocbibind}
 % Add appendices
 \RequirePackage[title,titletoc]{appendix}
+\usepackage{titletoc}
+\usepackage{atbegshi}
+\usepackage[titles]{tocloft}
+
+\newcommand{\contenttopchapter}{Chapter}
+\newcommand{\contenttoppage}{Page}
+\newcommand{\contenttopfigure}{Figure}
+\newcommand{\contenttoptable}{Table}
+\newcommand{\contenttopcontinued}{~(Continued)}
+
+\newcommand{\setPSUcontentname}{
+	\ifsetTH
+		\renewcommand{\listtablename}{รายการตาราง}
+		\renewcommand{\listfigurename}{รายการภาพประกอบ}
+		\renewcommand{\contenttopchapter}{เรื่อง}
+		\renewcommand{\contenttoppage}{หน้า}
+		\renewcommand{\contenttopfigure}{รูป}
+		\renewcommand{\contenttoptable}{ตาราง}
+		\renewcommand{\contenttopcontinued}{~(ต่อ)}
+	\else
+		\renewcommand{\contentsname}{Table of contents}
+		\renewcommand{\listtablename}{List of tables}
+		\renewcommand{\listfigurename}{List of figures}
+	\fi
+ }
+
+% original idea from http://tex.stackexchange.com/questions/72986/table-of-contents-with-headings-on-every-page
+\newcommand{\tocheader}[4]{
+	{%
+		\setPSUcontentname
+
+		% Font selection
+		\centering
+		{\bfseries\large #1 #2}% Title heading
+		\par
+		\hspace*{\cftchapindent}% Chapter indent
+
+		\makebox[\cftchapnumwidth][l]{\normalfont\normalsize			\textnormal #3}% Chapter number heading
+		\hfill%
+		\makebox[\@pnumwidth][r]{\normalfont\normalsize\textnormal #4}% Page heading
+		\par\kern.5\baselineskip% After heading
+	}
+}
+
+
+\AtBeginDocument{
+	\renewcommand{\tableofcontents}{%
+		\newpage
+		\addcontentsline{toc}{chapter}{\contentsname}
+		\ifpdf
+  		\else
+			\pdfbookmark[0]{\contentsname}{Contents}
+		\fi
+
+		\cleardoublepage
+		\begingroup%
+		\parindent\z@\parskip\cftparskip%
+		\tocheader{\contentsname}{}{\contenttopchapter}{\contenttoppage}%
+		\@starttoc{toc}%
+		\endgroup%
+	}
+
+	\renewcommand{\listoftables}{
+		\cleardoublepage
+		\begingroup%
+		\parindent\z@\parskip\cftparskip%
+		\tocheader{\listtablename}{}{\contenttoptable}{\contenttoppage}
+		\@starttoc{lot}%
+		\endgroup%
+	}
+
+	\renewcommand{\listoffigures}{
+		\cleardoublepage
+		\begingroup%
+		\parindent\z@\parskip\cftparskip%
+		\tocheader{\listfigurename}{}{\contenttopfigure}{\contenttoppage}
+		\@starttoc{lof}%
+		\endgroup%
+	}
+
+}
+
+\newcommand{\PSUtableofcontents}{
+	\AtBeginShipout{
+		\tocheader{\contentsname}{\contenttopcontinued}{\contenttopchapter}{\contenttoppage}
+	}
+	\tableofcontents
+	\AtBeginShipoutClear
+}
+
+\newcommand{\PSUlistoftables}{
+	\AtBeginShipout{
+		\tocheader{\listtablename}{\contenttopcontinued}{\contenttoptable}{\contenttoppage}
+	}
+	\listoftables
+	\AtBeginShipoutClear
+}
+
+\newcommand{\PSUlistoffigures}{
+	\AtBeginShipout{
+		\tocheader{\listfigurename}{\contenttopcontinued}{\contenttopfigure}{\contenttoppage}
+	}
+	\listoffigures
+	\AtBeginShipoutClear
+}
+
+
+\newcommand{\AtBeginShipoutClear}{\gdef\AtBegShi@Hook{}\newpage}
 
 % Hides Contents appearing from TOC, but adds it to bookmarks
 \ifpdf % avoid bable-thai hyperref appendix
-	\addcontentsline{toc}{chapter}{\contentsname}
+	%\addcontentsline{toc}{chapter}{\contentsname}
 \else
-	\let\temptableofcontents\tableofcontents
-	\renewcommand{\tableofcontents}{
-  		\cleardoublepage
-  		\addcontentsline{toc}{chapter}{\contentsname}
-  		\pdfbookmark[0]{\contentsname}{Contents}
-  		\temptableofcontents
-  		
-  		\ifsetTH
-			\renewcommand{\listfigurename}{รายการภาพประกอบ}
-			\renewcommand{\listtablename}{รายการตาราง}
-  		\else
-			\renewcommand{\contentsname}{Table of contents}
-			\renewcommand{\listfigurename}{List of figures}
-			\renewcommand{\listtablename}{List of tables}
- 		\fi
-	}
+%	\let\temptableofcontents\tableofcontents
+%	\renewcommand{\tableofcontents}{
+%  		\cleardoublepage
+%  		\pdfbookmark[0]{\contentsname}{Contents}
+%  		\addcontentsline{toc}{chapter}{\contentsname}
+%  		\temptableofcontents
+%  		\ifsetTH
+%			\renewcommand{\listfigurename}{รายการภาพประกอบ}
+%			\renewcommand{\listtablename}{รายการตาราง}
+%  		\else
+%			\renewcommand{\contentsname}{Table of contents}
+%			\renewcommand{\listfigurename}{List of figures}
+%			\renewcommand{\listtablename}{List of tables}
+% 		\fi
+%	}
 \fi
 
-
-
-\usepackage{titletoc}
 \titlecontents{chapter}% <section-type>
-  [0pt]% <left>
-  {}% <above-code>
-  {\bfseries\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
-  {\bfseries\thecontentslabel}% <numberless-entry-format>
-  {\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-  []
+	[0pt]% <left>
+	{}% <above-code>
+	{\bfseries\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
+	{\bfseries\thecontentslabel}% <numberless-entry-format>
+	{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	[]
+
 \titlecontents{section}% <section-type>
-  [25pt]% <left>
-  {}% <above-code>
-  {\thecontentslabel\quad}% <numbered-entry-format>
-  {\thecontentslabel}% <numberless-entry-format>
-  {\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-  []
+	[25pt]% <left>
+	{}% <above-code>
+	{\thecontentslabel\quad}% <numbered-entry-format>
+	{\thecontentslabel}% <numberless-entry-format>
+	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	[]
+
 \titlecontents{subsection}% <section-type>
-  [50pt]% <left>
-  {}% <above-code>
-  {\thecontentslabel\quad}% <numbered-entry-format>
-  {\thecontentslabel}% <numberless-entry-format>
-  {\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-  []
+	[50pt]% <left>
+	{}% <above-code>
+	{\thecontentslabel\quad}% <numbered-entry-format>
+	{\thecontentslabel}% <numberless-entry-format>
+	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	[]
+
 \titlecontents{subsubsection}% <section-type>
-  [75pt]% <left>
-  {}% <above-code>
-  {\thecontentslabel\quad}% <numbered-entry-format>
-  {\thecontentslabel}% <numberless-entry-format>
-  {\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-  []
+	[75pt]% <left>
+	{}% <above-code>
+	{\thecontentslabel\quad}% <numbered-entry-format>
+	{\thecontentslabel}% <numberless-entry-format>
+	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	[]
+
+\titlecontents{figure}% <section-type>
+	[0pt]% <left>
+	{}% <above-code>
+	{\figurename\ \thecontentslabel~}% <numbered-entry-format>
+	{\thecontentslabel}% <numberless-entry-format>
+	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	[]
+
+\titlecontents{table}% <section-type>
+	[0pt]% <left>
+	{}% <above-code>
+	{\tablename\ \thecontentslabel~}% <numbered-entry-format>
+	{\thecontentslabel}% <numberless-entry-format>
+	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	[]
   
 % ******************************* Appendices **********************************
 % Appending the appendix name to the letter in TOC
@@ -550,57 +726,6 @@ supported!}
   biblatex package with required style in the Preamble.tex file}
 \fi
 
-% *********************** To copy ligatures and Fonts **************************
-\ifpdf
-	\usepackage[T1]{fontenc}
-	\usepackage[utf8x]{inputenc}
-	%\usepackage[laksaman]{fonts-tlwg}
-\else
-	\ifxetex
-		\usepackage{fontspec}
-		%\usepackage{xunicode}
-		\usepackage{xltxtra}
-		\usepackage{polyglossia}
-		
-		%\defaultfontfeatures{Scale=1.23}
-		
-		\ifsetTH
-		\XeTeXlinebreaklocale "th_TH"
-		\setdefaultlanguage{thai}
-		\defaultfontfeatures{Scale=1.54,Mapping=tex-text}
-		\else
-		\setdefaultlanguage{english}
-		\defaultfontfeatures{Scale=1.54,Mapping=tex-text}
-		\fi
-		
-		\XeTeXlinebreakskip = 0pt plus 1pt
-		
-		
-		% for laksaman font
-%		\setmainfont{Laksaman}
-%		\defaultfontfeatures{Scale=MatchLowercase}
-%		\newfontfamily{\thaifont}[Script=thai]{Laksaman}	
-			
-		\setmainfont[Mapping=tex-text,Script=thai]{TH Sarabun New}
-		\newfontfamily{\thaifont}[Script=thai]{TH Sarabun New}
-	\else
-	\fi
-\fi
-
-%\input{glyphtounicode}
-%\pdfglyphtounicode{f_f}{FB00}
-%\pdfglyphtounicode{f_i}{FB01}
-%\pdfglyphtounicode{f_l}{FB02}
-%\pdfglyphtounicode{f_f_i}{FB03}
-%\pdfglyphtounicode{f_f_l}{FB04}
-%\pdfgentounicode=1
-
-% Don't break enumeration (etc.) across pages in an ugly manner
-\clubpenalty=10000
-\widowpenalty=10000
-
-% If building with PDFLaTeX, use microtype spacing adjustments
-\RequirePackage[final]{microtype}
 
 %******************************* Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering
@@ -847,6 +972,7 @@ wish to left align your text}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
 }
+
 
 % If Margin has been set (default margin print/online version)
 \ifsetCustomMargin
@@ -1327,9 +1453,8 @@ wish to left align your text}
 {This is to certify that the work here submitted is the result of the candidate's own investigations. Due acknowledgement has been made of any assistance received}
 \fi
 \vspace{3em}\\
-	
 	\computeSignBoxWidth
-	\begin{flushright}
+\hspace*{.5\textwidth}
 		\begin{tabular}{l}
 			{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
 			(\@majoradvisor)\\ 
@@ -1339,10 +1464,8 @@ wish to left align your text}
 				{Major Advisor}\\
 			\fi
 			\vspace{2em}\\
-			
 			\ifthenelse{\equal{\@coadvisor}{}}
-			{}{
-			{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+			{}{{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
 			(\@coadvisor)\\ 
 			\ifsetTH
 				{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}\\
@@ -1350,9 +1473,7 @@ wish to left align your text}
 				{Co-Advisor}\\
 			\fi
 			\vspace{2em}\\
-			}
-			
-  			{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+			}{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
 			\ifsetTH 
 				(\@authorTitleTH\@authorTH)\\
 				{นักศึกษา}\\
@@ -1361,8 +1482,6 @@ wish to left align your text}
 				{Candidate}\\
 			\fi
 		\end{tabular}
-	\end{flushright}
-%\end{flushleft}
 \end{onehalfspacing}
 
 \newpage
@@ -1375,7 +1494,7 @@ wish to left align your text}
 {I hereby cetify that this work has not been accepted in substance for any degree, and is not being currently submitted in candidature for any degree}
 \fi
 \vspace{3em}\\
-	\begin{flushright}
+\hspace*{.5\textwidth}
 		\begin{tabular}{l}
 				{\makebox[\widthof{(\@authorTitleTH\@authorTH)}]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
 			\ifsetTH 
@@ -1386,9 +1505,7 @@ wish to left align your text}
 				{Candidate}\\
 			\fi
 		\end{tabular}
-	\end{flushright}
 
-%\end{flushleft}
 \end{onehalfspacing}
 }
 
