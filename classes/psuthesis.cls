@@ -303,7 +303,7 @@ supported!}
 \RequirePackage[title,titletoc]{appendix}
 \usepackage{titletoc}
 \usepackage{atbegshi}
-\usepackage[titles]{tocloft}
+\usepackage{tocloft}
 
 \newcommand{\contenttopchapter}{Chapter}
 \newcommand{\contenttoppage}{Page}
@@ -353,9 +353,8 @@ supported!}
 	\renewcommand{\listoftables}{
 		\cleardoublepage
 		\begingroup%
-		\PSUContentsHeader{\listtablename}{}{\contenttoptable}{\contenttoppage}
-
 		\parindent\z@\parskip\cftparskip%
+		\PSUContentsHeader{\listtablename}{}{\contenttoptable}{\contenttoppage}
 		\@starttoc{lot}%
 		\endgroup%
 	}
@@ -363,14 +362,14 @@ supported!}
 	\renewcommand{\listoffigures}{
 		\cleardoublepage
 		\begingroup%
+		\parindent\z@\parskip\cftparskip%
 		\PSUContentsHeader{\listfigurename}{}{\contenttopfigure}{\contenttoppage}
-		\parindent\z@
-		\parskip\cftparskip%
 		\@starttoc{lof}%
 		\endgroup%
 	}
 
 }
+
 
 \newcommand{\PSUContentsHeaderContinued}{\PSUContentsHeader{\contentsname}{\contenttopcontinued}{\contenttopchapter}{\contenttoppage}}
 
