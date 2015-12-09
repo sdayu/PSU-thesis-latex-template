@@ -310,7 +310,7 @@ supported!}
 \preto\figure{%
   \ifnum\value{figure}=0\addtocontents{lof}{{\vskip-10pt}}\fi
 }
-\preto\figure{%
+\preto\table{%
   \ifnum\value{table}=0\addtocontents{lot}{{\vskip-10pt}}\fi
 }
 
