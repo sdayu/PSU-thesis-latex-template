@@ -327,23 +327,10 @@ supported!}
 	\fi
  }
 
-% original idea from http://tex.stackexchange.com/questions/72986/table-of-contents-with-headings-on-every-page
-\newcommand{\tocheader}[4]{
-	{%
-		\setPSUcontentname
-
-		% Font selection
-		\centering
-		{\bfseries\large #1 #2}% Title heading
-		\par
-		\hspace*{\cftchapindent}% Chapter indent
-
-		\makebox[\cftchapnumwidth][l]{\normalfont\normalsize			\textnormal #3}% Chapter number heading
-		\hfill%
-		\makebox[\@pnumwidth][r]{\normalfont\normalsize\textnormal #4}% Page heading
-		\par\kern.5\baselineskip% After heading
+\newcommand{\PSUContentsHeader}[4]{
+	\setPSUcontentname
+	\chapter*{#1#2} \noindent #3 \hfill #4\par\kern.5\baselineskip
 	}
-}
 
 
 \AtBeginDocument{
@@ -358,7 +345,7 @@ supported!}
 		\cleardoublepage
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
-		\tocheader{\contentsname}{}{\contenttopchapter}{\contenttoppage}%
+		\PSUContentsHeader{\contentsname}{}{\contenttopchapter}{\contenttoppage}
 		\@starttoc{toc}%
 		\endgroup%
 	}
@@ -366,8 +353,9 @@ supported!}
 	\renewcommand{\listoftables}{
 		\cleardoublepage
 		\begingroup%
+		\PSUContentsHeader{\listtablename}{}{\contenttoptable}{\contenttoppage}
+
 		\parindent\z@\parskip\cftparskip%
-		\tocheader{\listtablename}{}{\contenttoptable}{\contenttoppage}
 		\@starttoc{lot}%
 		\endgroup%
 	}
@@ -375,40 +363,40 @@ supported!}
 	\renewcommand{\listoffigures}{
 		\cleardoublepage
 		\begingroup%
-		\parindent\z@\parskip\cftparskip%
-		\tocheader{\listfigurename}{}{\contenttopfigure}{\contenttoppage}
+		\PSUContentsHeader{\listfigurename}{}{\contenttopfigure}{\contenttoppage}
+		\parindent\z@
+		\parskip\cftparskip%
 		\@starttoc{lof}%
 		\endgroup%
 	}
 
 }
 
+\newcommand{\PSUContentsHeaderContinued}{\PSUContentsHeader{\contentsname}{\contenttopcontinued}{\contenttopchapter}{\contenttoppage}}
+
 \newcommand{\PSUtableofcontents}{
-	\AtBeginShipout{
-		\tocheader{\contentsname}{\contenttopcontinued}{\contenttopchapter}{\contenttoppage}
-	}
+	\AtBeginShipout{\PSUContentsHeaderContinued}
 	\tableofcontents
-	\AtBeginShipoutClear
+	\renewcommand{\PSUContentsHeaderContinued}{}
+
 }
+
+
+\newcommand{\PSULotHeaderContinued}{\PSUContentsHeader{\listtablename}{\contenttopcontinued}{\contenttoptable}{\contenttoppage}}
 
 \newcommand{\PSUlistoftables}{
-	\AtBeginShipout{
-		\tocheader{\listtablename}{\contenttopcontinued}{\contenttoptable}{\contenttoppage}
-	}
+	\AtBeginShipout{\PSULotHeaderContinued}
 	\listoftables
-	\AtBeginShipoutClear
+	\renewcommand{\PSULotHeaderContinued}{}
 }
+
+\newcommand{\PSULofHeaderContinued}{\PSUContentsHeader{\listfigurename}{\contenttopcontinued}{\contenttopfigure}{\contenttoppage}}
 
 \newcommand{\PSUlistoffigures}{
-	\AtBeginShipout{
-		\tocheader{\listfigurename}{\contenttopcontinued}{\contenttopfigure}{\contenttoppage}
-	}
+	\AtBeginShipout{\PSULofHeaderContinued}
 	\listoffigures
-	\AtBeginShipoutClear
+	\renewcommand{\PSULofHeaderContinued}{}
 }
-
-
-\newcommand{\AtBeginShipoutClear}{\gdef\AtBegShi@Hook{}\newpage}
 
 % Hides Contents appearing from TOC, but adds it to bookmarks
 \ifpdf % avoid bable-thai hyperref appendix
@@ -437,7 +425,7 @@ supported!}
 	{\bfseries\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
 	{\bfseries\thecontentslabel}% <numberless-entry-format>
 	{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-	[]
+
 
 \titlecontents{section}% <section-type>
 	[25pt]% <left>
@@ -445,7 +433,7 @@ supported!}
 	{\thecontentslabel\quad}% <numbered-entry-format>
 	{\thecontentslabel}% <numberless-entry-format>
 	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-	[]
+
 
 \titlecontents{subsection}% <section-type>
 	[50pt]% <left>
@@ -453,7 +441,7 @@ supported!}
 	{\thecontentslabel\quad}% <numbered-entry-format>
 	{\thecontentslabel}% <numberless-entry-format>
 	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-	[]
+
 
 \titlecontents{subsubsection}% <section-type>
 	[75pt]% <left>
@@ -461,23 +449,23 @@ supported!}
 	{\thecontentslabel\quad}% <numbered-entry-format>
 	{\thecontentslabel}% <numberless-entry-format>
 	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-	[]
+
 
 \titlecontents{figure}% <section-type>
 	[0pt]% <left>
 	{}% <above-code>
 	{\figurename\ \thecontentslabel~}% <numbered-entry-format>
-	{\thecontentslabel}% <numberless-entry-format>
+	{\figurename}% <numberless-entry-format>
 	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-	[]
+
 
 \titlecontents{table}% <section-type>
 	[0pt]% <left>
 	{}% <above-code>
 	{\tablename\ \thecontentslabel~}% <numbered-entry-format>
-	{\thecontentslabel}% <numberless-entry-format>
+	{\tablename}% <numberless-entry-format>
 	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-	[]
+
   
 % ******************************* Appendices **********************************
 % Appending the appendix name to the letter in TOC
