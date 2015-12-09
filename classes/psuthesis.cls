@@ -304,6 +304,15 @@ supported!}
 \usepackage{titletoc}
 \usepackage{atbegshi}
 \usepackage{tocloft}
+\usepackage{etoolbox}
+
+%remove space between chapter
+\preto\figure{%
+  \ifnum\value{figure}=0\addtocontents{lof}{{\vskip-10pt}}\fi
+}
+\preto\figure{%
+  \ifnum\value{table}=0\addtocontents{lot}{{\vskip-10pt}}\fi
+}
 
 \newcommand{\contenttopchapter}{Chapter}
 \newcommand{\contenttoppage}{Page}
