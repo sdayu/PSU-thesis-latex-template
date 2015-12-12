@@ -386,13 +386,24 @@ supported!}
 	\AtBeginShipout{\PSUContentsHeaderContinued}
 	\tableofcontents
 	\renewcommand{\PSUContentsHeaderContinued}{}
-
 }
 
 
 \newcommand{\PSULotHeaderContinued}{\PSUContentsHeader{\listtablename}{\contenttopcontinued}{\contenttoptable}{\contenttoppage}}
 
-\newcommand{\PSUlistoftables}{
+\newcommand{\PSUlistoftables}[1][]{
+	\ifthenelse{\equal{#1}{printchapter}}{
+		\preto\table{%
+  				\ifnum\value{table}=0\addtocontents{lot}{{\bfseries \chaptername~\thechapter\vskip15pt}}\fi
+			}
+		% currently this code no effect
+		\titlecontents{table}% <section-type>
+		[25pt]% <left>
+		{}% <above-code>
+		{\tablename\ \thecontentslabel~}% <numbered-entry-format>
+		{\tablename}% <numberless-entry-format>
+		{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	}{}
 	\AtBeginShipout{\PSULotHeaderContinued}
 	\listoftables
 	\renewcommand{\PSULotHeaderContinued}{}
@@ -400,7 +411,20 @@ supported!}
 
 \newcommand{\PSULofHeaderContinued}{\PSUContentsHeader{\listfigurename}{\contenttopcontinued}{\contenttopfigure}{\contenttoppage}}
 
-\newcommand{\PSUlistoffigures}{
+\newcommand{\PSUlistoffigures}[1][]{
+	\ifthenelse{\equal{#1}{printchapter}}{
+		\preto\figure{%
+  				\ifnum\value{figure}=0\addtocontents{lof}{{\bfseries \chaptername~\thechapter\vskip15pt}}\fi
+			}
+		% currently this code no effect
+		\titlecontents{figure}% <section-type>
+		[25pt]% <left>
+		{}% <above-code>
+		{\figurename\ \thecontentslabel~}% <numbered-entry-format>
+		{\figurename}% <numberless-entry-format>
+		{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+		
+	}{}
 	\AtBeginShipout{\PSULofHeaderContinued}
 	\listoffigures
 	\renewcommand{\PSULofHeaderContinued}{}
@@ -497,7 +521,7 @@ supported!}
   			{\bfseries ภาคผนวก\ \thecontentslabel\quad}% <numbered-entry-format>
   			{\bfseries\thecontentslabel}% <numberless-entry-format>
   			{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-  			[]
+  			
 		\setcounter{chapter}{0}
 		\renewcommand{\thechapter}{\thaiAlph{chapter}} 
 	\fi
