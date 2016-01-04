@@ -430,27 +430,6 @@ supported!}
 	\renewcommand{\PSULofHeaderContinued}{}
 }
 
-% Hides Contents appearing from TOC, but adds it to bookmarks
-\ifpdf % avoid bable-thai hyperref appendix
-	%\addcontentsline{toc}{chapter}{\contentsname}
-\else
-%	\let\temptableofcontents\tableofcontents
-%	\renewcommand{\tableofcontents}{
-%  		\cleardoublepage
-%  		\pdfbookmark[0]{\contentsname}{Contents}
-%  		\addcontentsline{toc}{chapter}{\contentsname}
-%  		\temptableofcontents
-%  		\ifsetTH
-%			\renewcommand{\listfigurename}{รายการภาพประกอบ}
-%			\renewcommand{\listtablename}{รายการตาราง}
-%  		\else
-%			\renewcommand{\contentsname}{Table of contents}
-%			\renewcommand{\listfigurename}{List of figures}
-%			\renewcommand{\listtablename}{List of tables}
-% 		\fi
-%	}
-\fi
-
 \titlecontents{chapter}% <section-type>
 	[0pt]% <left>
 	{}% <above-code>
@@ -1017,12 +996,18 @@ wish to left align your text}
 % for the contents and figures lists. It also resets
 % page-numbering for the remainder of the dissertation (arabic, starting at 1).
 
+
+% new define
 \newenvironment{romanpages}{
   \setcounter{page}{1}
   \renewcommand{\thepage}{\Roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
-% new define
-\renewcommand{\thepage}{(\arabic{page})}
+
+\ifsetTH
+	\renewcommand{\thepage}{(\arabic{page})}
+\else
+	\renewcommand{\thepage}{\Roman{page}}
+\fi
 
 
 
@@ -1226,8 +1211,11 @@ wish to left align your text}
 \vspace*{.5ex}
 
 % Title
+\ifsetTH
 {\large\bfseries{\@titleTH}\par}
 \vspace*{1ex}
+\else
+\fi
 {\large\bfseries{\@title}\par}
 
 \ifsetTH
@@ -1237,7 +1225,11 @@ wish to left align your text}
 \fi
 
 % Author
+
+\ifsetTH
 {\large\bfseries{\@authorTH}\par}
+\else
+\fi
 {\large\bfseries{\@author}\par}
 
 \ifsetTH
@@ -1304,10 +1296,11 @@ wish to left align your text}
 
 \setlength{\PSUTHESIS@majoradvisorwidth}{\widthof{(\@majoradvisor)}}
 \setlength{\PSUTHESIS@coadvisorwidth}{\widthof{(\@coadvisor)}}
+
 \ifsetTH
 \setlength{\PSUTHESIS@cadidatewidth}{\widthof{(\@authorTitleTH\@authorTH)}}
 \else
-\setlength{\PSUTHESIS@cadidatewidth}{\widthof{(\@authorTitle\@author)}}
+\setlength{\PSUTHESIS@cadidatewidth}{\widthof{(\@authorTitle~\@author)}}
 \fi
 		
 \ifthenelse{\PSUTHESIS@majoradvisorwidth > \PSUTHESIS@coadvisorwidth}
@@ -1332,7 +1325,7 @@ wish to left align your text}
 				\textbf{สาขาวิชา}& \@majorProgramTH \\
 			\else
 				\textbf{Thesis Title} & \@title \\
-				\textbf{Author}& \@authorTitle\@author \\
+				\textbf{Author}& \@authorTitle~\@author \\
 				\textbf{Major Program}& \@majorProgram \\
 			\fi
 		\end{tabular*}
@@ -1378,7 +1371,6 @@ wish to left align your text}
 			\ifsetTH
 				กรรมการ
 			\else
-				
 			\fi
 		}
 		
@@ -1386,31 +1378,31 @@ wish to left align your text}
 %% end initial approval page %%
 
 		\begin{tabular*}{\textwidth}{@{}p{.48\textwidth} p{.49\textwidth}@{}}
-			\majorAdvisorLabel & \examiningCommitteeLabel \\  
-			\vspace*{1em} \\ 
+			\majorAdvisorLabel & \examiningCommitteeLabel \\
+			\vspace*{1em} & \\
 			{\makebox[\PSUTHESIS@advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}} & {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\chairpersonLabel} \\ 
 			(\@majoradvisor) & (\@committeeOne) \\  
-			\vspace*{1em} \\ 
-			&{{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
+			\vspace*{1em} & \\ 
+			&{{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel}\\
 			\ifthenelse{\equal{\@coadvisor}{}}
 				{}{\textbf{\coAdvisorLabel}}
 			& (\@committeeTwo) \\ 
-			\vspace*{1em} \\
-			\ifthenelse{\equal{\@coadvisor}{}}
-				{}{\makebox[\PSUTHESIS@advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}
-			& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
-			\ifthenelse{\equal{\@coadvisor}{}}{}
-				{(\@coadvisor)} & (\@committeeThree) \\ 
-			\vspace*{1em} \\
+			\vspace*{1em} & \\ 
+			{\ifthenelse{\equal{\@coadvisor}{}}
+				{}{\makebox[\PSUTHESIS@advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}}
+			& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel}\\
+			{\ifthenelse{\equal{\@coadvisor}{}}
+				{}{(\@coadvisor)}} & (\@committeeThree) \\ 
+			\vspace*{1em} & \\
 			\ifthenelse{\equal{\@committeeFour}{}}
-				{\\ \\ \vspace*{1em} \\}
+				{\\ \\ \vspace*{1em} & \\}
 				{ 
-					& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
+					& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel}\\
 					& (\@committeeFour) \\
-					\vspace*{1em} \\
+					\vspace*{1em} & \\
 				}
 			\ifthenelse{\equal{\@committeeFive}{}}
-				{\\ \\ \vspace*{1em} \\}
+				{\\ \\ \vspace*{1em} & \\}
 				{
 					& {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\committeeLabel} \\
 					& (\@committeeFive) \\ 
@@ -1433,12 +1425,12 @@ wish to left align your text}
 }
 \else
 \setlength{\parindent}{1in}
-{The Graduate School, Prince of Songkla University, have approved this thesis as} %\break
+{The Graduate School, Prince of Songkla University, has approved this thesis as } %\break
 %\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-{fulfillment of the requirements for the \@degree Degree in \@majorProgram}
+{fulfillment of the requirements for the \@degree~Degree in \@majorProgram}
 }{
-{partial fulfillment of the requirements for the \@degree Degree in \@majorProgram}
+{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram}
 }
 \fi
 \noindent
@@ -1498,7 +1490,7 @@ wish to left align your text}
 				(\@authorTitleTH\@authorTH)\\
 				{นักศึกษา}\\
 			\else
-				(\@authorTitle\@author)\\
+				(\@authorTitle~\@author)\\
 				{Candidate}\\
 			\fi
 		\end{tabular}
@@ -1516,12 +1508,13 @@ wish to left align your text}
 \vspace{3em}\\
 \hspace*{.5\textwidth}
 		\begin{tabular}{l}
-				{\makebox[\widthof{(\@authorTitleTH\@authorTH)}]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
-			\ifsetTH 
+			\ifsetTH
+				{\makebox[\widthof{(\@authorTitleTH\@authorTH)}]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\ 
 				(\@authorTitleTH\@authorTH)\\
 				{นักศึกษา}\\
 			\else
-				(\@authorTitle\@author)\\
+				{\makebox[\widthof{(\@authorTitle~\@author)}]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+				(\@authorTitle~\@author)\\
 				{Candidate}\\
 			\fi
 		\end{tabular}
@@ -1547,8 +1540,13 @@ wish to left align your text}
 %\thispagestyle{empty}
 \begin{flushleft}
 	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} p{.8\textwidth}@{}}
+		\ifsetTH
 		\textbf{ชื่อ สกุล} & \@authorTitleTH\@authorTH  \\
 		\textbf{รหัสนักศึกษา} & \@studentID \\
+		\else
+		\textbf{Name} & \@authorTitle~\@author  \\
+		\textbf{Student ID} & \@studentID \\
+		\fi
 	\end{tabular*}
 \end{flushleft}
 }
@@ -1648,7 +1646,10 @@ wish to left align your text}
 \begingroup
 \let\clearpage\relax
 \chapter*{บทคัดย่อ}
+\ifsetTH
 \addcontentsline{toc}{chapter}{บทคัดย่อ}
+\else
+\fi
 \endgroup
 
 %\thispagestyle{empty}
@@ -1730,8 +1731,11 @@ wish to left align your text}
 \begin{minipage}[c]{0.98\textwidth}
 \begin{doublespacing}
 \begin{center}
+\ifsetTH
 {\large\bfseries{\@titleTH}\par}
 \vspace*{1ex}
+\else
+\fi
 {\large\bfseries{\@title}\par}
 \end{center}
 \end{doublespacing}
@@ -1748,7 +1752,10 @@ wish to left align your text}
 \begin{minipage}[c]{0.98\textwidth}
 \begin{doublespacing}
 \begin{center}
+\ifsetTH
 {\large\bfseries{\@authorTH} \par}
+\else
+\fi
 {\large\bfseries{\@author} \par}
 \end{center}
 \end{doublespacing}
