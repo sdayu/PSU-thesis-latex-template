@@ -322,6 +322,7 @@ supported!}
 \newcommand{\contenttoptable}{Table}
 \newcommand{\contenttopcontinued}{~(Continued)}
 
+
 \newcommand{\setPSUcontentname}{
 	\ifsetTH
 		\renewcommand{\listtablename}{รายการตาราง}
@@ -332,9 +333,9 @@ supported!}
 		\renewcommand{\contenttoptable}{ตาราง}
 		\renewcommand{\contenttopcontinued}{~(ต่อ)}
 	\else
-		\renewcommand{\contentsname}{Table of contents}
-		\renewcommand{\listtablename}{List of tables}
-		\renewcommand{\listfigurename}{List of figures}
+		\renewcommand{\contentsname}{CONTENTS}
+		\renewcommand{\listtablename}{LIST OF TABLES}
+		\renewcommand{\listfigurename}{LIST OF FIGURES}
 	\fi
  }
 
@@ -346,11 +347,10 @@ supported!}
 
 \AtBeginDocument{
 	\renewcommand{\tableofcontents}{%
-		\newpage
-		\addcontentsline{toc}{chapter}{\contentsname}
+		\newpage	
 		\ifpdf
   		\else
-			\pdfbookmark[0]{\contentsname}{Contents}
+			%\pdfbookmark[0]{\contentsname}{Contents}
 		\fi
 
 		\cleardoublepage
@@ -358,16 +358,20 @@ supported!}
 		\parindent\z@\parskip\cftparskip%
 		\PSUContentsHeader{\contentsname}{}{\contenttopchapter}{\contenttoppage}
 		\@starttoc{toc}%
+		\addcontentsline{toc}{chapter}{\contentsname}
 		\endgroup%
 	}
 
 	\renewcommand{\listoftables}{
+		
 		\cleardoublepage
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
 		\PSUContentsHeader{\listtablename}{}{\contenttoptable}{\contenttoppage}
 		\@starttoc{lot}%
+		\addcontentsline{toc}{chapter}{\listtablename}
 		\endgroup%
+		
 	}
 
 	\renewcommand{\listoffigures}{
@@ -376,6 +380,7 @@ supported!}
 		\parindent\z@\parskip\cftparskip%
 		\PSUContentsHeader{\listfigurename}{}{\contenttopfigure}{\contenttoppage}
 		\@starttoc{lof}%
+		\addcontentsline{toc}{chapter}{\listfigurename}
 		\endgroup%
 	}
 
@@ -479,32 +484,64 @@ supported!}
 	{\tablename}% <numberless-entry-format>
 	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
 
-  
+
+
+% change chaptername
+\let\@oldmainmatter\mainmatter
+\renewcommand*\mainmatter{
+	\@oldmainmatter
+	\ifsetTH
+		\renewcommand{\chaptername}{บทที่}
+	\else
+		\renewcommand{\chaptername}{CHAPTER}
+		\titlecontents{chapter}% <section-type>
+	[0pt]% <left>
+	{}% <above-code>
+	{\bfseries CHAPTER\ \thecontentslabel\quad}% <numbered-entry-format>
+	{\bfseries\thecontentslabel}% <numberless-entry-format>
+	{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	\fi
+}
+
+%\let\@oldbackmatter\backmatter
+\renewcommand\backmatter{
+	%\@oldbackmatter
+    \def\chaptermark##1{\markboth{%
+        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
+        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
+    \def\sectionmark##1{\relax}   
+}
+
 % ******************************* Appendices **********************************
 % Appending the appendix name to the letter in TOC
 % Especially when backmatter is enabled
 
-\renewcommand\backmatter{
-    \def\chaptermark##1{\markboth{%
-        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
-        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
-    \def\sectionmark##1{\relax}
-    
-}
-
-
 \renewenvironment{appendices} {
+	\appendix
+	\setcounter{chapter}{0}
 	\ifsetTH
 		\renewcommand{\chaptername}{ภาคผนวก} 
+		
+		\renewcommand{\thechapter}{\thaiAlph{chapter}}
 		\titlecontents{chapter}% <section-type>
   			[0pt]% <left>
   			{}% <above-code>
   			{\bfseries ภาคผนวก\ \thecontentslabel\quad}% <numbered-entry-format>
   			{\bfseries\thecontentslabel}% <numberless-entry-format>
   			{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+
+	\else
+		\renewcommand{\chaptername}{APPENDIX}
+		\renewcommand{\thechapter}{\Alph{chapter}} 
+		
+		\titlecontents{chapter}% <section-type>
+  			[0pt]% <left>
+  			{}% <above-code>
+  			{\bfseries APPENDIX\ \thecontentslabel\quad}% <numbered-entry-format>
+  			{\bfseries\thecontentslabel}% <numberless-entry-format>
+  			{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
   			
-		\setcounter{chapter}{0}
-		\renewcommand{\thechapter}{\thaiAlph{chapter}} 
+		
 	\fi
 }
 
@@ -1562,11 +1599,11 @@ wish to left align your text}
 \cleardoublepage
 \setsinglecolumn
 \ifsetTH
-\chapter*{\centering กิตติกรรมประกาศ}
-\addcontentsline{toc}{chapter}{กิตติกรรมประกาศ}
+	\chapter*{\centering กิตติกรรมประกาศ}
+	\addcontentsline{toc}{chapter}{กิตติกรรมประกาศ}
 \else
-\chapter*{\centering Acknowledgements}
-\addcontentsline{toc}{chapter}{Acknowledgements}
+	\chapter*{\centering ACKNOWLEDGEMENT}
+	\addcontentsline{toc}{chapter}{ACKNOWLEDGEMENT}
 \fi
 
 %\thispagestyle{empty}
@@ -1596,8 +1633,8 @@ wish to left align your text}
 \chapter*{\centering สัญลักษณ์คำย่อและตัวย่อ}
 \addcontentsline{toc}{chapter}{สัญลักษณ์คำย่อและตัวย่อ}
 \else
-\chapter*{\centering List of Abbreviations and Symbols}
-\addcontentsline{toc}{chapter}{List of Abbreviations and Symbols}
+\chapter*{\centering LIST OF ABBREVIATIONS AND SYMBOLS}
+\addcontentsline{toc}{chapter}{LIST OF ABBREVIATIONS AND SYMBOLS}
 \fi
 
 \begingroup
