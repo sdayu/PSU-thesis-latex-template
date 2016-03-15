@@ -348,10 +348,10 @@ supported!}
 \AtBeginDocument{
 	\renewcommand{\tableofcontents}{%
 		\newpage	
-		\ifpdf
-  		\else
-			%\pdfbookmark[0]{\contentsname}{Contents}
-		\fi
+%		\ifpdf
+%  		\else
+%			\pdfbookmark[0]{\contentsname}{Contents}
+%		\fi
 
 		\cleardoublepage
 		\begingroup%
