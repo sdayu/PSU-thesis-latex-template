@@ -5,24 +5,63 @@
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 \begin{vitae}
-	\textbf{วุฒิการศึกษา} \newline \newline
+	\ifsetTH
+		\textbf{วุฒิการศึกษา}
+	\else
+		\textbf{Education Attainment}
+	\fi	
+	\vspace{1em} \newline
 	\begin{tabular*}{\textwidth}{@{}P{.3\textwidth} P{.4\textwidth}@{} P{.3\textwidth}@{}}
-		\textbf{วุฒิ} & \textbf{ชื่อสถาบัน} & \textbf{ปีที่สำเร็จการศึกษา} \\
+		\ifsetTH
+			\textbf{วุฒิ}
+		\else
+			\textbf{Degree}
+		\fi	
+		& 
+		\ifsetTH
+			\textbf{ชื่อสถาบัน}
+		\else
+			\textbf{Name of Institution}
+		\fi	
+		& 
+		\ifsetTH
+			\textbf{ปีที่สำเร็จการศึกษา}
+		\else
+			\textbf{Year of Graduation}
+		\fi	 \\
     วิศวกรรมศาสตรบัณฑิต (วิศวกรรมคอมพิวเตอร์) & มหาวิทยาลัยสงขลานครินทร์ &  2546 \\
-		\\
+    \\
 	\end{tabular*}
-	\\
-	\textbf{ทุนการศึกษา (ที่ได้รับในระหว่างการศึกษา)} \newline \newline
+	
+	\setlength\parindent{0cm}
+	\ifsetTH
+		\textbf{ทุนการศึกษา (ที่ได้รับในระหว่างการศึกษา)} 
+	\else
+		\textbf{Scholarship Awards during Enrolment}
+	\fi		
+	\vspace{.7em} \newline
   	\setlength\parindent{1cm}
   	\indent ทุนการศึกษาโครงการปริญญาตรี-โท 5 ปี คณะวิศวกรรมศาสตร์ มหาวิทยาลัยสงขลานครินทร์่
-  \setlength\parindent{0cm}
 	% add scholars
+	\\
 	
-	\textbf{ตําแหน่งและสถานที่ทํางาน} \newline
+	\setlength\parindent{0cm}
+	\ifsetTH
+		\textbf{ตําแหน่งและสถานที่ทํางาน} 
+	\else
+		\textbf{Work -- Position and Address}
+	\fi	
+	\vspace{.7em} \newline
+	\setlength\parindent{1cm}
 	% add work experiences
-  
+  	\\
 	
-	\textbf{การตีพิมพ์เผยแพร่ผลงาน}
+	\setlength\parindent{0cm}
+	\ifsetTH
+		\textbf{การตีพิมพ์เผยแพร่ผลงาน}
+	\else
+		\textbf{List of Publication and Prpceeding}
+	\fi	
 	% add publications
   \begin{itemize}
     \item ธีรศักดิ์ ขอพุทธพรชัย และ นิคม สุวรรณวร.

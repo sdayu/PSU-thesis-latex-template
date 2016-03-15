@@ -1373,6 +1373,7 @@ wish to left align your text}
 			\ifsetTH
 				กรรมการ
 			\else
+				Committee
 			\fi
 		}
 		
@@ -1427,12 +1428,12 @@ wish to left align your text}
 }
 \else
 \setlength{\parindent}{1in}
-{The Graduate School, Prince of Songkla University, has approved this thesis as } %\break
+{The Graduate School, Prince of Songkla University, has approved this thesis as} %\break
 %\setlength{\parindent}{0in}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-{fulfillment of the requirements for the \@degree~Degree in \@majorProgram}
+{fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
 }{
-{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram}
+{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
 }
 \fi
 \noindent
@@ -1464,7 +1465,7 @@ wish to left align your text}
 \ifsetTH
 {ขอรับรองว่า ผลงานวิจัยนี้มาจากการศึกษาวิจัยของนักศึกษาเอง และได้แสดงความขอบคุณบุคคลที่มีส่วนช่วยเหลือแล้ว}
 \else
-{This is to certify that the work here submitted is the result of the candidate's own investigations. Due acknowledgement has been made of any assistance received}
+{This is to certify that the work here submitted is the result of the candidate's own investigations. Due acknowledgement has been made of any assistance received.}
 \fi
 \vspace{3em}\\
 	\computeSignBoxWidth
@@ -1505,7 +1506,7 @@ wish to left align your text}
 \ifsetTH
 {ข้าพเจ้าขอรับรองว่า ผลงานวิจัยนี้ไม่เคยเป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่นขออนุมัติปริญญาในขณะนี้}
 \else
-{I hereby cetify that this work has not been accepted in substance for any degree, and is not being currently submitted in candidature for any degree}
+{I hereby cetify that this work has not been accepted in substance for any degree, and is not being currently submitted in candidature for any degree.}
 \fi
 \vspace{3em}\\
 \hspace*{.5\textwidth}
