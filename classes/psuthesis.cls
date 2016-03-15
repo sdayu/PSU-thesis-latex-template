@@ -274,8 +274,10 @@ supported!}
 %		\defaultfontfeatures{Scale=MatchLowercase}
 %		\newfontfamily{\thaifont}[Script=thai]{Laksaman}
 
-		\setmainfont[Mapping=tex-text,Script=thai]{TH Sarabun New}
-		\newfontfamily{\thaifont}[Script=thai]{TH Sarabun New}
+%		\setmainfont[Mapping=tex-text,Script=thai]{TH Sarabun New}
+%		\newfontfamily{\thaifont}[Script=thai]{TH Sarabun New}
+		\setmainfont[Mapping=tex-text]{TH Sarabun New}
+		\newfontfamily{\thaifont}[]{TH Sarabun New}
 	\else
 	\fi
 \fi
