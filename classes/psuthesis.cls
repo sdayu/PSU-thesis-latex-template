@@ -1439,9 +1439,7 @@ wish to left align your text}
 {เป็นส่วนหนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }
 \else
-\setlength{\parindent}{1in}
-{The Graduate School, Prince of Songkla University, has approved this thesis as} %\break
-%\setlength{\parindent}{0in}
+{The Graduate School, Prince of Songkla University, has approved this thesis as}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
 {fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
 }{
