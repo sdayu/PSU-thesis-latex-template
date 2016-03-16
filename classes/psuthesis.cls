@@ -1440,10 +1440,8 @@ wish to left align your text}
 }
 \else
 {The Graduate School, Prince of Songkla University, has approved this thesis as}
-\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-{fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
-}{
-{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
+\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{{fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
+}{{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
 }
 \fi
 \noindent
