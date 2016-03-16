@@ -11,6 +11,18 @@
 
 \usepackage{subfiles}
 %\usepackage{showframe}
+
+% use supsection in enumerate
+\usepackage{enumerate}
+
+% print bib in vitae
+\usepackage{natbib}
+\usepackage{bibentry}
+\nobibliography*
+
+% add pdf to the thesis
+\usepackage{pdfpages}
+
 \begin{document}
  		
 \title{Writing Your Thesis for Graduate Student in Latex\break{Prince of Songkla University}}
@@ -89,6 +101,8 @@
 \subfile{chapter5/chapter5}
 
 \bibliographystyle{apalike}
+% enable for ieee reference style and disable above
+% \bibliographystyle{ieeetr}
 \bibliography{references}
 
 % ********************************** Appendices ********************************
