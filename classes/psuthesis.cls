@@ -322,27 +322,29 @@ supported!}
 \newcommand{\contenttoptable}{Table}
 \newcommand{\contenttopcontinued}{~(Continued)}
 
-
-\newcommand{\setPSUcontentname}{
-	\ifsetTH
+\addto{\captionsenglish}{
+	\renewcommand{\bibname}{BIBLIOGRAPHY}
+	\renewcommand{\chaptername}{CHAPTER}
+	\renewcommand{\contentsname}{CONTENTS}
+	\renewcommand{\listtablename}{LIST OF TABLES}
+	\renewcommand{\listfigurename}{LIST OF FIGURES}
+	\renewcommand{\appendixname}{APPENDIX}
+}
+\addto{\captionsthai}{
 		\renewcommand{\listtablename}{รายการตาราง}
 		\renewcommand{\listfigurename}{รายการภาพประกอบ}
+		\renewcommand{\appendixname}{ภาคผนวก}		
+		
 		\renewcommand{\contenttopchapter}{เรื่อง}
 		\renewcommand{\contenttoppage}{หน้า}
 		\renewcommand{\contenttopfigure}{รูป}
 		\renewcommand{\contenttoptable}{ตาราง}
 		\renewcommand{\contenttopcontinued}{~(ต่อ)}
-	\else
-		\renewcommand{\contentsname}{CONTENTS}
-		\renewcommand{\listtablename}{LIST OF TABLES}
-		\renewcommand{\listfigurename}{LIST OF FIGURES}
-	\fi
- }
+}
 
 \newcommand{\PSUContentsHeader}[4]{
-	\setPSUcontentname
 	\chapter*{#1#2} \noindent #3 \hfill #4\par\kern.5\baselineskip
-	}
+}
 
 
 \AtBeginDocument{
@@ -484,25 +486,6 @@ supported!}
 	{\tablename}% <numberless-entry-format>
 	{\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
 
-
-
-% change chaptername
-\let\@oldmainmatter\mainmatter
-\renewcommand*\mainmatter{
-	\@oldmainmatter
-	\ifsetTH
-		\renewcommand{\chaptername}{บทที่}
-	\else
-		\renewcommand{\chaptername}{CHAPTER}
-		\titlecontents{chapter}% <section-type>
-	[0pt]% <left>
-	{}% <above-code>
-	{\bfseries CHAPTER\ \thecontentslabel\quad}% <numbered-entry-format>
-	{\bfseries\thecontentslabel}% <numberless-entry-format>
-	{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-	\fi
-}
-
 %\let\@oldbackmatter\backmatter
 \renewcommand\backmatter{
 	%\@oldbackmatter
@@ -518,31 +501,23 @@ supported!}
 
 \renewenvironment{appendices} {
 	\appendix
-	\setcounter{chapter}{0}
-	\ifsetTH
-		\renewcommand{\chaptername}{ภาคผนวก} 
-		
-		\renewcommand{\thechapter}{\thaiAlph{chapter}}
-		\titlecontents{chapter}% <section-type>
-  			[0pt]% <left>
-  			{}% <above-code>
-  			{\bfseries ภาคผนวก\ \thecontentslabel\quad}% <numbered-entry-format>
-  			{\bfseries\thecontentslabel}% <numberless-entry-format>
-  			{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+	%\setcounter{chapter}{0}
 
+	\ifsetTH
+		\renewcommand{\thechapter}{\thaiAlph{chapter}}
 	\else
-		\renewcommand{\chaptername}{APPENDIX}
 		\renewcommand{\thechapter}{\Alph{chapter}} 
-		
-		\titlecontents{chapter}% <section-type>
-  			[0pt]% <left>
-  			{}% <above-code>
-  			{\bfseries APPENDIX\ \thecontentslabel\quad}% <numbered-entry-format>
-  			{\bfseries\thecontentslabel}% <numberless-entry-format>
-  			{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
-  			
-		
 	\fi
+	
+	
+	% fix contents display wrong appendix
+	\titlecontents{chapter}% <section-type>
+  		[0pt]% <left>
+  		{}% <above-code>
+  		{\bfseries\appendixname\ \thecontentslabel\quad}% <numbered-entry-format>
+  		{\bfseries\thecontentslabel}% <numberless-entry-format>
+  		{\bfseries\titlerule*[.25pc]{.}\contentspage}% <filler-page-format>
+  			
 }
 
 
