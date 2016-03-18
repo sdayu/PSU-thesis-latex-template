@@ -348,13 +348,11 @@ supported!}
 
 
 \AtBeginDocument{
+	\setlength{\parskip}{1ex}
+	\setlength{\baselineskip}{1.25em}
+
 	\renewcommand{\tableofcontents}{%
 		\newpage	
-%		\ifpdf
-%  		\else
-%			\pdfbookmark[0]{\contentsname}{Contents}
-%		\fi
-
 		\cleardoublepage
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
@@ -365,7 +363,6 @@ supported!}
 	}
 
 	\renewcommand{\listoftables}{
-		
 		\cleardoublepage
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
@@ -373,7 +370,6 @@ supported!}
 		\@starttoc{lot}%
 		\addcontentsline{toc}{chapter}{\listtablename}
 		\endgroup%
-		
 	}
 
 	\renewcommand{\listoffigures}{
@@ -1212,6 +1208,10 @@ wish to left align your text}
 
 \newcommand{\makePSUthesistitle}
 {
+
+\setlength{\parskip}{0pt}
+\setlength{\baselineskip}{1em}
+
 % To compute the free vertical space in Title page
 \computeTitlePageSpacing
 
