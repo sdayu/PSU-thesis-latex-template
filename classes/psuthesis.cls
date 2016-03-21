@@ -946,6 +946,7 @@ wish to left align your text}
 \titleformat{\subsubsection} [block]
   {\normalfont\bfseries}{\thesubsubsection}{1ex}{}
 
+\setlength{\parindent}{1in}
 \usepackage{indentfirst}
 \setcounter{secnumdepth}{3}
 \usepackage{ragged2e}
