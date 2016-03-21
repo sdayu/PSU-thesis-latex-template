@@ -939,16 +939,13 @@ wish to left align your text}
 ] % after-code
 \titlespacing{\chapter}{0pt}{-20pt}{0pt}
 
-\titleformat{\section}
+\titleformat{\section} [block]
   {\large\bfseries}{\thesection}{1ex}{}
-\titleformat{\subsection}
+\titleformat{\subsection} [block]
   {\normalfont\bfseries}{\thesubsection}{1ex}{}
-\titleformat{\subsubsection}
+\titleformat{\subsubsection} [block]
   {\normalfont\bfseries}{\thesubsubsection}{1ex}{}
- 
- 
-\setlength{\parindent}{1in}
-%\setlength{\parskip}{1em}
+
 \usepackage{indentfirst}
 \setcounter{secnumdepth}{3}
 \usepackage{ragged2e}
