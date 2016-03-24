@@ -305,7 +305,8 @@ supported!}
 \RequirePackage[title,titletoc]{appendix}
 \usepackage{titletoc}
 \usepackage{atbegshi}
-\usepackage{tocloft}
+\RequirePackage[subfigure]{tocloft}
+\usepackage{subfigure}
 \usepackage{etoolbox}
 
 %remove space between chapter
