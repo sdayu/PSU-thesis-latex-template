@@ -9,21 +9,6 @@
 \else
 \fi
 
-% enable if want to use subfiles
-%\usepackage{subfiles}
-%\usepackage{showframe}
-
-% use supsection in enumerate
-\usepackage{enumerate}
-
-% print bib in vitae
-\usepackage{natbib}
-\usepackage{bibentry}
-\nobibliography*
-
-% add pdf to the thesis
-\usepackage{pdfpages}
-
 \begin{document}
  		
 \title{Writing Your Thesis for Graduate Student in Latex\break{Prince of Songkla University}}
@@ -79,11 +64,8 @@
 	\makeDeclaration
 \end{othertitlepage}
 
-% enable if want to use subfiles
-%\subfile{abstract}
-%\subfile{acknowledgement}
-\include{abstract}
-\include{acknowledgement}
+\subfile{abstract}
+\subfile{acknowledgement}
 
 % *********************** Adding TOC and List of Figures ***********************
 
@@ -93,15 +75,15 @@
 
 \PSUlistoffigures
 
-\include{abbreviations}
+\subfile{abbreviations}
 
 % ******************************** Main Matter *********************************
 \mainmatter
-\include{chapter1/chapter1}
-\include{chapter2/chapter2}
-\include{chapter3/chapter3}
-\include{chapter4/chapter4}
-\include{chapter5/chapter5}
+\subfile{chapter1/chapter1}
+\subfile{chapter2/chapter2}
+\subfile{chapter3/chapter3}
+\subfile{chapter4/chapter4}
+\subfile{chapter5/chapter5}
 
 \bibliographystyle{apalike}
 % enable for ieee reference style and disable above
@@ -111,11 +93,12 @@
 % ********************************** Appendices ********************************
 %
 \begin{appendices} % Using appendices environment for more functunality
-	\include{appendix1/appendix1}
-	\include{appendix2/appendix2}
+	\subfile{appendix1/appendix1}
+	\subfile{appendix2/appendix2}
 \end{appendices}
 
-\include{vitae}
+\subfile{vitae}
+
 \backmatter
 \newpage\null\thispagestyle{empty}\newpage
 

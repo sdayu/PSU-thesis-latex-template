@@ -1,13 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 #For Linux
-if [[ `uname` == 'Linux' ]]
+if [ `uname` == 'Linux' ]
 then
   xelatex thesis.tex && xelatex thesis.tex
 fi
 
 #For OSX Only
-if [[ `uname` == 'Darwin' ]]
+if [ `uname` == 'Darwin' ]
 then
   # complie and open if done
   xelatex thesis.tex && xelatex thesis.tex && open thesis.pdf

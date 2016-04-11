@@ -307,7 +307,9 @@ supported!}
 \usepackage{atbegshi}
 \RequirePackage[subfigure]{tocloft}
 \usepackage{subfigure}
+\usepackage{subfiles}
 \usepackage{etoolbox}
+
 
 %remove space between chapter
 \preto\figure{%
@@ -1840,3 +1842,16 @@ wish to left align your text}
 	}
 }
 
+
+
+% ******************** Addition Library ********************
+
+\usepackage{enumerate}
+
+% print bib in vitae
+\usepackage{natbib}
+\usepackage{bibentry}
+\nobibliography*
+
+% add pdf to the thesis
+\usepackage{pdfpages}
