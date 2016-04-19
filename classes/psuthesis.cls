@@ -353,9 +353,10 @@ supported!}
 \AtBeginDocument{
 	\setlength{\parskip}{1ex}
 	\setlength{\baselineskip}{1.25em}
+  \setcounter{tocdepth}{4}
 
 	\renewcommand{\tableofcontents}{%
-		\newpage	
+		\newpage
 		\cleardoublepage
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
@@ -989,7 +990,7 @@ wish to left align your text}
 \AtBeginDocument{
 \@ifpackageloaded{geometry}{}{\ClassWarning{psuthesis}{%
   Custom margin is chosen, but geometry package is not loaded. Please load the
-  `geometry' package in the preamble.}}}  
+  `geometry' package in the preamble.}}}
 \else
 	\setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
