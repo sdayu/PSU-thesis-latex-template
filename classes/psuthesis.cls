@@ -309,6 +309,7 @@ supported!}
 \usepackage{subfigure}
 \usepackage{subfiles}
 \usepackage{etoolbox}
+\usepackage{hyphenat}
 
 
 %remove space between chapter
@@ -353,10 +354,10 @@ supported!}
 \AtBeginDocument{
 	\setlength{\parskip}{1ex}
 	\setlength{\baselineskip}{1.25em}
-  \setcounter{tocdepth}{4}
+	\setcounter{tocdepth}{4}
 
 	\renewcommand{\tableofcontents}{%
-		\newpage
+		\newpage	
 		\cleardoublepage
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
@@ -990,7 +991,7 @@ wish to left align your text}
 \AtBeginDocument{
 \@ifpackageloaded{geometry}{}{\ClassWarning{psuthesis}{%
   Custom margin is chosen, but geometry package is not loaded. Please load the
-  `geometry' package in the preamble.}}}
+  `geometry' package in the preamble.}}}  
 \else
 	\setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
@@ -1441,10 +1442,10 @@ wish to left align your text}
 {เป็นส่วนหนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }
 \else
-{The Graduate School, Prince of Songkla University, has approved this thesis as}
-\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{{fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
+\nohyphens{{The Graduate School, Prince of Songkla University, has approved this thesis as}
+\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{{fulfillment of the requirements for the \@degree~Degree in \linebreak\@majorProgram.}
 }{{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
-}
+}}
 \fi
 \noindent
 \vspace{2ex}\\
