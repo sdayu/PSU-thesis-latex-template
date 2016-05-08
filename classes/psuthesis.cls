@@ -1576,8 +1576,8 @@ wish to left align your text}
 	\chapter*{\centering กิตติกรรมประกาศ}
 	\addcontentsline{toc}{chapter}{กิตติกรรมประกาศ}
 \else
-	\chapter*{\centering ACKNOWLEDGEMENT}
-	\addcontentsline{toc}{chapter}{ACKNOWLEDGEMENT}
+	\chapter*{\centering ACKNOWLEDGEMENTS}
+	\addcontentsline{toc}{chapter}{ACKNOWLEDGEMENTS}
 \fi
 
 %\thispagestyle{empty}
