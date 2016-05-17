@@ -389,6 +389,9 @@ supported!}
 
 }
 
+\AtEndDocument{
+  \newpage\null\thispagestyle{empty}\newpage
+}
 
 \newcommand{\PSUContentsHeaderContinued}{\PSUContentsHeader{\contentsname}{\contenttopcontinued}{\contenttopchapter}{\contenttoppage}}
 
