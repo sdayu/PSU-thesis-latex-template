@@ -1853,10 +1853,5 @@ wish to left align your text}
 
 \usepackage{enumerate}
 
-% print bib in vitae
-\usepackage{natbib}
-\usepackage{bibentry}
-\nobibliography*
-
 % add pdf to the thesis
 \usepackage{pdfpages}
