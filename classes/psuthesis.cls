@@ -1359,7 +1359,7 @@ wish to left align your text}
 			\ifsetTH
 				\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก} 
 			\else
-				\textbf{Major Advisor:}
+				\textbf{Major Advisor}
 			\fi
 		}
 		
@@ -1367,7 +1367,7 @@ wish to left align your text}
 			\ifsetTH
 				\textbf{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม} 
 			\else
-				\textbf{Co-advisor:}
+				\textbf{Co-advisor}
 			\fi
 		}
 		
