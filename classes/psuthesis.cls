@@ -1085,7 +1085,7 @@ wish to left align your text}
 
 
 % Submission Text
-\newcommand{\submissiontext}{A Thesis Submitted in Fullfillment of the Requirement for the Degree of}
+\newcommand{\submissiontext}{A Thesis Submitted in Fulfillment of the Requirement for the Degree of}
 \newcommand{\submissiontextTH}{วิทยานิพนธ์นี้สำหรับการศึกษาตามหลักสูตรปริญญา}
 
 \newcommand{\@studyplan}{PhD1}
@@ -1093,7 +1093,7 @@ wish to left align your text}
   \renewcommand{\@studyplan}{#1}
   \ifthenelse{\equal{#1}{PhD2} \OR \equal{#1}{M2}}
   {%
-	\renewcommand{\submissiontext}{A Thesis Submitted in Partial Fullfillment of the Requirement for the Degree of}
+	\renewcommand{\submissiontext}{A Thesis Submitted in Partial Fulfillment of the Requirement for the Degree of}
 	\renewcommand{\submissiontextTH}{วิทยานิพนธ์นี้เป็นส่วนหนึ่งของการศึกษาตามหลักสูตรปริญญา}
   }{}
 }
