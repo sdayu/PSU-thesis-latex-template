@@ -1484,38 +1484,38 @@ wish to left align your text}
 \vspace{3em}\\
 	\computeSignBoxWidth
 \hspace*{.5\textwidth}
-		\begin{tabular}{ll}
+		\begin{tabular}{l}
 			\ifsetTH
-				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
-				& (\@majoradvisor)\\
-				& {อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}\\
+				{\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+				(\@majoradvisor)\\
+				{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}\\
 			\else
-				& {\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
-				& (\@majoradvisor)\\
-				& {Major Advisor}\\
+				{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
+				(\@majoradvisor)\\
+				{Major Advisor}\\
 			\fi
 			\vspace{2em}\\
 			\ifthenelse{\equal{\@coadvisor}{}}
 			{}{
 			\ifsetTH
-				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
-				& (\@coadvisor)\\ 
-				& {อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}\\
+				{\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+				(\@coadvisor)\\ 
+				{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}\\
 			\else
-				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
-				& (\@coadvisor)\\
-				& {Co-Advisor}\\
+				{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
+				(\@coadvisor)\\
+				{Co-Advisor}\\
 			\fi
 			\vspace{2em}\\
 			}
 			\ifsetTH
-				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
-				& (\@authorTitleTH\@authorTH)\\
-				& {นักศึกษา}\\
+				{\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+				(\@authorTitleTH\@authorTH)\\
+				{นักศึกษา}\\
 			\else
-				& {\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
-				& (\@authorTitle~\@author)\\
-				& {Candidate}\\
+				{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
+				(\@authorTitle~\@author)\\
+				{Candidate}\\
 			\fi
 		\end{tabular}
 \end{onehalfspacing}
@@ -1532,15 +1532,15 @@ wish to left align your text}
 \vspace{3em}\\
 \computeSignBoxWidth
 \hspace*{.5\textwidth}
-		\begin{tabular}{ll}
+		\begin{tabular}{l}
 			\ifsetTH
-				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\ 
-				& (\@authorTitleTH\@authorTH)\\
-				& {นักศึกษา}\\
+				{\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\ 
+				(\@authorTitleTH\@authorTH)\\
+				{นักศึกษา}\\
 			\else
-				& {\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
-				& (\@authorTitle~\@author)\\
-				& {Candidate}\\
+				{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
+				(\@authorTitle~\@author)\\
+				{Candidate}\\
 			\fi
 		\end{tabular}
 
