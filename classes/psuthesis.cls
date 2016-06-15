@@ -1484,31 +1484,38 @@ wish to left align your text}
 \vspace{3em}\\
 	\computeSignBoxWidth
 \hspace*{.5\textwidth}
-		\begin{tabular}{l}
-			{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
-			(\@majoradvisor)\\ 
+		\begin{tabular}{ll}
 			\ifsetTH
-				{อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}\\
+				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+				& (\@majoradvisor)\\
+				& {อาจารย์ที่ปรึกษาวิทยานิพนธ์หลัก}\\
 			\else
-				{Major Advisor}\\
+				& {\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
+				& (\@majoradvisor)\\
+				& {Major Advisor}\\
 			\fi
 			\vspace{2em}\\
 			\ifthenelse{\equal{\@coadvisor}{}}
-			{}{{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
-			(\@coadvisor)\\ 
+			{}{
 			\ifsetTH
-				{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}\\
+				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+				& (\@coadvisor)\\ 
+				& {อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}\\
 			\else
-				{Co-Advisor}\\
+				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
+				& (\@coadvisor)\\
+				& {Co-Advisor}\\
 			\fi
 			\vspace{2em}\\
-			}{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
-			\ifsetTH 
-				(\@authorTitleTH\@authorTH)\\
-				{นักศึกษา}\\
+			}
+			\ifsetTH
+				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
+				& (\@authorTitleTH\@authorTH)\\
+				& {นักศึกษา}\\
 			\else
-				(\@authorTitle~\@author)\\
-				{Candidate}\\
+				& {\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
+				& (\@authorTitle~\@author)\\
+				& {Candidate}\\
 			\fi
 		\end{tabular}
 \end{onehalfspacing}
@@ -1523,16 +1530,17 @@ wish to left align your text}
 {I hereby cetify that this work has not been accepted in substance for any degree, and is not being currently submitted in candidature for any degree.}
 \fi
 \vspace{3em}\\
+\computeSignBoxWidth
 \hspace*{.5\textwidth}
-		\begin{tabular}{l}
+		\begin{tabular}{ll}
 			\ifsetTH
-				{\makebox[\widthof{(\@authorTitleTH\@authorTH)}]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\ 
-				(\@authorTitleTH\@authorTH)\\
-				{นักศึกษา}\\
+				& {\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\ 
+				& (\@authorTitleTH\@authorTH)\\
+				& {นักศึกษา}\\
 			\else
-				{\makebox[\widthof{(\@authorTitle~\@author)}]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
-				(\@authorTitle~\@author)\\
-				{Candidate}\\
+				& {\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
+				& (\@authorTitle~\@author)\\
+				& {Candidate}\\
 			\fi
 		\end{tabular}
 
@@ -1555,7 +1563,7 @@ wish to left align your text}
 \fi
 
 %\thispagestyle{empty}
-\begin{flushleft}
+\raggedright
 	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} p{.8\textwidth}@{}}
 		\ifsetTH
 		\textbf{ชื่อ สกุล} & \@authorTitleTH\@authorTH  \\
@@ -1565,7 +1573,6 @@ wish to left align your text}
 		\textbf{Student ID} & \@studentID \\
 		\fi
 	\end{tabular*}
-\end{flushleft}
 }
 
 % ****************************** Acknowledgements ********************************
