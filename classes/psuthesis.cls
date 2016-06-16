@@ -1496,8 +1496,8 @@ wish to left align your text}
 			\fi
 			\vspace{2em}\\
 			\ifthenelse{\equal{\@coadvisor}{}}
-			{}{
-			\ifsetTH
+			{}
+			{\ifsetTH
 				{\makebox[\PSUTHESIS@declarationwidth]{{ลงชื่อ}\leavevmode\xleaders\hbox{.}\hfill\kern0pt}}\\
 				(\@coadvisor)\\ 
 				{อาจารย์ที่ปรึกษาวิทยานิพนธ์ร่วม}\\
