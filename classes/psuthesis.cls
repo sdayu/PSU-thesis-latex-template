@@ -841,12 +841,10 @@ supported!}
     \else
 	% No Margin staggering on Odd and Even side
         \ifsetDVI
-			\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
-          		vmarginratio=1:1,scale=0.75,left=1.37in,right=.9in,top=1.4in,bottom=1in]{geometry}
+			\RequirePackage[top=1.5in, bottom=1in, left=1.5in, right=1in]{geometry}
           		 % left=1.5in,right=1in,top=1.5in,bottom=1in
         \else
-			\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm},
-          		vmarginratio=1:1,scale=0.75,left=1.37in,right=.9in,top=1.4in,bottom=1in]{geometry}
+			\RequirePackage[top=1.5in, bottom=1in, left=1.5in, right=1in]{geometry}
         \fi
     \fi
 	
