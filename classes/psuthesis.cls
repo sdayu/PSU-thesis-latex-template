@@ -1336,7 +1336,7 @@ wish to left align your text}
 % To compute the free vertical space in Title page
 \begin{onehalfspacing}
 	\begin{flushleft}
-		\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} P{.8\textwidth}@{}}
+		\begin{tabular*}{\textwidth}{@{}p{.2\textwidth} P{.78\textwidth}@{}}
 			\ifsetTH
 				\textbf{ชื่อวิทยานิพนธ์} & \@titleTH \\
 				\textbf{ผู้เขียน}& \@authorTitleTH\@authorTH \\
@@ -1502,7 +1502,7 @@ wish to left align your text}
 			\else
 				{\makebox[\PSUTHESIS@declarationwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt{Signature}}}\\
 				(\@coadvisor)\\
-				{Co-Advisor}\\
+				{Co-advisor}\\
 			\fi
 			\vspace{2em}\\
 			}
