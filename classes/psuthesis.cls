@@ -1266,7 +1266,7 @@ wish to left align your text}
 \fi
 
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-{\large\bfseries{\submissiontext}\par}
+{\large\bfseries{\spaceskip=.7\fontdimen2\font\xspaceskip=0pt\relax\submissiontext}\par}
 }{
 \resizebox{\linewidth}{!}{\large\bfseries{\spaceskip=.5\fontdimen2\font\xspaceskip=0pt\relax\submissiontext}\par}
 }
