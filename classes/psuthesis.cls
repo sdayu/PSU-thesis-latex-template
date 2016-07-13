@@ -1083,7 +1083,7 @@ wish to left align your text}
 
 
 % Submission Text
-\newcommand{\submissiontext}{A Thesis Submitted in Fulfillment of the Requirement for the Degree of}
+\newcommand{\submissiontext}{A Thesis Submitted in Fulfillment of the Requirements for the Degree of}
 \newcommand{\submissiontextTH}{วิทยานิพนธ์นี้สำหรับการศึกษาตามหลักสูตรปริญญา}
 
 \newcommand{\@studyplan}{PhD1}
@@ -1091,7 +1091,7 @@ wish to left align your text}
   \renewcommand{\@studyplan}{#1}
   \ifthenelse{\equal{#1}{PhD2} \OR \equal{#1}{M2}}
   {%
-	\renewcommand{\submissiontext}{A Thesis Submitted in Partial Fulfillment of the Requirement for the Degree of}
+	\renewcommand{\submissiontext}{A Thesis Submitted in Partial Fulfillment of the Requirements for the Degree of}
 	\renewcommand{\submissiontextTH}{วิทยานิพนธ์นี้เป็นส่วนหนึ่งของการศึกษาตามหลักสูตรปริญญา}
   }{}
 }
@@ -1266,9 +1266,9 @@ wish to left align your text}
 \fi
 
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-{\large\bfseries{\spaceskip=.7\fontdimen2\font\xspaceskip=0pt\relax\submissiontext}\par}
+{\large\bfseries{\spaceskip=.6\fontdimen2\font\xspaceskip=0pt\relax\submissiontext}\par}
 }{
-\resizebox{\linewidth}{!}{\large\bfseries{\spaceskip=.5\fontdimen2\font\xspaceskip=0pt\relax\submissiontext}\par}
+\resizebox{\linewidth}{!}{\large\bfseries{\spaceskip=.4\fontdimen2\font\xspaceskip=0pt\relax\submissiontext}\par}
 }
 {\large\bfseries{\@degree} in {\@majorProgram}\par}
 {\large\bfseries{\@university}\par}
