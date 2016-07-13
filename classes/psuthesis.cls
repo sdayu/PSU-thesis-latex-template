@@ -841,10 +841,10 @@ supported!}
     \else
 	% No Margin staggering on Odd and Even side
         \ifsetDVI
-			\RequirePackage[top=1.5in, bottom=1in, left=1.5in, right=1in]{geometry}
+			\RequirePackage[dvips,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm}, vmarginratio=1:1,scale=1,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
           		 % left=1.5in,right=1in,top=1.5in,bottom=1in
         \else
-			\RequirePackage[top=1.5in, bottom=1in, left=1.5in, right=1in]{geometry}
+			\RequirePackage[pdftex,paper=\PSUTHESIS@papersize,hmarginratio=1:1,total={210mm,297mm}, vmarginratio=1:1,scale=1,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
         \fi
     \fi
 	
@@ -972,9 +972,9 @@ wish to left align your text}
 \renewcommand{\footrulewidth}{0pt}
 }
 
-\setlength{\headheight}{14.5pt}
-\setlength{\topmargin}{-.2in}
-\setlength{\headsep}{.5in}
+%\setlength{\headheight}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\headsep}{.3in}
 %\renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{
@@ -1395,8 +1395,8 @@ wish to left align your text}
 		
 		\computeSignBoxWidth
 %% end initial approval page %%
-
-		\begin{tabular*}{\textwidth}{@{}p{.48\textwidth} p{.49\textwidth}@{}}
+		\setlength\tabcolsep{4pt}
+		\begin{tabular*}{\textwidth}{@{}p{.49\textwidth}p{.49\textwidth}@{}}
 			\majorAdvisorLabel & \examiningCommitteeLabel \\
 			\vspace*{1em} & \\
 			{\makebox[\PSUTHESIS@advisorwidth]{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}} & {{\leavevmode\xleaders\hbox{.}\hfill\kern0pt}\chairpersonLabel} \\ 
