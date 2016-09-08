@@ -1236,7 +1236,7 @@ wish to left align your text}
 {\large\bfseries{\@title}\par}
 
 \ifsetTH
-\vspace{.4\PSUTHESIS@titlepagespacing}
+\vspace{.45\PSUTHESIS@titlepagespacing}
 \else
 \vspace{.4\PSUTHESIS@titlepagespacing}
 \fi
@@ -1250,7 +1250,7 @@ wish to left align your text}
 {\large\bfseries{\@author}\par}
 
 \ifsetTH
-\vspace{.4\PSUTHESIS@titlepagespacing}
+\vspace{.45\PSUTHESIS@titlepagespacing}
 \else
 \vspace{.4\PSUTHESIS@titlepagespacing}
 \fi
@@ -1434,17 +1434,16 @@ wish to left align your text}
 \ifsetTH
 %\setlength{\parindent}{1in}
 %\noindent
+\nohyphens{บัณฑิตวิทยาลัย มหาวิทยาลัยสงขลานครินทร์ อนุมัติให้นับวิทยานิพนธ์ฉบับนี้}
 \ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{
-{บัณฑิตวิทยาลัย มหาวิทยาลัยสงขลานครินทร์ อนุมัติให้นับวิทยานิพนธ์ฉบับนี้\linebreak}
-{สำหรับการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
+\nohyphens{สำหรับการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }{
-{บัณฑิตวิทยาลัย มหาวิทยาลัยสงขลานครินทร์ อนุมัติให้นับวิทยานิพนธ์ฉบับนี้\linebreak}
-{เป็นส่วนหนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
+\nohyphens{เป็นส่วนหนึ่งของการศึกษา~ตามหลักสูตรปริญญา\@degreeTH ~สาขาวิชา\@majorProgramTH}
 }
 \else
 \nohyphens{{The Graduate School, Prince of Songkla University, has approved this thesis as}
-\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{{fulfillment of the requirements for the \@degree~Degree in \linebreak\@majorProgram.}
-}{{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
+\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{\nohyphens{fulfillment of the requirements for the \@degree~Degree in \linebreak\@majorProgram.}
+}{\nohyphens{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
 }}
 \fi
 \noindent
@@ -1474,9 +1473,9 @@ wish to left align your text}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
 \ifsetTH
-{ขอรับรองว่า ผลงานวิจัยนี้มาจากการศึกษาวิจัยของนักศึกษาเอง และได้แสดงความขอบคุณบุคคลที่มีส่วนช่วยเหลือแล้ว}
+\nohyphens{ขอรับรองว่า ผลงานวิจัยนี้มาจากการศึกษาวิจัยของนักศึกษาเอง และได้แสดงความขอบคุณบุคคลที่มีส่วนช่วยเหลือแล้ว}
 \else
-{This is to certify that the work here submitted is the result of the candidate's own investigations. Due acknowledgement has been made of any assistance received.}
+\nohyphens{This is to certify that the work here submitted is the result of the candidate's own investigations. Due acknowledgement has been made of any assistance received.}
 \fi
 \vspace{3em}\\
 	\computeSignBoxWidth
@@ -1522,9 +1521,9 @@ wish to left align your text}
 %\begin{flushleft}
 \setlength{\parindent}{0in}
 \ifsetTH
-{ข้าพเจ้าขอรับรองว่า ผลงานวิจัยนี้ไม่เคยเป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่นขออนุมัติปริญญาในขณะนี้}
+\nohyphens{ข้าพเจ้าขอรับรองว่า ผลงานวิจัยนี้ไม่เคยเป็นส่วนหนึ่งในการอนุมัติปริญญาในระดับใดมาก่อน และไม่ได้ถูกใช้ในการยื่นขออนุมัติปริญญาในขณะนี้}
 \else
-{I hereby cetify that this work has not been accepted in substance for any degree, and is not being currently submitted in candidature for any degree.}
+\nohyphens{I hereby cetify that this work has not been accepted in substance for any degree, and is not being currently submitted in candidature for any degree.}
 \fi
 \vspace{3em}\\
 \computeSignBoxWidth
