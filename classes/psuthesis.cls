@@ -154,7 +154,7 @@
 % *************************** Pre-defined Options ******************************
 % Font Size
 
-\newcommand\PSUTHESIS@ptsize{11pt} %Set Default Size as 16 Thai font
+\newcommand\PSUTHESIS@ptsize{12pt} %Set Default Size as 16 Thai font
 \PassOptionsToClass{\PSUTHESIS@ptsize}{book}%
 \message{psuthesis: Font size is set as \PSUTHESIS@ptsize}
 
@@ -259,13 +259,13 @@ supported!}
 
 		\ifsetTH
 		\XeTeXlinebreaklocale "th_TH"
-		\setdefaultlanguage{thai}
-		\defaultfontfeatures{Scale=1.54,Mapping=tex-text}
+			\setdefaultlanguage{thai}
+			% \defaultfontfeatures{Scale=1.54,Mapping=tex-text}
+			\defaultfontfeatures{Scale=1.23,Mapping=tex-text}
 		\else
-		\setdefaultlanguage{english}
-		\defaultfontfeatures{Scale=1.54,Mapping=tex-text}
+			\setdefaultlanguage{english}
+			\defaultfontfeatures{Scale=1.23,Mapping=tex-text}
 		\fi
-
 		\XeTeXlinebreakskip = 0pt plus 1pt
 
 
@@ -1212,10 +1212,6 @@ wish to left align your text}
 
 \newcommand{\makePSUthesistitle}
 {
-
-\setlength{\parskip}{0pt}
-\setlength{\baselineskip}{1em}
-
 % To compute the free vertical space in Title page
 \computeTitlePageSpacing
 
@@ -1223,6 +1219,9 @@ wish to left align your text}
 
 \begin{doublespacing}
 \begin{center}
+\setlength{\parskip}{0pt}
+\setlength{\baselineskip}{1em}
+\renewcommand{\baselinestretch}{1.25}
 
 % Crest
 {\@crest \par}
