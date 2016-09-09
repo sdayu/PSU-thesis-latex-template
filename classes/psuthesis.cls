@@ -1442,7 +1442,7 @@ wish to left align your text}
 }
 \else
 \nohyphens{{The Graduate School, Prince of Songkla University, has approved this thesis as}
-\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{\nohyphens{fulfillment of the requirements for the \@degree~Degree in \linebreak\@majorProgram.}
+\ifthenelse{\equal{\@studyplan}{M1} \OR \equal{\@studyplan}{PhD1}}{\nohyphens{fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
 }{\nohyphens{partial fulfillment of the requirements for the \@degree~Degree in \@majorProgram.}
 }}
 \fi
