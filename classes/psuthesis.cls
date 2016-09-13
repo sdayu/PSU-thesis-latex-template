@@ -1236,9 +1236,9 @@ wish to left align your text}
 {\large\bfseries{\@title}\par}
 
 \ifsetTH
-\vspace{.45\PSUTHESIS@titlepagespacing}
+\vspace{.6\PSUTHESIS@titlepagespacing}
 \else
-\vspace{.4\PSUTHESIS@titlepagespacing}
+\vspace{.45\PSUTHESIS@titlepagespacing}
 \fi
 
 % Author
@@ -1250,9 +1250,9 @@ wish to left align your text}
 {\large\bfseries{\@author}\par}
 
 \ifsetTH
-\vspace{.45\PSUTHESIS@titlepagespacing}
+\vspace{.6\PSUTHESIS@titlepagespacing}
 \else
-\vspace{.4\PSUTHESIS@titlepagespacing}
+\vspace{.45\PSUTHESIS@titlepagespacing}
 \fi
 
 % Submission Text
