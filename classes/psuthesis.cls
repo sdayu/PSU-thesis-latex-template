@@ -1563,10 +1563,10 @@ wish to left align your text}
 	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} p{.8\textwidth}@{}}
 		\ifsetTH
 		\textbf{ชื่อ สกุล} & \@authorTitleTH\@authorTH  \\
-		\textbf{รหัสนักศึกษา} & \@studentID \\
+		\textbf{รหัสนักศึกษา} & \@studentID \vspace{.01em}\\
 		\else
 		\textbf{Name} & \@authorTitle~\@author  \\
-		\textbf{Student ID} & \@studentID \\
+		\textbf{Student ID} & \@studentID \vspace{.01em}\\
 		\fi
 	\end{tabular*}
 }
