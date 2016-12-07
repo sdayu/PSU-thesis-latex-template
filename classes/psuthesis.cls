@@ -1854,7 +1854,7 @@ wish to left align your text}
 
 % ******************** Addition Library ********************
 
-\usepackage{enumerate}
+\usepackage{enumitem}
 
 % add pdf to the thesis
 \usepackage{pdfpages}
