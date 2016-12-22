@@ -1566,7 +1566,7 @@ wish to left align your text}
 		\textbf{รหัสนักศึกษา} & \@studentID \vspace{.01em}\\
 		\else
 		\textbf{Name} & \@authorTitle~\@author  \\
-		\textbf{Student ID} & \@studentID \vspace{.01em}\\
+		\textbf{Student ID} & \@studentID \vspace{.3em}\\
 		\fi
 	\end{tabular*}
 }
