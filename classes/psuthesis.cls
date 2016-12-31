@@ -242,6 +242,7 @@ supported!}
 % multicolumn in vitae
 \RequirePackage{array}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{E}[1]{>{\centering\arraybackslash}p{#1}}
 
 % *********************** To copy ligatures and Fonts **************************
 \ifpdf
@@ -1132,6 +1133,107 @@ wish to left align your text}
 \newcommand{\@deanOfGraduateSchool}{}
 \newcommand{\deanOfGraduateSchool}[1]{\renewcommand{\@deanOfGraduateSchool}{#1}}
 
+% Vitae page
+%% education 
+\newcommand{\@graduatedDegreeOne}{}
+\newcommand{\graduatedDegreeOne}[1]{\renewcommand{\@graduatedDegreeOne}{#1}}
+\newcommand{\@graduatedInstitutionOne}{}
+\newcommand{\graduatedInstitutionOne}[1]{\renewcommand{\@graduatedInstitutionOne}{#1}}
+\newcommand{\@graduatedYearOne}{}
+\newcommand{\graduatedYearOne}[1]{\renewcommand{\@graduatedYearOne}{#1}}
+
+\newcommand{\@graduatedDegreeTwo}{}
+\newcommand{\graduatedDegreeTwo}[1]{\renewcommand{\@graduatedDegreeTwo}{#1}}
+\newcommand{\@graduatedInstitutionTwo}{}
+\newcommand{\graduatedInstitutionTwo}[1]{\renewcommand{\@graduatedInstitutionTwo}{#1}}
+\newcommand{\@graduatedYearTwo}{}
+\newcommand{\graduatedYearTwo}[1]{\renewcommand{\@graduatedYearTwo}{#1}}
+
+\newcommand{\@graduatedDegreeThree}{}
+\newcommand{\graduatedDegreeThree}[1]{\renewcommand{\@graduatedDegreeThree}{#1}}
+\newcommand{\@graduatedInstitutionThree}{}
+\newcommand{\graduatedInstitutionThree}[1]{\renewcommand{\@graduatedInstitutionThree}{#1}}
+\newcommand{\@graduatedYearThree}{}
+\newcommand{\graduatedYearThree}[1]{\renewcommand{\@graduatedYearThree}{#1}}
+
+\newcommand{\@graduatedDegreeFour}{}
+\newcommand{\graduatedDegreeFour}[1]{\renewcommand{\@graduatedDegreeFour}{#1}}
+\newcommand{\@graduatedInstitutionFour}{}
+\newcommand{\graduatedInstitutionFour}[1]{\renewcommand{\@graduatedInstitutionFour}{#1}}
+\newcommand{\@graduatedYearFour}{}
+\newcommand{\graduatedYearFour}[1]{\renewcommand{\@graduatedYearFour}{#1}}
+
+\newcommand{\@graduatedDegreeFive}{}
+\newcommand{\graduatedDegreeFive}[1]{\renewcommand{\@graduatedDegreeFive}{#1}}
+\newcommand{\@graduatedInstitutionFive}{}
+\newcommand{\graduatedInstitutionFive}[1]{\renewcommand{\@graduatedInstitutionFive}{#1}}
+\newcommand{\@graduatedYearFive}{}
+\newcommand{\graduatedYearFive}[1]{\renewcommand{\@graduatedYearFive}{#1}}
+
+%% scholarship
+\newcommand{\@scholarshipOne}{}
+\newcommand{\scholarshipOne}[1]{\renewcommand{\@scholarshipOne}{#1}}
+
+\newcommand{\@scholarshipTwo}{}
+\newcommand{\scholarshipTwo}[1]{\renewcommand{\@scholarshipTwo}{#1}}
+
+\newcommand{\@scholarshipThree}{}
+\newcommand{\scholarshipThree}[1]{\renewcommand{\@scholarshipThree}{#1}}
+
+\newcommand{\@scholarshipFour}{}
+\newcommand{\scholarshipFour}[1]{\renewcommand{\@scholarshipFour}{#1}}
+
+\newcommand{\@scholarshipFive}{}
+\newcommand{\scholarshipFive}[1]{\renewcommand{\@scholarshipFive}{#1}}
+
+%% work experience
+\newcommand{\@workedExperienceOne}{}
+\newcommand{\workedExperienceOne}[1]{\renewcommand{\@workedExperienceOne}{#1}}
+
+\newcommand{\@workedExperienceTwo}{}
+\newcommand{\workedExperienceTwo}[1]{\renewcommand{\@workedExperienceTwo}{#1}}
+
+\newcommand{\@workedExperienceThree}{}
+\newcommand{\workedExperienceThree}[1]{\renewcommand{\@workedExperienceThree}{#1}}
+
+\newcommand{\@workedExperienceFour}{}
+\newcommand{\workedExperienceFour}[1]{\renewcommand{\@workedExperienceFour}{#1}}
+
+\newcommand{\@workedExperienceFive}{}
+\newcommand{\workedExperienceFive}[1]{\renewcommand{\@workedExperienceFive}{#1}}
+
+%% publication
+
+\newcommand{\@publicationOne}{}
+\newcommand{\publicationOne}[1]{\renewcommand{\@publicationOne}{#1}}
+
+\newcommand{\@publicationTwo}{}
+\newcommand{\publicationTwo}[1]{\renewcommand{\@publicationTwo}{#1}}
+
+\newcommand{\@publicationThree}{}
+\newcommand{\publicationThree}[1]{\renewcommand{\@publicationThree}{#1}}
+
+\newcommand{\@publicationFour}{}
+\newcommand{\publicationFour}[1]{\renewcommand{\@publicationFour}{#1}}
+
+\newcommand{\@publicationFive}{}
+\newcommand{\publicationFive}[1]{\renewcommand{\@publicationFive}{#1}}
+
+\newcommand{\@publicationSix}{}
+\newcommand{\publicationSix}[1]{\renewcommand{\@publicationSix}{#1}}
+
+\newcommand{\@publicationSeven}{}
+\newcommand{\publicationSeven}[1]{\renewcommand{\@publicationSeven}{#1}}
+
+\newcommand{\@publicationEight}{}
+\newcommand{\publicationEight}[1]{\renewcommand{\@publicationEight}{#1}}
+
+\newcommand{\@publicationNine}{}
+\newcommand{\publicationNight}[1]{\renewcommand{\@publicationNine}{#1}}
+
+\newcommand{\@publicationTen}{}
+\newcommand{\publicationTen}[1]{\renewcommand{\@publicationTen}{#1}}
+
 % These macros define an environment for front matter that is always
 % single column even in a double-column document.
 \newenvironment{alwayssingle}{%
@@ -1569,6 +1671,145 @@ wish to left align your text}
 		\textbf{Student ID} & \@studentID \vspace{.3em}\\
 		\fi
 	\end{tabular*}
+}
+
+\newcommand{\makeVitae}
+{
+	\cleardoublepage
+	\setsinglecolumn
+	
+	\ifsetTH
+	\chapter*{\centering ประวัติผู้เขียน}
+	\addcontentsline{toc}{chapter}{ประวัติผู้เขียน}
+	\else
+	\chapter*{\centering VITAE}
+	\addcontentsline{toc}{chapter}{VITAE}
+	\fi
+	
+	%\thispagestyle{empty}
+	\raggedright
+	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} p{.8\textwidth}@{}}
+		\ifsetTH
+			\textbf{ชื่อ สกุล} & \@authorTitleTH\@authorTH  \\
+			\textbf{รหัสนักศึกษา} & \@studentID \\
+		\else
+			\textbf{Name} & \@authorTitle~\@author  \\
+			\textbf{Student ID} & \@studentID \\
+		\fi
+		
+		\ifsetTH
+			\textbf{วุฒิการศึกษา} & \\
+		\else
+			\textbf{Education Attainment}& \\
+		\fi	
+	\end{tabular*}
+
+	\begin{tabular*}{\textwidth}{@{}E{.3\textwidth} E{.4\textwidth}@{} E{.3\textwidth}@{}}
+		\ifsetTH
+			\textbf{วุฒิ}
+		\else
+			\textbf{Degree}
+		\fi	
+		& 
+			\ifsetTH
+				\textbf{ชื่อสถาบัน}
+			\else
+				\textbf{Name of Institution}
+			\fi	
+		& 
+			\ifsetTH
+				\textbf{ปีที่สำเร็จการศึกษา}
+			\else
+				\textbf{Year of Graduation}
+			\fi	 \\
+		\ifthenelse{\equal{\@graduatedDegreeOne}{}}
+		{}{\@graduatedDegreeOne & \@graduatedInstitutionOne & \@graduatedYearOne \\}
+		\ifthenelse{\equal{\@graduatedDegreeTwo}{}}
+		{}{\@graduatedDegreeTwo & \@graduatedInstitutionTwo & \@graduatedYearTwo \\}
+		\ifthenelse{\equal{\@graduatedDegreeThree}{}}
+		{}{\@graduatedDegreeThree & \@graduatedInstitutionThree & \@graduatedYearThree \\}
+		\ifthenelse{\equal{\@graduatedDegreeFour}{}}
+		{}{\@graduatedDegreeFour & \@graduatedInstitutionFour & \@graduatedYearFour \\}
+		\ifthenelse{\equal{\@graduatedDegreeFive}{}}
+		{}{\@graduatedDegreeFive & \@graduatedInstitutionFive & \@graduatedYearFive \\}
+		\end{tabular*}
+		
+		\ifthenelse{\equal{\@scholarshipOne}{}}
+		{}{	
+			\setlength\parindent{0cm}
+			\ifsetTH
+				\textbf{ทุนการศึกษา (ที่ได้รับในระหว่างการศึกษา)} 
+			\else
+				\textbf{Scholarship Awards during Enrollment}
+			\fi		
+			\vspace{.7em} \newline
+			\setlength\parindent{1cm}
+			\ifthenelse{\equal{\@scholarshipOne}{}}
+			{}{\indent\@scholarshipOne\newline}
+			\ifthenelse{\equal{\@scholarshipTwo}{}}
+			{}{\indent\@scholarshipTwo\newline}
+			\ifthenelse{\equal{\@scholarshipThree}{}}
+			{}{\indent\@scholarshipThree\newline}
+			\ifthenelse{\equal{\@scholarshipFour}{}}
+			{}{\indent\@scholarshipFour\newline}
+			\ifthenelse{\equal{\@scholarshipFive}{}}
+			{}{\indent\@scholarshipFive\newline}
+			\\
+		}
+		
+		\ifthenelse{\equal{\@workedExperienceOne}{}}
+		{}{
+			\setlength\parindent{0cm}
+			\ifsetTH
+				\textbf{ตําแหน่งและสถานที่ทํางาน} 
+			\else
+				\textbf{Work -- Position and Address}
+			\fi	
+			\vspace{.7em} \newline
+			\setlength\parindent{1cm}
+			\ifthenelse{\equal{\@workedExperienceOne}{}}
+			{}{\indent\@workedExperienceOne\newline}
+			\ifthenelse{\equal{\@workedExperienceTwo}{}}
+			{}{\indent\@workedExperienceTwo\newline}
+			\ifthenelse{\equal{\@workedExperienceThree}{}}
+			{}{\indent\@workedExperienceThree\newline}
+			\ifthenelse{\equal{\@workedExperienceFour}{}}
+			{}{\indent\@workedExperienceFour\newline}
+			\ifthenelse{\equal{\@workedExperienceFive}{}}
+			{}{\indent\@workedExperienceFive\newline}
+			\\
+		}
+		
+		\setlength\parindent{0cm}
+		\ifsetTH
+			\textbf{การตีพิมพ์เผยแพร่ผลงาน}
+		\else
+			\textbf{List of Publication and Proceeding}
+		\fi	
+		% add publications
+		\begin{itemize}
+			\ifthenelse{\equal{\@publicationOne}{}}
+			{}{\item \@publicationOne}
+			\ifthenelse{\equal{\@publicationTwo}{}}
+			{}{\item\@publicationTwo}
+%			\ifthenelse{\equal{\@publicationThree}{}}
+%			{}{\item\@publicationThree}
+%			\ifthenelse{\equal{\@publicationFour}{}}
+%			{}{\item\@publicationFour}
+%			\ifthenelse{\equal{\@publicationFive}{}}
+%			{}{\item\@publicationFive}
+%			\ifthenelse{\equal{\@publicationSix}{}}
+%			{}{\item\@publicationSix}
+%			\ifthenelse{\equal{\@publicationSeven}{}}
+%			{}{\item\@publicationSeven}
+%			\ifthenelse{\equal{\@publicationEight}{}}
+%			{}{\item\@publicationEight}
+%			\ifthenelse{\equal{\@publicationNine}{}}
+%			{}{\item\@publicationNine}
+%			\ifthenelse{\equal{\@publicationTen}{}}
+%			{}{\item\@publicationTen}
+		\end{itemize}
+	
 }
 
 % ****************************** Acknowledgements ********************************
