@@ -1688,7 +1688,7 @@ wish to left align your text}
 	
 	%\thispagestyle{empty}
 	\raggedright
-	\begin{tabular*}{\textwidth}{@{}p{.18\textwidth} p{.8\textwidth}@{}}
+	\begin{tabular}{p{.18\textwidth} p{.8\textwidth}}
 		\ifsetTH
 			\textbf{ชื่อ สกุล} & \@authorTitleTH\@authorTH  \\
 			\textbf{รหัสนักศึกษา} & \@studentID \\
@@ -1696,13 +1696,14 @@ wish to left align your text}
 			\textbf{Name} & \@authorTitle~\@author  \\
 			\textbf{Student ID} & \@studentID \\
 		\fi
-		
-		\ifsetTH
-			\textbf{วุฒิการศึกษา} & \\
-		\else
-			\textbf{Education Attainment}& \\
-		\fi	
-	\end{tabular*}
+		\multicolumn{2}{l}{
+			\ifsetTH
+				\textbf{วุฒิการศึกษา}
+			\else
+				\textbf{Education~Attainment}
+			\fi
+		}\\
+	\end{tabular}
 
 	\begin{tabular*}{\textwidth}{@{}E{.3\textwidth} E{.4\textwidth}@{} E{.3\textwidth}@{}}
 		\ifsetTH
@@ -1723,15 +1724,15 @@ wish to left align your text}
 				\textbf{Year of Graduation}
 			\fi	 \\
 		\ifthenelse{\equal{\@graduatedDegreeOne}{}}
-		{}{\@graduatedDegreeOne & \@graduatedInstitutionOne & \@graduatedYearOne \\}
+		{}{\@graduatedDegreeOne & \@graduatedInstitutionOne & \@graduatedYearOne \vspace{.8cm}\\}
 		\ifthenelse{\equal{\@graduatedDegreeTwo}{}}
-		{}{\@graduatedDegreeTwo & \@graduatedInstitutionTwo & \@graduatedYearTwo \\}
+		{}{\@graduatedDegreeTwo & \@graduatedInstitutionTwo & \@graduatedYearTwo \vspace{.8cm}\\}
 		\ifthenelse{\equal{\@graduatedDegreeThree}{}}
-		{}{\@graduatedDegreeThree & \@graduatedInstitutionThree & \@graduatedYearThree \\}
+		{}{\@graduatedDegreeThree & \@graduatedInstitutionThree & \@graduatedYearThree \vspace{.8cm}\\}
 		\ifthenelse{\equal{\@graduatedDegreeFour}{}}
-		{}{\@graduatedDegreeFour & \@graduatedInstitutionFour & \@graduatedYearFour \\}
+		{}{\@graduatedDegreeFour & \@graduatedInstitutionFour & \@graduatedYearFour \vspace{.8cm}\\}
 		\ifthenelse{\equal{\@graduatedDegreeFive}{}}
-		{}{\@graduatedDegreeFive & \@graduatedInstitutionFive & \@graduatedYearFive \\}
+		{}{\@graduatedDegreeFive & \@graduatedInstitutionFive & \@graduatedYearFive \vspace{.8cm}\\}
 		\end{tabular*}
 		
 		\ifthenelse{\equal{\@scholarshipOne}{}}
@@ -1788,26 +1789,27 @@ wish to left align your text}
 		\fi	
 		% add publications
 		\begin{itemize}
+			\justifying
 			\ifthenelse{\equal{\@publicationOne}{}}
 			{}{\item \@publicationOne}
 			\ifthenelse{\equal{\@publicationTwo}{}}
 			{}{\item\@publicationTwo}
-%			\ifthenelse{\equal{\@publicationThree}{}}
-%			{}{\item\@publicationThree}
-%			\ifthenelse{\equal{\@publicationFour}{}}
-%			{}{\item\@publicationFour}
-%			\ifthenelse{\equal{\@publicationFive}{}}
-%			{}{\item\@publicationFive}
-%			\ifthenelse{\equal{\@publicationSix}{}}
-%			{}{\item\@publicationSix}
-%			\ifthenelse{\equal{\@publicationSeven}{}}
-%			{}{\item\@publicationSeven}
-%			\ifthenelse{\equal{\@publicationEight}{}}
-%			{}{\item\@publicationEight}
-%			\ifthenelse{\equal{\@publicationNine}{}}
-%			{}{\item\@publicationNine}
-%			\ifthenelse{\equal{\@publicationTen}{}}
-%			{}{\item\@publicationTen}
+			\ifthenelse{\equal{\@publicationThree}{}}
+			{}{\item\@publicationThree}
+			\ifthenelse{\equal{\@publicationFour}{}}
+			{}{\item\@publicationFour}
+			\ifthenelse{\equal{\@publicationFive}{}}
+			{}{\item\@publicationFive}
+			\ifthenelse{\equal{\@publicationSix}{}}
+			{}{\item\@publicationSix}
+			\ifthenelse{\equal{\@publicationSeven}{}}
+			{}{\item\@publicationSeven}
+			\ifthenelse{\equal{\@publicationEight}{}}
+			{}{\item\@publicationEight}
+			\ifthenelse{\equal{\@publicationNine}{}}
+			{}{\item\@publicationNine}
+			\ifthenelse{\equal{\@publicationTen}{}}
+			{}{\item\@publicationTen}
 		\end{itemize}
 	
 }
