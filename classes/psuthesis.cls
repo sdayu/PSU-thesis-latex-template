@@ -1741,7 +1741,7 @@ wish to left align your text}
 			\ifsetTH
 				\textbf{ทุนการศึกษา (ที่ได้รับในระหว่างการศึกษา)} 
 			\else
-				\textbf{Scholarship Awards during Enrollment}
+				\textbf{Scholarship Awards during Enrolment}
 			\fi		
 			\vspace{.7em} \newline
 			\setlength\parindent{1cm}
