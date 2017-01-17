@@ -974,8 +974,8 @@ wish to left align your text}
 }
 
 %\setlength{\headheight}{0in}
-\setlength{\topmargin}{0in}
-\setlength{\headsep}{.3in}
+\setlength{\topmargin}{-0.1in}
+\setlength{\headsep}{.4in}
 %\renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{
