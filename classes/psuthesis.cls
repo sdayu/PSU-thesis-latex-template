@@ -1015,13 +1015,13 @@ wish to left align your text}
 % new define
 \newenvironment{romanpages}{
   \setcounter{page}{1}
-  \renewcommand{\thepage}{\Roman{page}}}
+  \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
 
 \ifsetTH
 	\renewcommand{\thepage}{(\arabic{page})}
 \else
-	\renewcommand{\thepage}{\Roman{page}}
+	\renewcommand{\thepage}{\roman{page}}
 \fi
 
 
