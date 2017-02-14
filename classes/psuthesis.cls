@@ -259,12 +259,13 @@ supported!}
 		%\defaultfontfeatures{Scale=1.23}
 
 		\ifsetTH
-		\XeTeXlinebreaklocale "th_TH"
+			\XeTeXlinebreaklocale "th_TH"
 			\setdefaultlanguage{thai}
 			% \defaultfontfeatures{Scale=1.54,Mapping=tex-text}
 			\defaultfontfeatures{Scale=1.23,Mapping=tex-text}
 		\else
 			\setdefaultlanguage{english}
+			\XeTeXlinebreaklocale "th_TH"
 			\defaultfontfeatures{Scale=1.23,Mapping=tex-text}
 		\fi
 		\XeTeXlinebreakskip = 0pt plus 1pt
@@ -363,8 +364,8 @@ supported!}
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
 		\PSUContentsHeader{\contentsname}{}{\contenttopchapter}{\contenttoppage}
-		\@starttoc{toc}%
 		\addcontentsline{toc}{chapter}{\contentsname}
+		\@starttoc{toc}%
 		\endgroup%
 	}
 
@@ -373,8 +374,8 @@ supported!}
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
 		\PSUContentsHeader{\listtablename}{}{\contenttoptable}{\contenttoppage}
-		\@starttoc{lot}%
 		\addcontentsline{toc}{chapter}{\listtablename}
+		\@starttoc{lot}%
 		\endgroup%
 	}
 
@@ -383,8 +384,8 @@ supported!}
 		\begingroup%
 		\parindent\z@\parskip\cftparskip%
 		\PSUContentsHeader{\listfigurename}{}{\contenttopfigure}{\contenttoppage}
-		\@starttoc{lof}%
 		\addcontentsline{toc}{chapter}{\listfigurename}
+		\@starttoc{lof}%
 		\endgroup%
 	}
 
@@ -1909,10 +1910,10 @@ wish to left align your text}
 \begingroup
 \let\clearpage\relax
 \chapter*{บทคัดย่อ}
-\ifsetTH
+%\ifsetTH
 \addcontentsline{toc}{chapter}{บทคัดย่อ}
-\else
-\fi
+%\else
+%\fi
 \endgroup
 
 %\thispagestyle{empty}
